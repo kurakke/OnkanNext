@@ -24,13 +24,11 @@ const glass = css`
 `;
 
 const Game = () => {
-  // const DMiku = new Audio(MikuD);
-  // const musicPlay = () => {
-  //   DMiku.play();
-  // };
+  const MikuD = new Audio("./MikuD.mp3");
+
   return (
     <div css={all}>
-      <div css={glass}>
+      <div css={glass} onClick={() => MikuD.play()}>
         <button>s</button>
       </div>
     </div>
