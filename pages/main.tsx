@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const all = css`
   margin: 0px;
@@ -67,17 +68,7 @@ const Main = () => {
     { title: "name6", img: "./favicon.ico" },
   ];
 
-  const [pages, setPages] = useState("1");
-  const [pageControle, setPageControle] = useState("0");
   const router = useRouter();
-  useEffect(() => {
-    if (pageControle === "2") {
-      router.push({
-        pathname: "/game",
-      });
-    }
-    setPageControle("2");
-  }, [pages]);
 
   return (
     <div css={all}>
@@ -97,9 +88,9 @@ const Main = () => {
         </Slider>
       </div>
       <button css={startButton}>
-        <p css={start} onClick={() => setPages("2")}>
-          開始
-        </p>
+        <Link href={"/game"}>
+          <p css={start}>開始</p>
+        </Link>
       </button>
     </div>
   );
