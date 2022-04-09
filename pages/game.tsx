@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Button from "../components/button";
 
 const all = css`
   margin: 0px;
@@ -108,6 +109,7 @@ const Game = () => {
           })}
         </Slider>
       </div>
+      <Button text="c"></Button>
     </div>
   );
 };
