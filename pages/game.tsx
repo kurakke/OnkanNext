@@ -15,7 +15,7 @@ const all = css`
 `;
 const glass = css`
   width: 50vw;
-  height: 60vh;
+  height: 28vh;
   background-color: rgba(255, 255, 255, 0.2);
   margin: 0 auto;
   top: 80px;
@@ -42,7 +42,7 @@ const start = css`
   font-size: 20px;
   font-weight: 600;
 `;
-
+const buttons = css``;
 const Game = () => {
   let MikuA: HTMLAudioElement;
   let MikuB: HTMLAudioElement;
@@ -54,14 +54,14 @@ const Game = () => {
   let MikuHc: HTMLAudioElement;
 
   useEffect(() => {
-    MikuA = new Audio("./MikuA.mp3");
-    MikuB = new Audio("./MikuB.mp3");
-    MikuC = new Audio("./MikuC.mp3");
-    MikuD = new Audio("./MikuD.mp3");
-    MikuE = new Audio("./MikuE.mp3");
-    MikuF = new Audio("./MikuF.mp3");
-    MikuG = new Audio("./MikuG.mp3");
-    MikuHc = new Audio("./MikuHc.mp3");
+    MikuA = new Audio("MikuA.mp3");
+    MikuB = new Audio("MikuB.mp3");
+    MikuC = new Audio("MikuC.mp3");
+    MikuD = new Audio("MikuD.mp3");
+    MikuE = new Audio("MikuE.mp3");
+    MikuF = new Audio("MikuF.mp3");
+    MikuG = new Audio("MikuG.mp3");
+    MikuHc = new Audio("MikuHc.mp3");
   }, []);
   let QArray = [];
   for (let i = 0; i < 8; i++) {
@@ -79,14 +79,14 @@ const Game = () => {
   };
 
   const answer = [
-    { key: 1, file: MikuC, ans: "c" },
-    { key: 2, file: MikuD, ans: "d" },
-    { key: 3, file: MikuE, ans: "e" },
-    { key: 4, file: MikuF, ans: "f" },
-    { key: 5, file: MikuG, ans: "g" },
-    { key: 6, file: MikuA, ans: "a" },
-    { key: 7, file: MikuB, ans: "b" },
-    { key: 8, file: MikuHc, ans: "hc" },
+    { file: MikuC, ans: "c" },
+    { file: MikuD, ans: "d" },
+    { file: MikuE, ans: "e" },
+    { file: MikuF, ans: "f" },
+    { file: MikuG, ans: "g" },
+    { file: MikuA, ans: "a" },
+    { file: MikuB, ans: "b" },
+    { file: MikuHc, ans: "hc" },
   ];
   return (
     <div css={all}>

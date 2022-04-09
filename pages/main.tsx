@@ -68,8 +68,6 @@ const Main = () => {
     { title: "name6", img: "./favicon.ico" },
   ];
 
-  const router = useRouter();
-
   return (
     <div css={all}>
       <div>
