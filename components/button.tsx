@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { css } from "@emotion/react";
 const button = css`
-  width: 28vw;
-  height: 7vh;
-  background-color: rgba(255, 255, 255, 0.2);
+  width: 80px;
+  height: 28px;
   margin: 0 auto;
   top: 80px;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -12,6 +11,7 @@ const button = css`
 `;
 const text = css`
   color: #ffffff;
+  margin: 0 auto;
 `;
 
 type Props = {
@@ -19,9 +19,25 @@ type Props = {
 };
 
 const Button = (props: Props) => {
+  const [chosenButton, setChosenButton] = useState("0");
   return (
     <div>
-      <button css={button}>
+      <button
+        css={button}
+        onClick={() => {
+          if (chosenButton === "0") {
+            setChosenButton("1");
+          } else {
+            setChosenButton("0");
+          }
+        }}
+        style={{
+          backgroundColor:
+            chosenButton === "0"
+              ? "rgba(255, 255, 255, 0.2)"
+              : "rgba(255, 255, 255, 0.4)",
+        }}
+      >
         <p css={text}>{props.text}</p>
       </button>
     </div>

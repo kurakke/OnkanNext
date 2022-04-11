@@ -15,7 +15,7 @@ const all = css`
   flex-flow: column;
 `;
 const glass = css`
-  width: 50vw;
+  width: 70vw;
   height: 28vh;
   background-color: rgba(255, 255, 255, 0.2);
   margin: 0 auto;
@@ -45,25 +45,16 @@ const start = css`
 `;
 const buttons = css``;
 const Game = () => {
-  let MikuA: HTMLAudioElement;
-  let MikuB: HTMLAudioElement;
-  let MikuC: HTMLAudioElement;
-  let MikuD: HTMLAudioElement;
-  let MikuE: HTMLAudioElement;
-  let MikuF: HTMLAudioElement;
-  let MikuG: HTMLAudioElement;
-  let MikuHc: HTMLAudioElement;
 
-  useEffect(() => {
-    MikuA = new Audio("MikuA.mp3");
-    MikuB = new Audio("MikuB.mp3");
-    MikuC = new Audio("MikuC.mp3");
-    MikuD = new Audio("MikuD.mp3");
-    MikuE = new Audio("MikuE.mp3");
-    MikuF = new Audio("MikuF.mp3");
-    MikuG = new Audio("MikuG.mp3");
-    MikuHc = new Audio("MikuHc.mp3");
-  }, []);
+  const [MikuA] = useState(typeof Audio !== "undefined" && new Audio("MikuA.mp3"));
+  const [MikuB] = useState(typeof Audio !== "undefined" && new Audio("MikuB.mp3"));
+  const [MikuC] = useState(typeof Audio !== "undefined" && new Audio("MikuC.mp3"));
+  const [MikuD] = useState(typeof Audio !== "undefined" && new Audio("MikuD.mp3"));
+  const [MikuE] = useState(typeof Audio !== "undefined" && new Audio("MikuE.mp3"));
+  const [MikuF] = useState(typeof Audio !== "undefined" && new Audio("MikuF.mp3"));
+  const [MikuG] = useState(typeof Audio !== "undefined" && new Audio("MikuG.mp3"));
+  const [MikuHc] = useState(typeof Audio !== "undefined" && new Audio("MikuHc.mp3"));
+
   let QArray = [];
   for (let i = 0; i < 8; i++) {
     QArray.push(Math.floor(Math.random() * 8));
@@ -99,7 +90,10 @@ const Game = () => {
                 <button
                   css={startButton}
                   onClick={() => {
-                    answer[QuestionArray[item]].file.play;
+                    console.log(QuestionArray[item]);
+                    console.log(answer[5].file);
+                    console.log(answer[QuestionArray[item]].file);
+                    answer[QuestionArray[item]].file.play();
                   }}
                 >
                   <p css={start}>音を再生</p>
