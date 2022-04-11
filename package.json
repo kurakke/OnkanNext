@@ -16,6 +16,7 @@
     "react-dom": "17.0.2",
     "react-slick": "^0.28.1",
     "react-sound": "^1.2.0",
+    "react-webaudio": "^0.3.0-EXPERIMENTAL",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
