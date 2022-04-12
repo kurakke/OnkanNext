@@ -27,9 +27,6 @@ const glass = css`
 const slider = css`
   text-align: center;
 `;
-const image = css`
-  margin: 0 auto;
-`;
 const startButton = css`
   background-color: white;
   width: 180px;
@@ -44,16 +41,35 @@ const start = css`
   font-weight: 600;
 `;
 const buttons = css``;
-const Game = () => {
+const answerButton = css`
+  margin: 20px 0;
+`;
 
-  const [MikuA] = useState(typeof Audio !== "undefined" && new Audio("MikuA.mp3"));
-  const [MikuB] = useState(typeof Audio !== "undefined" && new Audio("MikuB.mp3"));
-  const [MikuC] = useState(typeof Audio !== "undefined" && new Audio("MikuC.mp3"));
-  const [MikuD] = useState(typeof Audio !== "undefined" && new Audio("MikuD.mp3"));
-  const [MikuE] = useState(typeof Audio !== "undefined" && new Audio("MikuE.mp3"));
-  const [MikuF] = useState(typeof Audio !== "undefined" && new Audio("MikuF.mp3"));
-  const [MikuG] = useState(typeof Audio !== "undefined" && new Audio("MikuG.mp3"));
-  const [MikuHc] = useState(typeof Audio !== "undefined" && new Audio("MikuHc.mp3"));
+const Game = () => {
+  const [MusicA3] = useState(
+    typeof Audio !== "undefined" && new Audio("MikuA.mp3")
+  );
+  const [MusicB3] = useState(
+    typeof Audio !== "undefined" && new Audio("MikuB.mp3")
+  );
+  const [MusicC3] = useState(
+    typeof Audio !== "undefined" && new Audio("MikuC.mp3")
+  );
+  const [MusicD3] = useState(
+    typeof Audio !== "undefined" && new Audio("MikuD.mp3")
+  );
+  const [MusicE3] = useState(
+    typeof Audio !== "undefined" && new Audio("MikuE.mp3")
+  );
+  const [MusicF3] = useState(
+    typeof Audio !== "undefined" && new Audio("MikuF.mp3")
+  );
+  const [MusicG3] = useState(
+    typeof Audio !== "undefined" && new Audio("MikuG.mp3")
+  );
+  const [MusicC2] = useState(
+    typeof Audio !== "undefined" && new Audio("MikuHc.mp3")
+  );
 
   let QArray = [];
   for (let i = 0; i < 8; i++) {
@@ -69,16 +85,19 @@ const Game = () => {
     arrow: true,
     autoplay: false,
   };
-
+  const AnswerCheck = (text: string) => {
+    console.log("true!!!!!!");
+    console.log({ text });
+  };
   const answer = [
-    { file: MikuC, ans: "c" },
-    { file: MikuD, ans: "d" },
-    { file: MikuE, ans: "e" },
-    { file: MikuF, ans: "f" },
-    { file: MikuG, ans: "g" },
-    { file: MikuA, ans: "a" },
-    { file: MikuB, ans: "b" },
-    { file: MikuHc, ans: "hc" },
+    { file: MusicC3, ans: "c3" },
+    { file: MusicD3, ans: "d3" },
+    { file: MusicE3, ans: "e3" },
+    { file: MusicF3, ans: "f3" },
+    { file: MusicG3, ans: "g3" },
+    { file: MusicA3, ans: "a3" },
+    { file: MusicB3, ans: "b3" },
+    { file: MusicC2, ans: "c2" },
   ];
   return (
     <div css={all}>
@@ -86,13 +105,13 @@ const Game = () => {
         <Slider {...settings}>
           {QuestionArray.map((item) => {
             return (
-              <div css="slider">
+              <div css={slider}>
                 <button
                   css={startButton}
                   onClick={() => {
-                    console.log(QuestionArray[item]);
-                    console.log(answer[5].file);
-                    console.log(answer[QuestionArray[item]].file);
+                    // console.log(QuestionArray[item]);
+                    // console.log(answer[5].file);
+                    // console.log(answer[QuestionArray[item]].file);
                     answer[QuestionArray[item]].file.play();
                   }}
                 >
@@ -103,7 +122,56 @@ const Game = () => {
           })}
         </Slider>
       </div>
-      <Button text="c"></Button>
+      <div css={buttons}>
+        <Button
+          AnswerCheck={AnswerCheck}
+          text="c"
+          answer="c2"
+          css={answerButton}
+        ></Button>
+        <Button
+          AnswerCheck={AnswerCheck}
+          text="b"
+          answer="b3"
+          css={answerButton}
+        ></Button>
+        <Button
+          AnswerCheck={AnswerCheck}
+          text="a"
+          answer="a3"
+          css={answerButton}
+        ></Button>
+        <Button
+          AnswerCheck={AnswerCheck}
+          text="g"
+          answer="g3"
+          css={answerButton}
+        ></Button>
+        <Button
+          AnswerCheck={AnswerCheck}
+          text="f"
+          answer="f3"
+          css={answerButton}
+        ></Button>
+        <Button
+          AnswerCheck={AnswerCheck}
+          text="e"
+          answer="e3"
+          css={answerButton}
+        ></Button>
+        <Button
+          AnswerCheck={AnswerCheck}
+          text="d"
+          answer="d3"
+          css={answerButton}
+        ></Button>
+        <Button
+          AnswerCheck={AnswerCheck}
+          text="c"
+          answer="c3"
+          css={answerButton}
+        ></Button>
+      </div>
     </div>
   );
 };

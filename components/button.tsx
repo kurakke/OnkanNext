@@ -16,6 +16,8 @@ const text = css`
 
 type Props = {
   text: string;
+  answer: string;
+  AnswerCheck: (text:string) => void;
 };
 
 const Button = (props: Props) => {
@@ -25,11 +27,7 @@ const Button = (props: Props) => {
       <button
         css={button}
         onClick={() => {
-          if (chosenButton === "0") {
-            setChosenButton("1");
-          } else {
-            setChosenButton("0");
-          }
+          props.AnswerCheck(props.answer);
         }}
         style={{
           backgroundColor:
