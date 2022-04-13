@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { css } from "@emotion/react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -15,7 +15,7 @@ const all = css`
   flex-flow: column;
 `;
 const glass = css`
-  width: 70vw;
+  width: 80vw;
   height: 28vh;
   background-color: rgba(255, 255, 255, 0.2);
   margin: 0 auto;
@@ -70,12 +70,15 @@ const Game = () => {
   const [MusicC2] = useState(
     typeof Audio !== "undefined" && new Audio("MikuHc.mp3")
   );
-
+  const random = require("mersenne-twister");
+  const Mt = new random();
+  const A = Mt.random();
   let QArray = [];
   for (let i = 0; i < 8; i++) {
     QArray.push(Math.floor(Math.random() * 8));
   }
   const QuestionArray = QArray;
+
   const settings = {
     dots: true,
     infinite: true,
@@ -85,10 +88,7 @@ const Game = () => {
     arrow: true,
     autoplay: false,
   };
-  const AnswerCheck = (text: string) => {
-    console.log("true!!!!!!");
-    console.log({ text });
-  };
+
   const answer = [
     { file: MusicC3, ans: "c3" },
     { file: MusicD3, ans: "d3" },
@@ -109,10 +109,9 @@ const Game = () => {
                 <button
                   css={startButton}
                   onClick={() => {
-                    // console.log(QuestionArray[item]);
-                    // console.log(answer[5].file);
-                    // console.log(answer[QuestionArray[item]].file);
                     answer[QuestionArray[item]].file.play();
+                    console.log(QuestionArray);
+                    console.log(A);
                   }}
                 >
                   <p css={start}>音を再生</p>
@@ -123,54 +122,14 @@ const Game = () => {
         </Slider>
       </div>
       <div css={buttons}>
-        <Button
-          AnswerCheck={AnswerCheck}
-          text="c"
-          answer="c2"
-          css={answerButton}
-        ></Button>
-        <Button
-          AnswerCheck={AnswerCheck}
-          text="b"
-          answer="b3"
-          css={answerButton}
-        ></Button>
-        <Button
-          AnswerCheck={AnswerCheck}
-          text="a"
-          answer="a3"
-          css={answerButton}
-        ></Button>
-        <Button
-          AnswerCheck={AnswerCheck}
-          text="g"
-          answer="g3"
-          css={answerButton}
-        ></Button>
-        <Button
-          AnswerCheck={AnswerCheck}
-          text="f"
-          answer="f3"
-          css={answerButton}
-        ></Button>
-        <Button
-          AnswerCheck={AnswerCheck}
-          text="e"
-          answer="e3"
-          css={answerButton}
-        ></Button>
-        <Button
-          AnswerCheck={AnswerCheck}
-          text="d"
-          answer="d3"
-          css={answerButton}
-        ></Button>
-        <Button
-          AnswerCheck={AnswerCheck}
-          text="c"
-          answer="c3"
-          css={answerButton}
-        ></Button>
+        <Button text="c" css={answerButton}></Button>
+        <Button text="b" css={answerButton}></Button>
+        <Button text="a" css={answerButton}></Button>
+        <Button text="g" css={answerButton}></Button>
+        <Button text="f" css={answerButton}></Button>
+        <Button text="e" css={answerButton}></Button>
+        <Button text="d" css={answerButton}></Button>
+        <Button text="c" css={answerButton}></Button>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { css } from "@emotion/react";
 const button = css`
   width: 80px;
@@ -6,8 +6,8 @@ const button = css`
   margin: 0 auto;
   top: 80px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  filter: drop-shadow(3px 3px 3px 0 rgba(0, 0, 0, 0.8));
   border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.2);
 `;
 const text = css`
   color: #ffffff;
@@ -16,26 +16,12 @@ const text = css`
 
 type Props = {
   text: string;
-  answer: string;
-  AnswerCheck: (text:string) => void;
 };
 
 const Button = (props: Props) => {
-  const [chosenButton, setChosenButton] = useState("0");
   return (
     <div>
-      <button
-        css={button}
-        onClick={() => {
-          props.AnswerCheck(props.answer);
-        }}
-        style={{
-          backgroundColor:
-            chosenButton === "0"
-              ? "rgba(255, 255, 255, 0.2)"
-              : "rgba(255, 255, 255, 0.4)",
-        }}
-      >
+      <button css={button}>
         <p css={text}>{props.text}</p>
       </button>
     </div>
