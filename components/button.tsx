@@ -15,15 +15,15 @@ const text = css`
 `;
 
 type Props = {
-  text: string;
+  label: string;
+  disable: boolean;
+  onClick: void;
 };
 
-const Button = (props: Props) => {
+const Button: React.VFC<Props> = ({ label, disable, onClick }) => {
   return (
     <div>
-      <button css={button}>
-        <p css={text}>{props.text}</p>
-      </button>
+      <button css={button}>{label}</button>
     </div>
   );
 };

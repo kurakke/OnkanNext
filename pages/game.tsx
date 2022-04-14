@@ -89,7 +89,7 @@ const Game = () => {
     autoplay: false,
   };
 
-  const answer = [
+  const Sounds = [
     { file: MusicC3, ans: "c3" },
     { file: MusicD3, ans: "d3" },
     { file: MusicE3, ans: "e3" },
@@ -99,17 +99,31 @@ const Game = () => {
     { file: MusicB3, ans: "b3" },
     { file: MusicC2, ans: "c2" },
   ];
+  const Choices = [
+    { label: "c", value: "c3" },
+    { label: "d", value: "d3" },
+    { label: "e", value: "e3" },
+    { label: "f", value: "f3" },
+    { label: "g", value: "g3" },
+    { label: "a", value: "a3" },
+    { label: "b", value: "b3" },
+    { label: "c", value: "c2" },
+  ];
+  const handliAnwerButton = (anwer: string) => {
+
+  };
+  const b = true;
   return (
     <div css={all}>
       <div css={glass}>
         <Slider {...settings}>
-          {QuestionArray.map((item) => {
+          {QuestionArray.map((item) => { 
             return (
               <div css={slider}>
                 <button
                   css={startButton}
                   onClick={() => {
-                    answer[QuestionArray[item]].file.play();
+                    Sounds[QuestionArray[item]].file.play();
                     console.log(QuestionArray);
                     console.log(A);
                   }}
@@ -122,14 +136,11 @@ const Game = () => {
         </Slider>
       </div>
       <div css={buttons}>
-        <Button text="c" css={answerButton}></Button>
-        <Button text="b" css={answerButton}></Button>
-        <Button text="a" css={answerButton}></Button>
-        <Button text="g" css={answerButton}></Button>
-        <Button text="f" css={answerButton}></Button>
-        <Button text="e" css={answerButton}></Button>
-        <Button text="d" css={answerButton}></Button>
-        <Button text="c" css={answerButton}></Button>
+        {Choices.map(item => (
+          <div>
+            <Button disable={b} label={item.label} onClick={ handliAnwerButton(item.value) }></Button>
+          </div>
+        ))}
       </div>
     </div>
   );
