@@ -8,10 +8,7 @@ const button = css`
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 25px;
   background-color: rgba(255, 255, 255, 0.2);
-`;
-const text = css`
   color: #ffffff;
-  margin: 0 auto;
 `;
 
 type Props = {
