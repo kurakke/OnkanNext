@@ -70,9 +70,7 @@ const Game = () => {
   const [MusicC2] = useState(
     typeof Audio !== "undefined" && new Audio("MikuHc.mp3")
   );
-  const random = require("mersenne-twister");
-  const Mt = new random();
-  const A = Mt.random();
+
   let QArray = [];
   for (let i = 0; i < 8; i++) {
     QArray.push(Math.floor(Math.random() * 8));
@@ -125,7 +123,6 @@ const Game = () => {
                   onClick={() => {
                     Sounds[QuestionArray[item]].file.play();
                     console.log(QuestionArray);
-                    console.log(A);
                   }}
                 >
                   <p css={start}>音を再生</p>
