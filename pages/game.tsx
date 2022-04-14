@@ -70,6 +70,18 @@ const Game = () => {
   const [MusicC2] = useState(
     typeof Audio !== "undefined" && new Audio("MikuHc.mp3")
   );
+
+  const AnswerCheck = (text: string) => {
+    console.log("true!!!!!!");
+    console.log({ text });
+  };
+  const [answerLog, setAnswerLog] = useState([]);
+  const handleAnwerButton = (answer: string) => {
+    AnswerCheck(answer);
+    // setAnswerLog([...answerLog, answer]);
+    console.log("yahharo");
+  };
+
   let QArray = [];
   for (let i = 0; i < 8; i++) {
     QArray.push(Math.floor(Math.random() * 8));
@@ -106,7 +118,6 @@ const Game = () => {
     { label: "b", value: "b3" },
     { label: "c", value: "c2" },
   ];
-  const handliAnwerButton = (anwer: string) => {};
   const b = true;
   return (
     <div css={all}>
@@ -133,9 +144,9 @@ const Game = () => {
         {Choices.map((item) => (
           <div>
             <Button
-              disable={b}
+              disable={answerLog.includes(item.value)}
               label={item.label}
-              onClick={handliAnwerButton(item.value)}
+              onClick={handleAnwerButton(item.value)}
             ></Button>
           </div>
         ))}
