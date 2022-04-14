@@ -70,7 +70,6 @@ const Game = () => {
   const [MusicC2] = useState(
     typeof Audio !== "undefined" && new Audio("MikuHc.mp3")
   );
-
   let QArray = [];
   for (let i = 0; i < 8; i++) {
     QArray.push(Math.floor(Math.random() * 8));
@@ -107,15 +106,13 @@ const Game = () => {
     { label: "b", value: "b3" },
     { label: "c", value: "c2" },
   ];
-  const handliAnwerButton = (anwer: string) => {
-
-  };
+  const handliAnwerButton = (anwer: string) => {};
   const b = true;
   return (
     <div css={all}>
       <div css={glass}>
         <Slider {...settings}>
-          {QuestionArray.map((item) => { 
+          {QuestionArray.map((item) => {
             return (
               <div css={slider}>
                 <button
@@ -133,9 +130,13 @@ const Game = () => {
         </Slider>
       </div>
       <div css={buttons}>
-        {Choices.map(item => (
+        {Choices.map((item) => (
           <div>
-            <Button disable={b} label={item.label} onClick={ handliAnwerButton(item.value) }></Button>
+            <Button
+              disable={b}
+              label={item.label}
+              onClick={handliAnwerButton(item.value)}
+            ></Button>
           </div>
         ))}
       </div>
