@@ -77,8 +77,8 @@ const Main = () => {
         <Slider {...settings}>
           {items.map((item) => {
             return (
-              <div css="slider">
-                <img src={item.img} css="image" />
+              <div css={slider}>
+                <img src={item.img} css={image} />
                 <h3>{item.title}</h3>
               </div>
             );
