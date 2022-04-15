@@ -73,8 +73,6 @@ const Game = () => {
   const [MusicC2] = useState(
     typeof Audio !== "undefined" && new Audio("MikuHc.mp3")
   );
-  
-  
 
   const [questionNum, setQuestionNum] = useState(0);
   const AnswerCheck = (text: string) => {
@@ -151,14 +149,11 @@ const Game = () => {
       <div css={buttons}>
         {Choices.map((item) => (
           <div>
-            <button
-              onClick={() => {
-                AnswerCheck(item.value);
-                console.log(AnswerCheck(item.value));
-              }}
-            >
-              {item.label}
-            </button>
+            <Button
+              disable={answerLog.includes(item.value)}
+              label={item.label}
+              onClick={handleAnwerButton(item.value)}
+            ></Button>
           </div>
         ))}
       </div>
@@ -168,5 +163,6 @@ const Game = () => {
     </div>
   );
 };
-
+// AnswerCheck(item.value);
+// console.log(AnswerCheck(item.value));
 export default Game;
