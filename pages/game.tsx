@@ -73,12 +73,18 @@ const Game = () => {
   const [MusicC2] = useState(
     typeof Audio !== "undefined" && new Audio("MikuHc.mp3")
   );
+  
+  
 
+  const [questionNum, setQuestionNum] = useState(0);
   const AnswerCheck = (text: string) => {
-    if ((text = Sounds[QuestionArray[questionNum]].ans)) {
-      return true;
+    if (Sounds[QuestionArray[questionNum]].ans === text) {
+      console.log(Sounds[QuestionArray[questionNum]].ans);
+      console.log(QuestionArray[questionNum]);
+      console.log(questionNum);
+      return a;
     } else {
-      return false;
+      return "k";
     }
   };
   const [answerLog, setAnswerLog] = useState([]);
@@ -93,7 +99,6 @@ const Game = () => {
     QArray.push(Math.floor(Math.random() * 8));
   }
   const QuestionArray = QArray;
-  const [questionNum, setQuestionNum] = useState(0);
 
   const settings = {
     dots: true,
@@ -146,22 +151,18 @@ const Game = () => {
       <div css={buttons}>
         {Choices.map((item) => (
           <div>
-            <Button
-              disable={answerLog.includes(item.value)}
-              label={item.label}
-              onClick={handleAnwerButton(item.value)}
-            ></Button>
+            <button
+              onClick={() => {
+                AnswerCheck(item.value);
+                console.log(AnswerCheck(item.value));
+              }}
+            >
+              {item.label}
+            </button>
           </div>
         ))}
       </div>
-      <button
-        css={startButton}
-        onClick={() => {
-          console.log(questionNum + "questionNum");
-          setQuestionNum(questionNum + 1);
-          console.log(questionNum + "questionNum");
-        }}
-      >
+      <button css={startButton} onClick={() => {}}>
         次へ
       </button>
     </div>
