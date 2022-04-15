@@ -119,6 +119,7 @@ const Game = () => {
     { label: "c", value: "c2" },
   ];
   const b = true;
+  const a = "a";
   return (
     <div css={all}>
       <div css={glass}>
@@ -151,8 +152,12 @@ const Game = () => {
           </div>
         ))}
       </div>
+      <button>
+        
+      </button>
     </div>
   );
 };
 
 export default Game;
+let a  = 1;
