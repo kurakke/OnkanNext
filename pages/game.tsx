@@ -34,6 +34,9 @@ const startButton = css`
   border-radius: 15px;
   box-shadow: 0px 7px 0px 0px rgba(0, 0, 0, 0.6);
   margin: 40px auto;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
 `;
 const start = css`
   text-align: center;
@@ -72,8 +75,11 @@ const Game = () => {
   );
 
   const AnswerCheck = (text: string) => {
-    console.log("true!!!!!!");
-    console.log({ text });
+    if ((text = Sounds[QuestionArray[questionNum]].ans)) {
+      return true;
+    } else {
+      return false;
+    }
   };
   const [answerLog, setAnswerLog] = useState([]);
   const handleAnwerButton = (answer: string) => {
@@ -87,6 +93,7 @@ const Game = () => {
     QArray.push(Math.floor(Math.random() * 8));
   }
   const QuestionArray = QArray;
+  const [questionNum, setQuestionNum] = useState(0);
 
   const settings = {
     dots: true,
@@ -123,23 +130,18 @@ const Game = () => {
   return (
     <div css={all}>
       <div css={glass}>
-        <Slider {...settings}>
-          {QuestionArray.map((item) => {
-            return (
-              <div css={slider}>
-                <button
-                  css={startButton}
-                  onClick={() => {
-                    Sounds[QuestionArray[item]].file.play();
-                    console.log(QuestionArray);
-                  }}
-                >
-                  <p css={start}>音を再生</p>
-                </button>
-              </div>
-            );
-          })}
-        </Slider>
+        <div css={slider}>
+          <p>{questionNum + 1}門目</p>
+          <button
+            css={startButton}
+            onClick={() => {
+              Sounds[QuestionArray[questionNum]].file.play();
+              console.log(QuestionArray);
+            }}
+          >
+            <p css={start}>音を再生</p>
+          </button>
+        </div>
       </div>
       <div css={buttons}>
         {Choices.map((item) => (
@@ -152,6 +154,16 @@ const Game = () => {
           </div>
         ))}
       </div>
+      <button
+        css={startButton}
+        onClick={() => {
+          console.log(questionNum + "questionNum");
+          setQuestionNum(questionNum + 1);
+          console.log(questionNum + "questionNum");
+        }}
+      >
+        次へ
+      </button>
     </div>
   );
 };
