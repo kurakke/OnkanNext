@@ -152,12 +152,8 @@ const Game = () => {
           </div>
         ))}
       </div>
-      <button>
-        
-      </button>
     </div>
   );
 };
 
 export default Game;
-let a  = 1;
