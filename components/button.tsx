@@ -59,10 +59,11 @@ const disableButton = css`
   width: 80px;
   height: 28px;
   margin: 0 auto;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 25px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
   color: #ffffff;
+  box-shadow: 2px 2px 9px -1px rgba(0, 0, 0, 0.25);
   :active {
     @keyframe {
       ${disable}
@@ -74,13 +75,21 @@ const disableButton = css`
 type Props = {
   label: string;
   disable: boolean;
-  onClick: void;
+  handleAnswer: React.Dispatch<React.SetStateAction<string>>;
+  handleAnswerArg: string;
 };
 
-const Button: React.VFC<Props> = ({ label, disable, onClick }) => {
+const Button = ({ label, disable, handleAnswer, handleAnswerArg }: Props) => {
   return (
     <div>
-      <button css={disableButton}>{label}</button>
+      <button
+        css={disableButton}
+        onClick={() => {
+          handleAnswer(handleAnswerArg);
+        }}
+      >
+        {label}
+      </button>
     </div>
   );
 };
