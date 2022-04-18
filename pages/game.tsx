@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { css } from "@emotion/react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Button from "../components/button";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const all = css`
   margin: 0px;
@@ -74,23 +75,30 @@ const Game = () => {
   const [MusicC2] = useState(
     typeof Audio !== "undefined" && new Audio("MikuHc.mp3")
   );
-
+  useEffect(() => {}, []);
   const router = useRouter();
+  const randomNum = (max: number) => {
+    let QArray = [];
+    for (let i = 0; i < 8; i++) {
+      QArray.push(Math.floor(Math.random() * max));
+    }
+    return QArray;
+  };
 
-  let QArray = [];
-  for (let i = 0; i < 8; i++) {
-    QArray.push(Math.floor(Math.random() * 8));
-  }
-  const QuestionArray = QArray;
+  const QuestionArray = useMemo(() => randomNum(8), []);
   const [questionNum, setQuestionNum] = useState(0);
   const AnswerCheck = (text: string) => {
     if (Sounds[QuestionArray[questionNum]].ans === text) {
       console.log(Sounds[QuestionArray[questionNum]].ans);
       console.log(QuestionArray[questionNum]);
       console.log(questionNum);
+      console.log(QuestionArray);
+
       console.log(a);
       console.log("answercheck in if");
+    } else {
     }
+
     console.log("answercheck");
   };
   const [answerLog, setAnswerLog] = useState([]);
@@ -99,6 +107,9 @@ const Game = () => {
     console.log("handleanswerbutton");
 
     // setAnswerLog([...answerLog, answer]);
+  };
+  const clear = () => {
+    console.log("a");
   };
 
   const settings = {
@@ -150,31 +161,35 @@ const Game = () => {
         </div>
       </div>
       <div css={buttons}>
-        {Choices.map((item) => (
+        {Choices.map((item, index) => (
           <div>
             <Button
-              disable={answerLog.includes(item.value)}
               label={item.label}
               handleAnswer={handleAnwerButton}
               handleAnswerArg={item.value}
+              Answer={
+                Sounds[QuestionArray[questionNum]].ans === item.value
+                  ? true
+                  : false
+              }
             ></Button>
           </div>
         ))}
       </div>
-      <button
-        css={startButton}
-        onClick={() => {
-          if (questionNum < 7) {
+      {questionNum < 7 ? (
+        <button
+          css={startButton}
+          onClick={() => {
             setQuestionNum(questionNum + 1);
-          } else {
-            router.push({
-              pathname: "/result",
-            });
-          }
-        }}
-      >
-        次へ
-      </button>
+          }}
+        >
+          次へ
+        </button>
+      ) : (
+        <button css={startButton}>
+          <Link href="./result">結果を見る</Link>
+        </button>
+      )}
     </div>
   );
 };
