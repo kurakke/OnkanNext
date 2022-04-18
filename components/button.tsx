@@ -1,5 +1,6 @@
 import React from "react";
 import { css, keyframes } from "@emotion/react";
+import { NodeNextRequest } from "next/dist/server/base-http/node";
 const button = css`
   width: 80px;
   height: 28px;
@@ -56,13 +57,7 @@ const disable = keyframes`
 `;
 
 const disableButton = css`
-  width: 80px;
-  height: 28px;
-  margin: 0 auto;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 25px;
-  background-color: rgba(0, 0, 0, 0.1);
-  color: #ffffff;
+  ${button}
   box-shadow: 2px 2px 9px -1px rgba(0, 0, 0, 0.25);
   :active {
     @keyframe {
@@ -72,18 +67,23 @@ const disableButton = css`
     animation: ${disable} 0.4s ease;
   }
 `;
+
+const AbleButton = css`
+  ${button}
+`;
+
 type Props = {
   label: string;
-  disable: boolean;
   handleAnswer: React.Dispatch<React.SetStateAction<string>>;
   handleAnswerArg: string;
+  Answer: boolean;
 };
 
-const Button = ({ label, disable, handleAnswer, handleAnswerArg }: Props) => {
+const Button = ({ label, handleAnswer, handleAnswerArg, Answer }: Props) => {
   return (
     <div>
       <button
-        css={disableButton}
+        css={Answer === false ? disableButton : AbleButton}
         onClick={() => {
           handleAnswer(handleAnswerArg);
         }}
