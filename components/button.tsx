@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { css, keyframes } from "@emotion/react";
 import { NodeNextRequest } from "next/dist/server/base-http/node";
 const button = css`
@@ -65,7 +65,6 @@ const disableButton = css`
   background-color: rgba(0, 0, 0, 0.1);
   color: #ffffff;
   box-shadow: 2px 2px 9px -1px rgba(0, 0, 0, 0.25);
-
   :active {
     @keyframe {
       ${disable}
@@ -84,15 +83,27 @@ type Props = {
   handleAnswer: React.Dispatch<React.SetStateAction<string>>;
   handleAnswerArg: string;
   Answer: boolean;
+  questionNum: number;
 };
 
-const Button = ({ label, handleAnswer, handleAnswerArg, Answer }: Props) => {
+const Button = ({
+  label,
+  handleAnswer,
+  handleAnswerArg,
+  Answer,
+  questionNum,
+}: Props) => {
+  const [ButtonCss, setButtonCss] = useState(button);
+  useEffect(() => {
+    setButtonCss(button);
+  }, [questionNum]);
   return (
     <div>
       <button
-        css={Answer === false ? disableButton : AbleButton}
+        css={ButtonCss}
         onClick={() => {
           handleAnswer(handleAnswerArg);
+          setButtonCss(Answer ? AbleButton : disableButton);
         }}
       >
         {label}
