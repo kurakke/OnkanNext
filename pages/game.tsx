@@ -172,6 +172,7 @@ const Game = () => {
                   ? true
                   : false
               }
+              questionNum={questionNum}
             ></Button>
           </div>
         ))}
