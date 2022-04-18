@@ -57,8 +57,15 @@ const disable = keyframes`
 `;
 
 const disableButton = css`
-  ${button}
+  width: 80px;
+  height: 28px;
+  margin: 0 auto;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 25px;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #ffffff;
   box-shadow: 2px 2px 9px -1px rgba(0, 0, 0, 0.25);
+
   :active {
     @keyframe {
       ${disable}
