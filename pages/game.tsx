@@ -87,6 +87,8 @@ const Game = () => {
 
   const QuestionArray = useMemo(() => randomNum(8), []);
   const [questionNum, setQuestionNum] = useState(0);
+
+  const [showButton, setShowButton] = useState(false);
   const AnswerCheck = (text: string) => {
     if (Sounds[QuestionArray[questionNum]].ans === text) {
       console.log(Sounds[QuestionArray[questionNum]].ans);
@@ -96,20 +98,15 @@ const Game = () => {
 
       console.log(a);
       console.log("answercheck in if");
+      setShowButton(true);
     } else {
     }
 
     console.log("answercheck");
   };
-  const [answerLog, setAnswerLog] = useState([]);
   const handleAnwerButton = (answer: string) => {
     AnswerCheck(answer);
     console.log("handleanswerbutton");
-
-    // setAnswerLog([...answerLog, answer]);
-  };
-  const clear = () => {
-    console.log("a");
   };
 
   const settings = {
@@ -172,6 +169,7 @@ const Game = () => {
                   ? true
                   : false
               }
+              questionNum={questionNum}
             ></Button>
           </div>
         ))}
