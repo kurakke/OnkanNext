@@ -45,9 +45,11 @@ const start = css`
   font-size: 20px;
   font-weight: 600;
 `;
-const buttons = css``;
+const buttons = css`
+  margin: 10px auto;
+`;
 const answerButton = css`
-  margin: 20px 0;
+  margin: 5px auto;
 `;
 
 const Game = () => {
@@ -159,7 +161,7 @@ const Game = () => {
       </div>
       <div css={buttons}>
         {Choices.map((item, index) => (
-          <div>
+          <div css={answerButton}>
             <Button
               label={item.label}
               handleAnswer={handleAnwerButton}
@@ -173,32 +175,32 @@ const Game = () => {
             ></Button>
           </div>
         ))}
-        {(() => {
-          if (showButton) {
-            if (questionNum < 7) {
-              return (
-                <button
-                  css={startButton}
-                  onClick={() => {
-                    setQuestionNum(questionNum + 1);
-                    setShowButton(false);
-                  }}
-                >
-                  次へ
-                </button>
-              );
-            } else {
-              return (
-                <button css={startButton}>
-                  <Link href="./result">結果を見る</Link>
-                </button>
-              );
-            }
-          } else {
-            return <div></div>;
-          }
-        })()}
       </div>
+      {(() => {
+        if (showButton) {
+          if (questionNum < 7) {
+            return (
+              <button
+                css={startButton}
+                onClick={() => {
+                  setQuestionNum(questionNum + 1);
+                  setShowButton(false);
+                }}
+              >
+                次へ
+              </button>
+            );
+          } else {
+            return (
+              <button css={startButton}>
+                <Link href="./result">結果を見る</Link>
+              </button>
+            );
+          }
+        } else {
+          return <div></div>;
+        }
+      })()}
     </div>
   );
 };
