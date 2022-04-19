@@ -173,21 +173,32 @@ const Game = () => {
             ></Button>
           </div>
         ))}
+        {(() => {
+          if (showButton) {
+            if (questionNum < 7) {
+              return (
+                <button
+                  css={startButton}
+                  onClick={() => {
+                    setQuestionNum(questionNum + 1);
+                    setShowButton(false);
+                  }}
+                >
+                  次へ
+                </button>
+              );
+            } else {
+              return (
+                <button css={startButton}>
+                  <Link href="./result">結果を見る</Link>
+                </button>
+              );
+            }
+          } else {
+            return <div></div>;
+          }
+        })()}
       </div>
-      {questionNum < 7 ? (
-        <button
-          css={startButton}
-          onClick={() => {
-            setQuestionNum(questionNum + 1);
-          }}
-        >
-          次へ
-        </button>
-      ) : (
-        <button css={startButton}>
-          <Link href="./result">結果を見る</Link>
-        </button>
-      )}
     </div>
   );
 };
