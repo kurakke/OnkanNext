@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { css, keyframes } from "@emotion/react";
-import { NodeNextRequest } from "next/dist/server/base-http/node";
+import toast, { Toaster } from "react-hot-toast";
+
 const button = css`
   width: 80px;
   height: 28px;
@@ -84,6 +85,7 @@ type Props = {
   handleAnswerArg: string;
   Answer: boolean;
   questionNum: number;
+  musicFile: HTMLAudioElement;
 };
 
 const Button = ({
@@ -92,6 +94,7 @@ const Button = ({
   handleAnswerArg,
   Answer,
   questionNum,
+  musicFile,
 }: Props) => {
   const [ButtonCss, setButtonCss] = useState(button);
   useEffect(() => {
@@ -104,10 +107,17 @@ const Button = ({
         onClick={() => {
           handleAnswer(handleAnswerArg);
           setButtonCss(Answer ? AbleButton : disableButton);
+          musicFile.play();
+          if (Answer) {
+            toast("right!");
+          } else {
+            toast("MoreTry!");
+          }
         }}
       >
         {label}
       </button>
+      <Toaster position="bottom-center" reverseOrder={false} />
     </div>
   );
 };

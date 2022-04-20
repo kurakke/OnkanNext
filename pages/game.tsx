@@ -51,6 +51,13 @@ const buttons = css`
 const answerButton = css`
   margin: 5px auto;
 `;
+const answerPlace = css`
+  display: flex;
+`;
+const pianoButtons = css``;
+const piano = css``;
+const whiteKey = css``;
+const brackKey = css``;
 
 const Game = () => {
   const [MusicA3] = useState(
@@ -159,23 +166,28 @@ const Game = () => {
           </button>
         </div>
       </div>
-      <div css={buttons}>
-        {Choices.map((item, index) => (
-          <div css={answerButton}>
-            <Button
-              label={item.label}
-              handleAnswer={handleAnwerButton}
-              handleAnswerArg={item.value}
-              Answer={
-                Sounds[QuestionArray[questionNum]].ans === item.value
-                  ? true
-                  : false
-              }
-              questionNum={questionNum}
-            ></Button>
-          </div>
-        ))}
+      <div css={answerPlace}>
+        <div css={piano}></div>
+        <div css={buttons}>
+          {Choices.map((item, index) => (
+            <div css={answerButton}>
+              <Button
+                label={item.label}
+                handleAnswer={handleAnwerButton}
+                handleAnswerArg={item.value}
+                Answer={
+                  Sounds[QuestionArray[questionNum]].ans === item.value
+                    ? true
+                    : false
+                }
+                questionNum={questionNum}
+                musicFile={Sounds[index].file}
+              ></Button>
+            </div>
+          ))}
+        </div>
       </div>
+
       {(() => {
         if (showButton) {
           if (questionNum < 7) {
