@@ -149,6 +149,9 @@ const Game = () => {
   const firstOnClick = () => {};
   const handleAnwerButton = (answer: string) => {
     AnswerCheck(answer);
+    if(clicked) {
+      firstOnClick();
+    }
     console.log("handleanswerbutton");
   };
 
