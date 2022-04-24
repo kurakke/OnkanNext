@@ -60,12 +60,12 @@ const Main = () => {
   };
 
   const items = [
-    { title: "name1", img: "./favicon.ico" },
-    { title: "name2", img: "./favicon.ico" },
-    { title: "name3", img: "./favicon.ico" },
-    { title: "name4", img: "./favicon.ico" },
-    { title: "name5", img: "./favicon.ico" },
-    { title: "name6", img: "./favicon.ico" },
+    { id: 1, title: "name1", img: "./favicon.ico" },
+    { id: 2, title: "name2", img: "./favicon.ico" },
+    { id: 3, title: "name3", img: "./favicon.ico" },
+    { id: 4, title: "name4", img: "./favicon.ico" },
+    { id: 5, title: "name5", img: "./favicon.ico" },
+    { id: 6, title: "name6", img: "./favicon.ico" },
   ];
 
   return (
