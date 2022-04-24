@@ -142,6 +142,11 @@ const Game = () => {
 
     console.log("answercheck");
   };
+  const [clicked, setClicked] = useState(true);
+  const clear = () => {
+    setClicked(true);
+  };
+  const firstOnClick = () => {};
   const handleAnwerButton = (answer: string) => {
     AnswerCheck(answer);
     console.log("handleanswerbutton");
@@ -242,6 +247,7 @@ const Game = () => {
                 onClick={() => {
                   setQuestionNum(questionNum + 1);
                   setShowButton(false);
+                  clear();
                 }}
               >
                 次へ
