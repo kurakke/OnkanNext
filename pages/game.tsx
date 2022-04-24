@@ -45,19 +45,48 @@ const start = css`
   font-size: 20px;
   font-weight: 600;
 `;
-const buttons = css`
-  margin: 10px auto;
-`;
 const answerButton = css`
   margin: 5px auto;
 `;
 const answerPlace = css`
   display: flex;
+  width: 100%;
+`;
+const buttons = css`
+  margin: 10px auto;
 `;
 const pianoButtons = css``;
-const piano = css``;
-const whiteKey = css``;
-const brackKey = css``;
+const piano = css`
+  margin: 20px 0px;
+`;
+const whiteKey = css`
+  width: 25vw;
+  height: 30px;
+  background-color: white;
+  border-bottom: 1px solid #000;
+  border-radius: 0px 2px 2px 0px;
+`;
+const blackKey = css`
+  width: 17vw;
+  height: 26px;
+  background-color: black;
+  margin: -13px 0px;
+  border-radius: 0px 2px 2px 0px;
+  z-index: 2;
+  position: relative;
+`;
+const pianoSideTop = css`
+  width: 30vw;
+  height: 35px;
+  background-color: #000000;
+  border-radius: 0px 20px 0px 0px;
+`;
+const pianoSideBottom = css`
+  width: 30vw;
+  height: 35px;
+  background-color: #000000;
+  border-radius: 0px 0px 20px 0px;
+`;
 
 const Game = () => {
   const [MusicA3] = useState(
@@ -113,8 +142,16 @@ const Game = () => {
 
     console.log("answercheck");
   };
+  const [clicked, setClicked] = useState(true);
+  const clear = () => {
+    setClicked(true);
+  };
+  const firstOnClick = () => {};
   const handleAnwerButton = (answer: string) => {
     AnswerCheck(answer);
+    if (clicked) {
+      firstOnClick();
+    }
     console.log("handleanswerbutton");
   };
 
@@ -129,24 +166,24 @@ const Game = () => {
   };
 
   const Sounds = [
-    { file: MusicC3, ans: "c3" },
-    { file: MusicD3, ans: "d3" },
-    { file: MusicE3, ans: "e3" },
-    { file: MusicF3, ans: "f3" },
-    { file: MusicG3, ans: "g3" },
-    { file: MusicA3, ans: "a3" },
-    { file: MusicB3, ans: "b3" },
-    { file: MusicC2, ans: "c2" },
+    { id: 1, file: MusicC3, ans: "c3" },
+    { id: 2, file: MusicD3, ans: "d3" },
+    { id: 3, file: MusicE3, ans: "e3" },
+    { id: 4, file: MusicF3, ans: "f3" },
+    { id: 5, file: MusicG3, ans: "g3" },
+    { id: 6, file: MusicA3, ans: "a3" },
+    { id: 7, file: MusicB3, ans: "b3" },
+    { id: 8, file: MusicC2, ans: "c2" },
   ];
   const Choices = [
-    { label: "c", value: "c3" },
-    { label: "d", value: "d3" },
-    { label: "e", value: "e3" },
-    { label: "f", value: "f3" },
-    { label: "g", value: "g3" },
-    { label: "a", value: "a3" },
-    { label: "b", value: "b3" },
-    { label: "c", value: "c2" },
+    { id: 1, label: "c", value: "c3" },
+    { id: 2, label: "d", value: "d3" },
+    { id: 3, label: "e", value: "e3" },
+    { id: 4, label: "f", value: "f3" },
+    { id: 5, label: "g", value: "g3" },
+    { id: 6, label: "a", value: "a3" },
+    { id: 7, label: "b", value: "b3" },
+    { id: 8, label: "c", value: "c2" },
   ];
   const b = true;
   const a = "a";
@@ -154,7 +191,7 @@ const Game = () => {
     <div css={all}>
       <div css={glass}>
         <div css={slider}>
-          <p>{questionNum + 1}門目</p>
+          <p>{questionNum + 1}問目</p>
           <button
             css={startButton}
             onClick={() => {
@@ -167,7 +204,23 @@ const Game = () => {
         </div>
       </div>
       <div css={answerPlace}>
-        <div css={piano}></div>
+        <div css={piano}>
+          <div css={pianoSideTop}></div>
+          <div css={whiteKey}></div>
+          <div css={whiteKey}></div>
+          <div css={blackKey}></div>
+          <div css={whiteKey}></div>
+          <div css={blackKey}></div>
+          <div css={whiteKey}></div>
+          <div css={blackKey}></div>
+          <div css={whiteKey}></div>
+          <div css={whiteKey}></div>
+          <div css={blackKey}></div>
+          <div css={whiteKey}></div>
+          <div css={blackKey}></div>
+          <div css={whiteKey}></div>
+          <div css={pianoSideBottom}></div>
+        </div>
         <div css={buttons}>
           {Choices.map((item, index) => (
             <div css={answerButton}>
@@ -197,6 +250,7 @@ const Game = () => {
                 onClick={() => {
                   setQuestionNum(questionNum + 1);
                   setShowButton(false);
+                  clear();
                 }}
               >
                 次へ
