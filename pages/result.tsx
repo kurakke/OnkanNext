@@ -1,5 +1,6 @@
 import React from "react";
 import { css } from "@emotion/react";
+import { useRouter } from "next/router";
 
 const all = css`
   margin: 0px;
@@ -20,9 +21,12 @@ const glass = css`
 `;
 
 const Result = () => {
+  const router = useRouter();
   return (
     <div css={all}>
-      <div css={glass}></div>
+      <div css={glass}>
+        <p>{router.query.hoge}</p>
+      </div>
     </div>
   );
 };

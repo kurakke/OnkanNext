@@ -154,7 +154,13 @@ const Game = () => {
     }
     console.log("handleanswerbutton");
   };
-
+  const [hoge, setHoge] = useState("yahharo-");
+  const movePage = () => {
+    router.push({
+      pathname: "/result",
+      query: { hoge: hoge },
+    });
+  };
   const settings = {
     dots: true,
     infinite: true,
@@ -258,8 +264,13 @@ const Game = () => {
             );
           } else {
             return (
-              <button css={startButton}>
-                <Link href="./result">結果を見る</Link>
+              <button
+                css={startButton}
+                onClick={() => {
+                  movePage();
+                }}
+              >
+                結果を見る
               </button>
             );
           }
