@@ -25,7 +25,8 @@ const Result = () => {
   return (
     <div css={all}>
       <div css={glass}>
-        <p>{router.query.hoge}</p>
+        {router.query.hoge}
+        {router.query.selectedAnswer}
       </div>
     </div>
   );

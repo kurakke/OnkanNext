@@ -122,6 +122,7 @@ const Game = () => {
     }
     return QArray;
   };
+  const [selectAnswer, setSelectAnswer] = useState([]);
 
   const QuestionArray = useMemo(() => randomNum(8), []);
   const [questionNum, setQuestionNum] = useState(0);
@@ -129,13 +130,7 @@ const Game = () => {
   const [showButton, setShowButton] = useState(false);
   const AnswerCheck = (text: string) => {
     if (Sounds[QuestionArray[questionNum]].ans === text) {
-      console.log(Sounds[QuestionArray[questionNum]].ans);
       console.log(QuestionArray[questionNum]);
-      console.log(questionNum);
-      console.log(QuestionArray);
-
-      console.log(a);
-      console.log("answercheck in if");
       setShowButton(true);
     } else {
     }
@@ -146,11 +141,15 @@ const Game = () => {
   const clear = () => {
     setClicked(true);
   };
-  const firstOnClick = () => {};
+  const firstOnClick = (selectedAnswer: string) => {
+    console.log("firstOnClick");
+    setSelectAnswer([...selectAnswer, selectedAnswer]);
+  };
   const handleAnwerButton = (answer: string) => {
     AnswerCheck(answer);
     if (clicked) {
-      firstOnClick();
+      firstOnClick(answer);
+      setClicked(false);
     }
     console.log("handleanswerbutton");
   };
@@ -158,7 +157,7 @@ const Game = () => {
   const movePage = () => {
     router.push({
       pathname: "/result",
-      query: { hoge: hoge },
+      query: { selectedAnswer: selectAnswer, hoge: hoge },
     });
   };
   const settings = {
@@ -172,14 +171,14 @@ const Game = () => {
   };
 
   const Sounds = [
-    { id: 1, file: MusicC3, ans: "c3" },
-    { id: 2, file: MusicD3, ans: "d3" },
-    { id: 3, file: MusicE3, ans: "e3" },
-    { id: 4, file: MusicF3, ans: "f3" },
-    { id: 5, file: MusicG3, ans: "g3" },
-    { id: 6, file: MusicA3, ans: "a3" },
-    { id: 7, file: MusicB3, ans: "b3" },
-    { id: 8, file: MusicC2, ans: "c2" },
+    {id: 1, file: MusicC3, ans: "c3" },
+    {id: 2, file: MusicD3, ans: "d3" },
+    {id: 3, file: MusicE3, ans: "e3" },
+    {id: 4, file: MusicF3, ans: "f3" },
+    {id: 5, file: MusicG3, ans: "g3" },
+    {id: 6, file: MusicA3, ans: "a3" },
+    {id: 7, file: MusicB3, ans: "b3" },
+    {id: 8, file: MusicC2, ans: "c2" },
   ];
   const Choices = [
     { id: 1, label: "c", value: "c3" },
@@ -228,22 +227,25 @@ const Game = () => {
           <div css={pianoSideBottom}></div>
         </div>
         <div css={buttons}>
-          {Choices.map((item, index) => (
-            <div css={answerButton}>
-              <Button
-                label={item.label}
-                handleAnswer={handleAnwerButton}
-                handleAnswerArg={item.value}
-                Answer={
-                  Sounds[QuestionArray[questionNum]].ans === item.value
-                    ? true
-                    : false
-                }
-                questionNum={questionNum}
-                musicFile={Sounds[index].file}
-              ></Button>
-            </div>
-          ))}
+          <ul>
+            {Choices.map((item, index) => (
+              <div css={answerButton}>
+                <Button
+                  key={index}
+                  label={item.label}
+                  handleAnswer={handleAnwerButton}
+                  handleAnswerArg={item.value}
+                  Answer={
+                    Sounds[QuestionArray[questionNum]].ans === item.value
+                      ? true
+                      : false
+                  }
+                  questionNum={questionNum}
+                  musicFile={Sounds[index].file}
+                ></Button>
+              </div>
+            ))}
+          </ul>
         </div>
       </div>
 
