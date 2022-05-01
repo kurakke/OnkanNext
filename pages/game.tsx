@@ -171,14 +171,14 @@ const Game = () => {
   };
 
   const Sounds = [
-    {id: 1, file: MusicC3, ans: "c3" },
-    {id: 2, file: MusicD3, ans: "d3" },
-    {id: 3, file: MusicE3, ans: "e3" },
-    {id: 4, file: MusicF3, ans: "f3" },
-    {id: 5, file: MusicG3, ans: "g3" },
-    {id: 6, file: MusicA3, ans: "a3" },
-    {id: 7, file: MusicB3, ans: "b3" },
-    {id: 8, file: MusicC2, ans: "c2" },
+    { id: 1, file: MusicC3, ans: "c3" },
+    { id: 2, file: MusicD3, ans: "d3" },
+    { id: 3, file: MusicE3, ans: "e3" },
+    { id: 4, file: MusicF3, ans: "f3" },
+    { id: 5, file: MusicG3, ans: "g3" },
+    { id: 6, file: MusicA3, ans: "a3" },
+    { id: 7, file: MusicB3, ans: "b3" },
+    { id: 8, file: MusicC2, ans: "c2" },
   ];
   const Choices = [
     { id: 1, label: "c", value: "c3" },
@@ -231,7 +231,7 @@ const Game = () => {
             {Choices.map((item, index) => (
               <div css={answerButton}>
                 <Button
-                  key={index}
+                  key={item.id}
                   label={item.label}
                   handleAnswer={handleAnwerButton}
                   handleAnswerArg={item.value}
