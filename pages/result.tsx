@@ -19,6 +19,15 @@ const glass = css`
   filter: drop-shadow(3px 3px 3px 0 rgba(0, 0, 0, 0.8));
   border-radius: 25px;
 `;
+const circle = css`
+  display: inline-block;
+  width: 50vw;
+  height: 50vw;
+  text-align: center;
+  line-height: 80px;
+  border-radius: 50%;
+  border: solid 3px skyblue;
+`;
 
 const Result = () => {
   const router = useRouter();
@@ -27,6 +36,7 @@ const Result = () => {
       <div css={glass}>
         {router.query.hoge}
         {router.query.selectedAnswer}
+        <div css={circle}></div>
       </div>
     </div>
   );
