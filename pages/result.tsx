@@ -20,13 +20,18 @@ const glass = css`
   border-radius: 25px;
 `;
 const circle = css`
-  display: inline-block;
-  width: 50vw;
-  height: 50vw;
-  text-align: center;
-  line-height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: auto;
+  margin-left: auto;
+  width: 300px;
+  height: 300px;
+  font-size: 26px;
+  font-weight: 700;
+  background-image: radial-gradient(#f2f2f2 60%, transparent 61%),
+    conic-gradient(#d5525f 0% 90%, #d9d9d9 90% 100%);
   border-radius: 50%;
-  border: solid 3px skyblue;
 `;
 
 const Result = () => {

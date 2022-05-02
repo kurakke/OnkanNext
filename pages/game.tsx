@@ -229,9 +229,8 @@ const Game = () => {
         <div css={buttons}>
           <ul>
             {Choices.map((item, index) => (
-              <div css={answerButton}>
+              <div css={answerButton} key={item.id}>
                 <Button
-                  key={item.id}
                   label={item.label}
                   handleAnswer={handleAnwerButton}
                   handleAnswerArg={item.value}
