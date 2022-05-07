@@ -11,21 +11,18 @@
   "dependencies": {
     "@emotion/babel-plugin": "^11.7.2",
     "@emotion/react": "^11.8.2",
-    "mersenne-twister": "^1.1.0",
-    "next": "12.1.0",
+    "next": "12.1.6",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-hot-toast": "^2.2.0",
     "react-slick": "^0.28.1",
-    "react-sound": "^1.2.0",
-    "react-webaudio": "^0.3.0-EXPERIMENTAL",
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
-    "@types/node": "^17.0.22",
-    "@types/react": "^17.0.42",
+    "@types/node": "^17.0.31",
+    "@types/react": "^17.0.45",
     "eslint": "8.11.0",
-    "eslint-config-next": "12.1.0",
-    "typescript": "^4.6.2"
+    "eslint-config-next": "12.1.6",
+    "typescript": "^4.6.4"
   }
 }

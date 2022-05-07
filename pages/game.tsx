@@ -196,7 +196,13 @@ const Game = () => {
     <div css={all}>
       <div css={glass}>
         <div css={slider}>
-          <p>{questionNum + 1}問目</p>
+          <div
+            onClick={() => {
+              movePage();
+            }}
+          >
+            <p>{questionNum + 1}問目</p>
+          </div>
           <button
             css={startButton}
             onClick={() => {
