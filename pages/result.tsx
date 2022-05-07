@@ -19,21 +19,6 @@ const glass = css`
   filter: drop-shadow(3px 3px 3px 0 rgba(0, 0, 0, 0.8));
   border-radius: 25px;
 `;
-const circle = css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: auto;
-  margin-left: auto;
-  width: 300px;
-  height: 300px;
-  font-size: 26px;
-  font-weight: 700;
-  background-image: radial-gradient(#f2f2f2 60%, transparent 61%),
-    conic-gradient(#d5525f 0% 90%, #d9d9d9 90% 100%);
-  border-radius: 50%;
-`;
-
 const Result = () => {
   const router = useRouter();
   return (
@@ -41,7 +26,6 @@ const Result = () => {
       <div css={glass}>
         {router.query.hoge}
         {router.query.selectedAnswer}
-        <div css={circle}></div>
       </div>
     </div>
   );
