@@ -122,6 +122,7 @@ const Game = () => {
     }
     return QArray;
   };
+  const [selectAnswer, setSelectAnswer] = useState([]);
 
   const QuestionArray = useMemo(() => randomNum(8), []);
   const [questionNum, setQuestionNum] = useState(0);
@@ -129,13 +130,7 @@ const Game = () => {
   const [showButton, setShowButton] = useState(false);
   const AnswerCheck = (text: string) => {
     if (Sounds[QuestionArray[questionNum]].ans === text) {
-      console.log(Sounds[QuestionArray[questionNum]].ans);
       console.log(QuestionArray[questionNum]);
-      console.log(questionNum);
-      console.log(QuestionArray);
-
-      console.log(a);
-      console.log("answercheck in if");
       setShowButton(true);
     } else {
     }
@@ -146,11 +141,15 @@ const Game = () => {
   const clear = () => {
     setClicked(true);
   };
-  const firstOnClick = () => {};
+  const firstOnClick = (selectedAnswer: string) => {
+    console.log("firstOnClick");
+    setSelectAnswer([...selectAnswer, selectedAnswer]);
+  };
   const handleAnwerButton = (answer: string) => {
     AnswerCheck(answer);
     if (clicked) {
-      firstOnClick();
+      firstOnClick(answer);
+      setClicked(false);
     }
     console.log("handleanswerbutton");
   };
@@ -158,7 +157,7 @@ const Game = () => {
   const movePage = () => {
     router.push({
       pathname: "/result",
-      query: { hoge: hoge },
+      query: { selectedAnswer: selectAnswer, hoge: hoge },
     });
   };
   const settings = {
@@ -197,7 +196,13 @@ const Game = () => {
     <div css={all}>
       <div css={glass}>
         <div css={slider}>
-          <p>{questionNum + 1}問目</p>
+          <div
+            onClick={() => {
+              movePage();
+            }}
+          >
+            <p>{questionNum + 1}問目</p>
+          </div>
           <button
             css={startButton}
             onClick={() => {
@@ -228,22 +233,24 @@ const Game = () => {
           <div css={pianoSideBottom}></div>
         </div>
         <div css={buttons}>
-          {Choices.map((item, index) => (
-            <div css={answerButton}>
-              <Button
-                label={item.label}
-                handleAnswer={handleAnwerButton}
-                handleAnswerArg={item.value}
-                Answer={
-                  Sounds[QuestionArray[questionNum]].ans === item.value
-                    ? true
-                    : false
-                }
-                questionNum={questionNum}
-                musicFile={Sounds[index].file}
-              ></Button>
-            </div>
-          ))}
+          <ul>
+            {Choices.map((item, index) => (
+              <div css={answerButton} key={item.id}>
+                <Button
+                  label={item.label}
+                  handleAnswer={handleAnwerButton}
+                  handleAnswerArg={item.value}
+                  Answer={
+                    Sounds[QuestionArray[questionNum]].ans === item.value
+                      ? true
+                      : false
+                  }
+                  questionNum={questionNum}
+                  musicFile={Sounds[index].file}
+                ></Button>
+              </div>
+            ))}
+          </ul>
         </div>
       </div>
 
