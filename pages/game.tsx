@@ -1,11 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { css } from "@emotion/react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Button from "../components/button";
 import { useRouter } from "next/router";
-import Link from "next/link";
 
 const all = css`
   margin: 0px;

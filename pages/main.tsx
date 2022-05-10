@@ -3,15 +3,14 @@ import { css } from "@emotion/react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useRouter } from "next/router";
 import Link from "next/link";
 
 const all = css`
   margin: 0px;
   padding: 0px;
   background-image: linear-gradient(to bottom, #5c1ea6 0%, #c8435e 100%);
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-flow: column;
   text-align: center;
@@ -77,7 +76,7 @@ const Main = () => {
         <Slider {...settings}>
           {items.map((item) => {
             return (
-              <div css={slider}>
+              <div css={slider} key={item.id}>
                 <img src={item.img} css={image} />
                 <h3>{item.title}</h3>
               </div>
