@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { css } from "@emotion/react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -9,8 +9,8 @@ const all = css`
   margin: 0px;
   padding: 0px;
   background-image: linear-gradient(to bottom, #5c1ea6 0%, #c8435e 100%);
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-flow: column;
   text-align: center;
