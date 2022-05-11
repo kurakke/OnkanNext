@@ -27,7 +27,8 @@ const doughnut = css`
 const Result = () => {
   const router = useRouter();
   ChartJS.register(ArcElement, Tooltip, Legend);
-  const correctAnswerPercent = 80;
+  const MaxQuestionNumber = router.query.MaxQuestionNumber;
+  const correctAnswerNum = router.query.correctAnswerNum;
   const data = {
     datasets: [
       {
