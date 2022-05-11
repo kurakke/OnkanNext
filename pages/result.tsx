@@ -29,6 +29,7 @@ const Result = () => {
   ChartJS.register(ArcElement, Tooltip, Legend);
   const MaxQuestionNumber = router.query.MaxQuestionNumber;
   const correctAnswerNum = router.query.correctAnswerNum;
+  const correctAnswerPercent = 80;
   const data = {
     datasets: [
       {
