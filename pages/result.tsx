@@ -21,15 +21,16 @@ const glass = css`
   border-radius: 25px;
 `;
 const doughnut = css`
+  margin: 0 auto;
   width: 60vw;
   height: 60vw;
 `;
 const Result = () => {
   const router = useRouter();
   ChartJS.register(ArcElement, Tooltip, Legend);
-  const MaxQuestionNumber = router.query.MaxQuestionNumber;
-  const correctAnswerNum = router.query.correctAnswerNum;
-  const correctAnswerPercent = 80;
+  const MaxQuestionNumber = +router.query.MaxQuestionNumber;
+  const correctAnswerNum = +router.query.correctAnswerNum;
+  const correctAnswerPercent = (correctAnswerNum / MaxQuestionNumber) * 100;
   const data = {
     datasets: [
       {
@@ -44,6 +45,12 @@ const Result = () => {
       <div css={glass}>
         {router.query.hoge}
         {router.query.selectedAnswer}
+        <p>a</p>
+        {MaxQuestionNumber}
+        <p>a</p>
+        {correctAnswerNum}
+        <p>a</p>
+        {correctAnswerPercent}
         <div css={doughnut}>
           <Doughnut data={data} />
         </div>
