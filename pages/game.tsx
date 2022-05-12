@@ -1,11 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { css } from "@emotion/react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Button from "../components/button";
 import { useRouter } from "next/router";
-import Link from "next/link";
 
 const all = css`
   margin: 0px;
@@ -113,6 +109,7 @@ const Game = () => {
   const [MusicC2] = useState(
     typeof Audio !== "undefined" && new Audio("MikuHc.mp3")
   );
+  const MaxQuestionNumber = 8;
   useEffect(() => {}, []);
   const router = useRouter();
   const randomNum = (max: number) => {
@@ -137,13 +134,18 @@ const Game = () => {
 
     console.log("answercheck");
   };
+  const [correctAnswerNum, setCorrectAnswerNum] = useState(0);
   const [clicked, setClicked] = useState(true);
   const clear = () => {
     setClicked(true);
   };
+
   const firstOnClick = (selectedAnswer: string) => {
     console.log("firstOnClick");
     setSelectAnswer([...selectAnswer, selectedAnswer]);
+    if (Sounds[QuestionArray[questionNum]].ans === selectedAnswer) {
+      setCorrectAnswerNum(correctAnswerNum + 1);
+    }
   };
   const handleAnwerButton = (answer: string) => {
     AnswerCheck(answer);
@@ -157,17 +159,13 @@ const Game = () => {
   const movePage = () => {
     router.push({
       pathname: "/result",
-      query: { selectedAnswer: selectAnswer, hoge: hoge },
+      query: {
+        selectedAnswer: selectAnswer,
+        hoge: hoge,
+        MaxQuestionNumber: MaxQuestionNumber,
+        correctAnswerNum: correctAnswerNum,
+      },
     });
-  };
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrow: true,
-    autoplay: false,
   };
 
   const Sounds = [
@@ -256,7 +254,7 @@ const Game = () => {
 
       {(() => {
         if (showButton) {
-          if (questionNum < 7) {
+          if (questionNum < MaxQuestionNumber - 1) {
             return (
               <button
                 css={startButton}

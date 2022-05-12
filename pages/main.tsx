@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { css } from "@emotion/react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useRouter } from "next/router";
 import Link from "next/link";
 
 const all = css`
@@ -77,7 +76,7 @@ const Main = () => {
         <Slider {...settings}>
           {items.map((item) => {
             return (
-              <div css={slider}>
+              <div css={slider} key={item.id}>
                 <img src={item.img} css={image} />
                 <h3>{item.title}</h3>
               </div>
