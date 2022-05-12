@@ -114,7 +114,7 @@ const Game = () => {
   const router = useRouter();
   const randomNum = (max: number) => {
     let QArray = [];
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < MaxQuestionNumber; i++) {
       QArray.push(Math.floor(Math.random() * max));
     }
     return QArray;
@@ -155,7 +155,21 @@ const Game = () => {
     }
     console.log("handleanswerbutton");
   };
+  const [correctAnswerValue, setCorrectAnswerValue] = useState([]);
+  const MakeSendValue = () => {
+    for (let i = 0; i < MaxQuestionNumber; i++) {
+      setCorrectAnswerValue([
+        ...correctAnswerValue,
+        Sounds[QuestionArray[questionNum]].ans,
+      ]);
+      if (i === 7) {
+        movePage();
+      }
+    }
+  };
+
   const [hoge, setHoge] = useState("yahharo-");
+
   const movePage = () => {
     router.push({
       pathname: "/result",
@@ -164,6 +178,7 @@ const Game = () => {
         hoge: hoge,
         MaxQuestionNumber: MaxQuestionNumber,
         correctAnswerNum: correctAnswerNum,
+        correctAnswerValue: correctAnswerValue,
       },
     });
   };
@@ -272,7 +287,8 @@ const Game = () => {
               <button
                 css={startButton}
                 onClick={() => {
-                  movePage();
+                  // movePage();
+                  MakeSendValue();
                 }}
               >
                 結果を見る
