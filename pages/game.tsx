@@ -155,20 +155,18 @@ const Game = () => {
     }
     console.log("handleanswerbutton");
   };
+  const [hoge, setHoge] = useState("yahharo-");
+  const pushlocalStorage = () => {
+    console.log("pushlocalstorage");
+
+    localStorage.setItem("hoge", hoge);
+  };
   const [correctAnswerValue, setCorrectAnswerValue] = useState([]);
   const MakeSendValue = () => {
-    for (let i = 0; i < MaxQuestionNumber; i++) {
-      setCorrectAnswerValue([
-        ...correctAnswerValue,
-        Sounds[QuestionArray[questionNum]].ans,
-      ]);
-      if (i === 7) {
-        movePage();
-      }
-    }
+    const answers = QuestionArray.map((question) => Sounds[question].ans);
+    setCorrectAnswerValue((prev) => [...prev, ...answers]);
+    movePage();
   };
-
-  const [hoge, setHoge] = useState("yahharo-");
 
   const movePage = () => {
     router.push({
@@ -212,6 +210,7 @@ const Game = () => {
           <div
             onClick={() => {
               movePage();
+              pushlocalStorage();
             }}
           >
             <p>{questionNum + 1}問目</p>

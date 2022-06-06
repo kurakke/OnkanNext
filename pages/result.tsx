@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { css } from "@emotion/react";
 import { useRouter } from "next/router";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
@@ -28,9 +28,29 @@ const doughnut = css`
 const Result = () => {
   const router = useRouter();
   ChartJS.register(ArcElement, Tooltip, Legend);
-  const MaxQuestionNumber = +router.query.MaxQuestionNumber;
+  const MaxQuestionNumber = Number(router.query.MaxQuestionNumber);
   const correctAnswerNum = +router.query.correctAnswerNum;
   const correctAnswerPercent = (correctAnswerNum / MaxQuestionNumber) * 100;
+  const [hoge, setHoge] = useState("");
+
+  const [aaa, setAaa] = useState<string>("");
+  const [bbb, setBbb] = useState<string>("");
+
+  const getLocalStorage = async (key: string): Promise<string> => {
+    const a = await localStorage.getItem(key);
+    return a;
+  };
+
+  useEffect(() => {
+    const f = async () => {
+      const fetchAaaData = await getLocalStorage("hoge");
+      const fetchBbbData = await getLocalStorage("bbb");
+      setAaa(fetchAaaData);
+      setBbb(fetchBbbData);
+    };
+    f();
+  }, []);
+
   const data = {
     datasets: [
       {
@@ -40,11 +60,17 @@ const Result = () => {
       },
     ],
   };
+  const option: {} = {
+    cutoutPercentage: 80,
+    animation: true,
+  };
   return (
     <div css={all}>
       <div css={glass}>
         {router.query.hoge}
         {router.query.selectedAnswer}
+        <p>hhhh</p>
+        <div>{aaa}</div>
         <p>a</p>
         {MaxQuestionNumber}
         <p>a</p>
@@ -52,7 +78,7 @@ const Result = () => {
         <p>a</p>
         {correctAnswerPercent}
         <div css={doughnut}>
-          <Doughnut data={data} />
+          <Doughnut data={data} options={option} />
         </div>
       </div>
     </div>
