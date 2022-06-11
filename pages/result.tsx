@@ -32,20 +32,18 @@ const doughnut = css`
   height: 60vw;
 `;
 const Result = () => {
-  const router = useRouter();
-  ChartJS.register(ArcElement, Tooltip, Legend);
-  const MaxQuestionNumber1 = Number(router.query.MaxQuestionNumber);
-  const correctAnswerNum1 = +router.query.correctAnswerNum;
-  const correctAnswerPercent = (correctAnswerNum1 / MaxQuestionNumber1) * 100;
-  const [hoge, setHoge] = useState("");
-
   const [aaa, setAaa] = useState<string>("");
   const [bbb, setBbb] = useState<string>("");
   const [dataSelectAnswer, setDataSelectAnswer] = useState<string>("");
   const [MaxQuestionNumber, setMaxQuestionNumber] = useState<string>("");
-  const [correctAnswerNum, setCorrectAnswerNum] = useState<string>("")
+  const [correctAnswerNum, setCorrectAnswerNum] = useState<string>("");
   const [correctAnswerValue, setCorrectAnswerValue] = useState<string>("");
 
+  const router = useRouter();
+  ChartJS.register(ArcElement, Tooltip, Legend);
+  const correctAnswerPercent =
+    (Number(correctAnswerNum) / Number(MaxQuestionNumber)) * 100;
+  const [hoge, setHoge] = useState("");
   const getLocalStorage = async (key: string): Promise<string> => {
     const a = await localStorage.getItem(key);
     return a;
@@ -58,12 +56,15 @@ const Result = () => {
   // localStorage.setItem("correctAnswerValue", String(correctAnswerValue));
 
   useEffect(() => {
-    const f = async () => {
+    const getLocalStorageData = async () => {
       const getDataSelectAnswer = await getLocalStorage("selectAnswer");
-      const getDataMaxQuestionNumber = await getLocalStorage("MaxQuestionNumber");
+      const getDataMaxQuestionNumber = await getLocalStorage(
+        "MaxQuestionNumber"
+      );
       const getDataCorrectAnswerNum = await getLocalStorage("correctAnswerNum");
-      const getDataCorrectAnswerValue = await getLocalStorage("correctAnswerValue");
-
+      const getDataCorrectAnswerValue = await getLocalStorage(
+        "correctAnswerValue"
+      );
 
       const fetchAaaData = await getLocalStorage("hoge");
       const fetchBbbData = await getLocalStorage("bbb");
@@ -74,7 +75,7 @@ const Result = () => {
       setCorrectAnswerNum(getDataCorrectAnswerNum);
       setCorrectAnswerValue(getDataCorrectAnswerValue);
     };
-    f();
+    getLocalStorageData();
   }, []);
 
   const data = {
@@ -100,14 +101,23 @@ const Result = () => {
       <div css={glass}>
         {router.query.hoge}
         {router.query.selectedAnswer}
-        <p>hhhh</p>
+        <p
+          onClick={() => {
+            console.log(correctAnswerNum);
+            console.log(MaxQuestionNumber);
+          }}
+        >
+          hhhh
+        </p>
         <div>{aaa}</div>
         <p>a</p>
-        {MaxQuestionNumber1}
-        <p>a</p>
-        {correctAnswerNum1}
-        <p>a</p>
+        {MaxQuestionNumber}
+        <p>aa</p>
+        {correctAnswerNum}
+        <p>aa</p>
+        <p>aaa</p>
         {correctAnswerPercent}
+        <p>onkan</p>
         <div css={doughnut}>
           <Doughnut data={data} options={options} />
         </div>
