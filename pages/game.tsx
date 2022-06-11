@@ -156,18 +156,22 @@ const Game = () => {
     console.log("handleanswerbutton");
   };
   const [hoge, setHoge] = useState("yahharo-");
-  const pushlocalStorage = () => {
-    console.log("pushlocalstorage");
 
-    localStorage.setItem("hoge", hoge);
-  };
   const [correctAnswerValue, setCorrectAnswerValue] = useState([]);
   const MakeSendValue = () => {
     const answers = QuestionArray.map((question) => Sounds[question].ans);
     setCorrectAnswerValue((prev) => [...prev, ...answers]);
     movePage();
   };
+  const z = [1, 3, 5];
+  const pushlocalStorage = () => {
+    localStorage.setItem("hoge", hoge);
+    localStorage.setItem("selectAnswer", String(selectAnswer));
+    localStorage.setItem("MaxQuestionNumber", String(MaxQuestionNumber));
+    localStorage.setItem("correctAnswerNum", String(correctAnswerNum));
+    localStorage.setItem("correctAnswerValue", String(correctAnswerValue));
 
+  };
   const movePage = () => {
     router.push({
       pathname: "/result",

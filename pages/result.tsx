@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { css } from "@emotion/react";
 import { useRouter } from "next/router";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  DoughnutControllerChartOptions,
+} from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 const all = css`
   margin: 0px;
@@ -28,25 +34,45 @@ const doughnut = css`
 const Result = () => {
   const router = useRouter();
   ChartJS.register(ArcElement, Tooltip, Legend);
-  const MaxQuestionNumber = Number(router.query.MaxQuestionNumber);
-  const correctAnswerNum = +router.query.correctAnswerNum;
-  const correctAnswerPercent = (correctAnswerNum / MaxQuestionNumber) * 100;
+  const MaxQuestionNumber1 = Number(router.query.MaxQuestionNumber);
+  const correctAnswerNum1 = +router.query.correctAnswerNum;
+  const correctAnswerPercent = (correctAnswerNum1 / MaxQuestionNumber1) * 100;
   const [hoge, setHoge] = useState("");
 
   const [aaa, setAaa] = useState<string>("");
   const [bbb, setBbb] = useState<string>("");
+  const [dataSelectAnswer, setDataSelectAnswer] = useState<string>("");
+  const [MaxQuestionNumber, setMaxQuestionNumber] = useState<string>("");
+  const [correctAnswerNum, setCorrectAnswerNum] = useState<string>("")
+  const [correctAnswerValue, setCorrectAnswerValue] = useState<string>("");
 
   const getLocalStorage = async (key: string): Promise<string> => {
     const a = await localStorage.getItem(key);
     return a;
   };
 
+  // localStorage.setItem("hoge", hoge);
+  // localStorage.setItem("selectAnswer", String(selectAnswer));
+  // localStorage.setItem("MaxQuestionNumber", String(MaxQuestionNumber));
+  // localStorage.setItem("correctAnswerNum", String(correctAnswerNum));
+  // localStorage.setItem("correctAnswerValue", String(correctAnswerValue));
+
   useEffect(() => {
     const f = async () => {
+      const getDataSelectAnswer = await getLocalStorage("selectAnswer");
+      const getDataMaxQuestionNumber = await getLocalStorage("MaxQuestionNumber");
+      const getDataCorrectAnswerNum = await getLocalStorage("correctAnswerNum");
+      const getDataCorrectAnswerValue = await getLocalStorage("correctAnswerValue");
+
+
       const fetchAaaData = await getLocalStorage("hoge");
       const fetchBbbData = await getLocalStorage("bbb");
       setAaa(fetchAaaData);
       setBbb(fetchBbbData);
+      setDataSelectAnswer(getDataSelectAnswer);
+      setMaxQuestionNumber(getDataMaxQuestionNumber);
+      setCorrectAnswerNum(getDataCorrectAnswerNum);
+      setCorrectAnswerValue(getDataCorrectAnswerValue);
     };
     f();
   }, []);
@@ -60,9 +86,14 @@ const Result = () => {
       },
     ],
   };
-  const option: {} = {
-    cutoutPercentage: 80,
-    animation: true,
+  const options: DoughnutControllerChartOptions = {
+    circumference: 360,
+    cutout: 99.9,
+    animation: { animateRotate: true, animateScale: false },
+    offset: 0,
+    radius: "100%",
+    rotation: 0,
+    spacing: 0,
   };
   return (
     <div css={all}>
@@ -72,13 +103,13 @@ const Result = () => {
         <p>hhhh</p>
         <div>{aaa}</div>
         <p>a</p>
-        {MaxQuestionNumber}
+        {MaxQuestionNumber1}
         <p>a</p>
-        {correctAnswerNum}
+        {correctAnswerNum1}
         <p>a</p>
         {correctAnswerPercent}
         <div css={doughnut}>
-          <Doughnut data={data} options={option} />
+          <Doughnut data={data} options={options} />
         </div>
       </div>
     </div>
