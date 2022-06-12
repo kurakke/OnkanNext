@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { css } from "@emotion/react";
 import Button from "../components/button";
-import { useRouter } from "next/router";
-
+import Link from "next/link";
 const all = css`
   margin: 0px;
   padding: 0px;
@@ -110,8 +109,6 @@ const Game = () => {
     typeof Audio !== "undefined" && new Audio("MikuHc.mp3")
   );
   const MaxQuestionNumber = 8;
-  useEffect(() => {}, []);
-  const router = useRouter();
   const randomNum = (max: number) => {
     let QArray = [];
     for (let i = 0; i < MaxQuestionNumber; i++) {
@@ -161,22 +158,8 @@ const Game = () => {
     );
     localStorage.setItem("correctAnswerNum", JSON.stringify(correctAnswerNum));
     localStorage.setItem("correctAnswerValue", JSON.stringify(answers));
-
-    movePage();
   };
   const z = [1, 3, 5];
-
-  const movePage = () => {
-    router.push({
-      pathname: "/result",
-      query: {
-        selectedAnswer: selectAnswer,
-        hoge: hoge,
-        MaxQuestionNumber: MaxQuestionNumber,
-        correctAnswerNum: correctAnswerNum,
-      },
-    });
-  };
 
   const Sounds = [
     { id: 1, file: MusicC3, ans: "c3" },
@@ -204,11 +187,7 @@ const Game = () => {
     <div css={all}>
       <div css={glass}>
         <div css={slider}>
-          <div
-            onClick={() => {
-              movePage();
-            }}
-          >
+          <div>
             <p>{questionNum + 1}問目</p>
           </div>
           <button
@@ -286,7 +265,7 @@ const Game = () => {
                   MakeSendValue();
                 }}
               >
-                結果を見る
+                <Link href={"/result"}>結果を見る</Link>
               </button>
             );
           }

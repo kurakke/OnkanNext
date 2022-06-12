@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { css } from "@emotion/react";
-import { useRouter } from "next/router";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -39,7 +38,6 @@ const Result = () => {
   const [correctAnswerNum, setCorrectAnswerNum] = useState("");
   const [correctAnswerValue, setCorrectAnswerValue] = useState("");
 
-  const router = useRouter();
   ChartJS.register(ArcElement, Tooltip, Legend);
   const correctAnswerPercent =
     (Number(correctAnswerNum) / Number(MaxQuestionNumber)) * 100;
@@ -98,20 +96,7 @@ const Result = () => {
   return (
     <div css={all}>
       <div css={glass}>
-        {router.query.hoge}
-        {router.query.selectedAnswer}
-        
-        <p
-          onClick={() => {
-            console.log(router.query.selectedAnswer);
-
-            // console.log(correctAnswerNum);
-            // console.log(MaxQuestionNumber);
-            // console.log(router.query.correctAnswerNum + "1");
-            // console.log(router.query.correctAnswerValue);
-            // console.log(router.query.MaxQuestionNumber + "3");
-          }}
-        >
+        <p>
           hhhh
         </p>
         <div>{aaa}</div>
@@ -120,9 +105,6 @@ const Result = () => {
         <p>aa</p>
         {correctAnswerNum}
         <p>aa</p>
-        {router.query.correctAnswerNum}
-        {router.query.correctAnswerValue}
-        {router.query.MaxQuestionNumber}
         <p>aaa</p>
         {correctAnswerPercent}
         <p>onkan</p>
