@@ -159,7 +159,6 @@ const Game = () => {
     localStorage.setItem("correctAnswerNum", JSON.stringify(correctAnswerNum));
     localStorage.setItem("correctAnswerValue", JSON.stringify(answers));
   };
-  const z = [1, 3, 5];
 
   const Sounds = [
     { id: 1, file: MusicC3, ans: "c3" },
@@ -261,7 +260,6 @@ const Game = () => {
               <button
                 css={startButton}
                 onClick={() => {
-                  // movePage();
                   MakeSendValue();
                 }}
               >

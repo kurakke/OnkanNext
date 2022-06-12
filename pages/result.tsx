@@ -47,12 +47,6 @@ const Result = () => {
     return a;
   };
 
-  // localStorage.setItem("hoge", hoge);
-  // localStorage.setItem("selectAnswer", String(selectAnswer));
-  // localStorage.setItem("MaxQuestionNumber", String(MaxQuestionNumber));
-  // localStorage.setItem("correctAnswerNum", String(correctAnswerNum));
-  // localStorage.setItem("correctAnswerValue", String(correctAnswerValue));
-
   useEffect(() => {
     const getLocalStorageData = async () => {
       const getDataSelectAnswer = await getLocalStorage("selectAnswer");
@@ -96,18 +90,7 @@ const Result = () => {
   return (
     <div css={all}>
       <div css={glass}>
-        <p>
-          hhhh
-        </p>
-        <div>{aaa}</div>
-        <p>a</p>
-        {MaxQuestionNumber}
-        <p>aa</p>
-        {correctAnswerNum}
-        <p>aa</p>
-        <p>aaa</p>
-        {correctAnswerPercent}
-        <p>onkan</p>
+        
         <div css={doughnut}>
           <Doughnut data={data} options={options} />
         </div>
