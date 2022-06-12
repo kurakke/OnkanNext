@@ -127,12 +127,8 @@ const Game = () => {
   const [showButton, setShowButton] = useState(false);
   const AnswerCheck = (text: string) => {
     if (Sounds[QuestionArray[questionNum]].ans === text) {
-      console.log(QuestionArray[questionNum]);
       setShowButton(true);
-    } else {
     }
-
-    console.log("answercheck");
   };
   const [correctAnswerNum, setCorrectAnswerNum] = useState(0);
   const [clicked, setClicked] = useState(true);
@@ -141,10 +137,9 @@ const Game = () => {
   };
 
   const firstOnClick = (selectedAnswer: string) => {
-    console.log("firstOnClick");
     setSelectAnswer([...selectAnswer, selectedAnswer]);
     if (Sounds[QuestionArray[questionNum]].ans === selectedAnswer) {
-      setCorrectAnswerNum(correctAnswerNum + 1);
+      setCorrectAnswerNum((prev) => prev + 1);
     }
   };
   const handleAnwerButton = (answer: string) => {
@@ -153,25 +148,24 @@ const Game = () => {
       firstOnClick(answer);
       setClicked(false);
     }
-    console.log("handleanswerbutton");
   };
   const [hoge, setHoge] = useState("yahharo-");
 
-  const [correctAnswerValue, setCorrectAnswerValue] = useState([]);
   const MakeSendValue = () => {
     const answers = QuestionArray.map((question) => Sounds[question].ans);
-    setCorrectAnswerValue((prev) => [...prev, ...answers]);
+    localStorage.setItem("hoge", hoge);
+    localStorage.setItem("selectAnswer", JSON.stringify(selectAnswer));
+    localStorage.setItem(
+      "MaxQuestionNumber",
+      JSON.stringify(MaxQuestionNumber)
+    );
+    localStorage.setItem("correctAnswerNum", JSON.stringify(correctAnswerNum));
+    localStorage.setItem("correctAnswerValue", JSON.stringify(answers));
+
     movePage();
   };
   const z = [1, 3, 5];
-  const pushlocalStorage = () => {
-    localStorage.setItem("hoge", hoge);
-    localStorage.setItem("selectAnswer", String(selectAnswer));
-    localStorage.setItem("MaxQuestionNumber", String(MaxQuestionNumber));
-    localStorage.setItem("correctAnswerNum", String(correctAnswerNum));
-    localStorage.setItem("correctAnswerValue", String(correctAnswerValue));
 
-  };
   const movePage = () => {
     router.push({
       pathname: "/result",
@@ -180,7 +174,6 @@ const Game = () => {
         hoge: hoge,
         MaxQuestionNumber: MaxQuestionNumber,
         correctAnswerNum: correctAnswerNum,
-        correctAnswerValue: correctAnswerValue,
       },
     });
   };
@@ -214,7 +207,6 @@ const Game = () => {
           <div
             onClick={() => {
               movePage();
-              pushlocalStorage();
             }}
           >
             <p>{questionNum + 1}問目</p>

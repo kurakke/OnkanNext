@@ -34,10 +34,10 @@ const doughnut = css`
 const Result = () => {
   const [aaa, setAaa] = useState<string>("");
   const [bbb, setBbb] = useState<string>("");
-  const [dataSelectAnswer, setDataSelectAnswer] = useState<string>("");
-  const [MaxQuestionNumber, setMaxQuestionNumber] = useState<string>("");
-  const [correctAnswerNum, setCorrectAnswerNum] = useState<string>("");
-  const [correctAnswerValue, setCorrectAnswerValue] = useState<string>("");
+  const [dataSelectAnswer, setDataSelectAnswer] = useState("");
+  const [MaxQuestionNumber, setMaxQuestionNumber] = useState("");
+  const [correctAnswerNum, setCorrectAnswerNum] = useState("");
+  const [correctAnswerValue, setCorrectAnswerValue] = useState("");
 
   const router = useRouter();
   ChartJS.register(ArcElement, Tooltip, Legend);
@@ -65,7 +65,6 @@ const Result = () => {
       const getDataCorrectAnswerValue = await getLocalStorage(
         "correctAnswerValue"
       );
-
       const fetchAaaData = await getLocalStorage("hoge");
       const fetchBbbData = await getLocalStorage("bbb");
       setAaa(fetchAaaData);
@@ -101,10 +100,16 @@ const Result = () => {
       <div css={glass}>
         {router.query.hoge}
         {router.query.selectedAnswer}
+        
         <p
           onClick={() => {
-            console.log(correctAnswerNum);
-            console.log(MaxQuestionNumber);
+            console.log(router.query.selectedAnswer);
+
+            // console.log(correctAnswerNum);
+            // console.log(MaxQuestionNumber);
+            // console.log(router.query.correctAnswerNum + "1");
+            // console.log(router.query.correctAnswerValue);
+            // console.log(router.query.MaxQuestionNumber + "3");
           }}
         >
           hhhh
@@ -115,6 +120,9 @@ const Result = () => {
         <p>aa</p>
         {correctAnswerNum}
         <p>aa</p>
+        {router.query.correctAnswerNum}
+        {router.query.correctAnswerValue}
+        {router.query.MaxQuestionNumber}
         <p>aaa</p>
         {correctAnswerPercent}
         <p>onkan</p>
