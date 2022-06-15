@@ -90,7 +90,6 @@ const Result = () => {
   return (
     <div css={all}>
       <div css={glass}>
-        
         <div css={doughnut}>
           <Doughnut data={data} options={options} />
         </div>
