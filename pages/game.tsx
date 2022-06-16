@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { css } from "@emotion/react";
 import Button from "../components/button";
-import { useRouter } from "next/router";
-
+import Link from "next/link";
 const all = css`
   margin: 0px;
   padding: 0px;
@@ -27,6 +26,17 @@ const slider = css`
 `;
 const startButton = css`
   background-color: white;
+  width: 180px;
+  height: 60px;
+  border-radius: 15px;
+  box-shadow: 0px 7px 0px 0px rgba(0, 0, 0, 0.6);
+  margin: 40px auto;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+`;
+const darkStartButton = css`
+  background-color: rgba()
   width: 180px;
   height: 60px;
   border-radius: 15px;
@@ -110,11 +120,9 @@ const Game = () => {
     typeof Audio !== "undefined" && new Audio("MikuHc.mp3")
   );
   const MaxQuestionNumber = 8;
-  useEffect(() => {}, []);
-  const router = useRouter();
   const randomNum = (max: number) => {
     let QArray = [];
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < MaxQuestionNumber; i++) {
       QArray.push(Math.floor(Math.random() * max));
     }
     return QArray;
@@ -127,12 +135,8 @@ const Game = () => {
   const [showButton, setShowButton] = useState(false);
   const AnswerCheck = (text: string) => {
     if (Sounds[QuestionArray[questionNum]].ans === text) {
-      console.log(QuestionArray[questionNum]);
       setShowButton(true);
-    } else {
     }
-
-    console.log("answercheck");
   };
   const [correctAnswerNum, setCorrectAnswerNum] = useState(0);
   const [clicked, setClicked] = useState(true);
@@ -141,10 +145,9 @@ const Game = () => {
   };
 
   const firstOnClick = (selectedAnswer: string) => {
-    console.log("firstOnClick");
     setSelectAnswer([...selectAnswer, selectedAnswer]);
     if (Sounds[QuestionArray[questionNum]].ans === selectedAnswer) {
-      setCorrectAnswerNum(correctAnswerNum + 1);
+      setCorrectAnswerNum((prev) => prev + 1);
     }
   };
   const handleAnwerButton = (answer: string) => {
@@ -153,19 +156,19 @@ const Game = () => {
       firstOnClick(answer);
       setClicked(false);
     }
-    console.log("handleanswerbutton");
   };
   const [hoge, setHoge] = useState("yahharo-");
-  const movePage = () => {
-    router.push({
-      pathname: "/result",
-      query: {
-        selectedAnswer: selectAnswer,
-        hoge: hoge,
-        MaxQuestionNumber: MaxQuestionNumber,
-        correctAnswerNum: correctAnswerNum,
-      },
-    });
+
+  const MakeSendValue = () => {
+    const answers = QuestionArray.map((question) => Sounds[question].ans);
+    localStorage.setItem("hoge", hoge);
+    localStorage.setItem("selectAnswer", JSON.stringify(selectAnswer));
+    localStorage.setItem(
+      "MaxQuestionNumber",
+      JSON.stringify(MaxQuestionNumber)
+    );
+    localStorage.setItem("correctAnswerNum", JSON.stringify(correctAnswerNum));
+    localStorage.setItem("correctAnswerValue", JSON.stringify(answers));
   };
 
   const Sounds = [
@@ -194,11 +197,7 @@ const Game = () => {
     <div css={all}>
       <div css={glass}>
         <div css={slider}>
-          <div
-            onClick={() => {
-              movePage();
-            }}
-          >
+          <div>
             <p>{questionNum + 1}問目</p>
           </div>
           <button
@@ -272,15 +271,21 @@ const Game = () => {
               <button
                 css={startButton}
                 onClick={() => {
-                  movePage();
+                  MakeSendValue();
                 }}
               >
-                結果を見る
+                <Link href={"/result"}>結果を見る</Link>
               </button>
             );
           }
         } else {
-          return <div></div>;
+          return (
+            <div>
+              {/* <button css={startButton}>
+
+              </button> */}
+            </div>
+          );
         }
       })()}
     </div>

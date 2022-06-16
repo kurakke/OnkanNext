@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { css } from "@emotion/react";
-import { useRouter } from "next/router";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  DoughnutControllerChartOptions,
+} from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 const all = css`
   margin: 0px;
@@ -26,11 +31,38 @@ const doughnut = css`
   height: 60vw;
 `;
 const Result = () => {
-  const router = useRouter();
+  const [dataSelectAnswer, setDataSelectAnswer] = useState("");
+  const [MaxQuestionNumber, setMaxQuestionNumber] = useState("");
+  const [correctAnswerNum, setCorrectAnswerNum] = useState("");
+  const [correctAnswerValue, setCorrectAnswerValue] = useState("");
+  // const A = JSON.parse(correctAnswerValue);
   ChartJS.register(ArcElement, Tooltip, Legend);
-  const MaxQuestionNumber = +router.query.MaxQuestionNumber;
-  const correctAnswerNum = +router.query.correctAnswerNum;
-  const correctAnswerPercent = (correctAnswerNum / MaxQuestionNumber) * 100;
+  const correctAnswerPercent =
+    (Number(correctAnswerNum) / Number(MaxQuestionNumber)) * 100;
+
+  const getLocalStorage = async (key: string): Promise<string> => {
+    const a = await localStorage.getItem(key);
+    return a;
+  };
+
+  useEffect(() => {
+    const getLocalStorageData = async () => {
+      const getDataSelectAnswer = await getLocalStorage("selectAnswer");
+      const getDataMaxQuestionNumber = await getLocalStorage(
+        "MaxQuestionNumber"
+      );
+      const getDataCorrectAnswerNum = await getLocalStorage("correctAnswerNum");
+      const getDataCorrectAnswerValue = await getLocalStorage(
+        "correctAnswerValue"
+      );
+      setDataSelectAnswer(getDataSelectAnswer);
+      setMaxQuestionNumber(getDataMaxQuestionNumber);
+      setCorrectAnswerNum(getDataCorrectAnswerNum);
+      setCorrectAnswerValue(getDataCorrectAnswerValue);
+    };
+    getLocalStorageData();
+  }, []);
+
   const data = {
     datasets: [
       {
@@ -40,20 +72,22 @@ const Result = () => {
       },
     ],
   };
+  const options: DoughnutControllerChartOptions = {
+    circumference: 360,
+    cutout: 99.9,
+    animation: { animateRotate: true, animateScale: false },
+    offset: 0,
+    radius: "100%",
+    rotation: 0,
+    spacing: 0,
+  };
   return (
     <div css={all}>
       <div css={glass}>
-        {router.query.hoge}
-        {router.query.selectedAnswer}
-        <p>a</p>
-        {MaxQuestionNumber}
-        <p>a</p>
-        {correctAnswerNum}
-        <p>a</p>
-        {correctAnswerPercent}
         <div css={doughnut}>
-          <Doughnut data={data} />
+          <Doughnut data={data} options={options} />
         </div>
+        {correctAnswerValue}
       </div>
     </div>
   );
