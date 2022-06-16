@@ -31,7 +31,7 @@ const doughnut = css`
   height: 60vw;
 `;
 const Result = () => {
-  const [dataSelectAnswer, setDataSelectAnswer] = useState("");
+  const [dataSelectAnswer, setSelectAnswer] = useState("");
   const [MaxQuestionNumber, setMaxQuestionNumber] = useState("");
   const [correctAnswerNum, setCorrectAnswerNum] = useState("");
   const [correctAnswerValue, setCorrectAnswerValue] = useState("");
@@ -55,7 +55,7 @@ const Result = () => {
       const getDataCorrectAnswerValue = await getLocalStorage(
         "correctAnswerValue"
       );
-      setDataSelectAnswer(getDataSelectAnswer);
+      setSelectAnswer(getDataSelectAnswer);
       setMaxQuestionNumber(getDataMaxQuestionNumber);
       setCorrectAnswerNum(getDataCorrectAnswerNum);
       setCorrectAnswerValue(getDataCorrectAnswerValue);
