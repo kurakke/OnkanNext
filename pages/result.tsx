@@ -35,11 +35,11 @@ const Result = () => {
   const [MaxQuestionNumber, setMaxQuestionNumber] = useState("");
   const [correctAnswerNum, setCorrectAnswerNum] = useState("");
   const [correctAnswerValue, setCorrectAnswerValue] = useState("");
-
+  // const A = JSON.parse(correctAnswerValue);
   ChartJS.register(ArcElement, Tooltip, Legend);
   const correctAnswerPercent =
     (Number(correctAnswerNum) / Number(MaxQuestionNumber)) * 100;
-  const [hoge, setHoge] = useState("");
+
   const getLocalStorage = async (key: string): Promise<string> => {
     const a = await localStorage.getItem(key);
     return a;
@@ -87,6 +87,7 @@ const Result = () => {
         <div css={doughnut}>
           <Doughnut data={data} options={options} />
         </div>
+        {correctAnswerValue}
       </div>
     </div>
   );
