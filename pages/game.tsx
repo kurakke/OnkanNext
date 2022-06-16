@@ -2,6 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import { css } from "@emotion/react";
 import Button from "../components/button";
 import Link from "next/link";
+import { type } from "os";
 const all = css`
   margin: 0px;
   padding: 0px;
@@ -95,12 +96,19 @@ const pianoSideBottom = css`
 `;
 
 const Game = () => {
+  // const [aaaa, setA] = useState<HTMLAudioElement>(null);
+
+  // useEffect(() => {
+  //   setA(new Audio("MikuC.mp3"));
+  // }, []);
+
   const [MusicA3] = useState(
     typeof Audio !== "undefined" && new Audio("MikuA.mp3")
   );
   const [MusicB3] = useState(
     typeof Audio !== "undefined" && new Audio("MikuB.mp3")
   );
+
   const [MusicC3] = useState(
     typeof Audio !== "undefined" && new Audio("MikuC.mp3")
   );
@@ -118,6 +126,45 @@ const Game = () => {
   );
   const [MusicC2] = useState(
     typeof Audio !== "undefined" && new Audio("MikuHc.mp3")
+  );
+  const [PianoAs3] = useState(
+    typeof Audio !== "undefined" && new Audio("PianoA#3.mp3")
+  );
+  const [PianoA3] = useState(
+    typeof Audio !== "undefined" && new Audio("PianoA3.mp3")
+  );
+  const [PianoB3] = useState(
+    typeof Audio !== "undefined" && new Audio("PianoB3.mp3")
+  );
+  const [PianoCs3] = useState(
+    typeof Audio !== "undefined" && new Audio("PianoC#3.mp3")
+  );
+  const [PianoC3] = useState(
+    typeof Audio !== "undefined" && new Audio("PianoC3.mp3")
+  );
+  const [PianoC4] = useState(
+    typeof Audio !== "undefined" && new Audio("PianoC4.mp3")
+  );
+  const [PianoDs3] = useState(
+    typeof Audio !== "undefined" && new Audio("PianoD#3.mp3")
+  );
+  const [PianoD3] = useState(
+    typeof Audio !== "undefined" && new Audio("PianoD3.mp3")
+  );
+  const [PianoE3] = useState(
+    typeof Audio !== "undefined" && new Audio("PianoE3.mp3")
+  );
+  const [PianoFs3] = useState(
+    typeof Audio !== "undefined" && new Audio("PianoF#3.mp3")
+  );
+  const [PianoF3] = useState(
+    typeof Audio !== "undefined" && new Audio("PianoF3.mp3")
+  );
+  const [PianoGs3] = useState(
+    typeof Audio !== "undefined" && new Audio("PianoG#3.mp3")
+  );
+  const [PianoG3] = useState(
+    typeof Audio !== "undefined" && new Audio("PianoG3.mp3")
   );
   const MaxQuestionNumber = 8;
   const randomNum = (max: number) => {
