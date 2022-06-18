@@ -100,8 +100,13 @@ const Game = () => {
 
   useEffect(() => {
     setA(new Audio("MikuC.mp3"));
-    setMusicA3(new Audio("MikuA.mp3"));
-    setPianoASharp3(new Audio("PianoA#3.mp3"));
+    setPianoA3(new Audio("PianoA3.mp3"));
+    setPianoB3(new Audio("PianoB3.mp3"));
+    setPianoC3(new Audio("PianoC3.mp3"));
+    setPianoD3(new Audio("PianoD3.mp3"));
+    setPianoE3(new Audio("PianoE3.mp3"));
+    setPianoF3(new Audio("PianoF3.mp3"));
+    setPianoG3(new Audio("PianoG3.mp3"));
   }, []);
 
   const [pianoASharp3, setPianoASharp3] = useState<HTMLAudioElement>(null);
@@ -178,14 +183,14 @@ const Game = () => {
   };
 
   const Sounds = [
-    { id: 1, file: MusicC3, ans: "c3" },
-    { id: 2, file: MusicD3, ans: "d3" },
-    { id: 3, file: MusicE3, ans: "e3" },
-    { id: 4, file: MusicF3, ans: "f3" },
-    { id: 5, file: MusicG3, ans: "g3" },
-    { id: 6, file: MusicA3, ans: "a3" },
-    { id: 7, file: MusicB3, ans: "b3" },
-    { id: 8, file: MusicC2, ans: "c2" },
+    { id: 1, file: pianoC3, ans: "c3" },
+    { id: 2, file: pianoD3, ans: "d3" },
+    { id: 3, file: pianoE3, ans: "e3" },
+    { id: 4, file: pianoF3, ans: "f3" },
+    { id: 5, file: pianoG3, ans: "g3" },
+    { id: 6, file: pianoA3, ans: "a3" },
+    { id: 7, file: pianoB3, ans: "b3" },
+    { id: 8, file: pianoC4, ans: "c2" },
   ];
   const Choices = [
     { id: 1, label: "c", value: "c3" },
