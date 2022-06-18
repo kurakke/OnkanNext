@@ -101,69 +101,30 @@ const Game = () => {
   useEffect(() => {
     setA(new Audio("MikuC.mp3"));
     setMusicA3(new Audio("MikuA.mp3"));
-
+    setPianoASharp3(new Audio("PianoA#3.mp3"));
   }, []);
 
-  const [pianoASharp3, setPianoASharp3] = useState();
-  const [PianoA3] = useState(
-    typeof Audio !== "undefined" && new Audio("PianoA3.mp3")
-  );
-  const [PianoB3] = useState(
-    typeof Audio !== "undefined" && new Audio("PianoB3.mp3")
-  );
-  const [PianoCs3] = useState(
-    typeof Audio !== "undefined" && new Audio("PianoC#3.mp3")
-  );
-  const [PianoC3] = useState(
-    typeof Audio !== "undefined" && new Audio("PianoC3.mp3")
-  );
-  const [PianoC4] = useState(
-    typeof Audio !== "undefined" && new Audio("PianoC4.mp3")
-  );
-  const [PianoDs3] = useState(
-    typeof Audio !== "undefined" && new Audio("PianoD#3.mp3")
-  );
-  const [PianoD3] = useState(
-    typeof Audio !== "undefined" && new Audio("PianoD3.mp3")
-  );
-  const [PianoE3] = useState(
-    typeof Audio !== "undefined" && new Audio("PianoE3.mp3")
-  );
-  const [PianoFs3] = useState(
-    typeof Audio !== "undefined" && new Audio("PianoF#3.mp3")
-  );
-  const [PianoF3] = useState(
-    typeof Audio !== "undefined" && new Audio("PianoF3.mp3")
-  );
-  const [PianoGs3] = useState(
-    typeof Audio !== "undefined" && new Audio("PianoG#3.mp3")
-  );
-  const [PianoG3] = useState(
-    typeof Audio !== "undefined" && new Audio("PianoG3.mp3")
-  );
+  const [pianoASharp3, setPianoASharp3] = useState<HTMLAudioElement>(null);
+  const [pianoA3, setPianoA3] = useState<HTMLAudioElement>(null);
+  const [pianoB3, setPianoB3] = useState<HTMLAudioElement>(null);
+  const [pianoCsharp3, setPianoCSharp3] = useState<HTMLAudioElement>(null);
+  const [pianoC3, setPianoC3] = useState<HTMLAudioElement>(null);
+  const [pianoC4, setPianoC4] = useState<HTMLAudioElement>(null);
+  const [pianoDSharp3, setPianoDSharp3] = useState<HTMLAudioElement>(null);
+  const [pianoD3, setPianoD3] = useState<HTMLAudioElement>(null);
+  const [pianoE3, setPianoE3] = useState<HTMLAudioElement>(null);
+  const [pianoFSharp3, setPianoFSharp3] = useState<HTMLAudioElement>(null);
+  const [pianoF3, setPianoF3] = useState<HTMLAudioElement>(null);
+  const [pianoGSharp3, setPianoGSharp3] = useState<HTMLAudioElement>(null);
+  const [pianoG3, setPianoG3] = useState<HTMLAudioElement>(null);
   const [MusicA3, setMusicA3] = useState<HTMLAudioElement>(null);
-  const [MusicB3] = useState(
-    typeof Audio !== "undefined" && new Audio("MikuB.mp3")
-  );
-
-  const [MusicC3] = useState(
-    typeof Audio !== "undefined" && new Audio("MikuC.mp3")
-  );
-  const [MusicD3] = useState(
-    typeof Audio !== "undefined" && new Audio("MikuD.mp3")
-  );
-  const [MusicE3] = useState(
-    typeof Audio !== "undefined" && new Audio("MikuE.mp3")
-  );
-  const [MusicF3] = useState(
-    typeof Audio !== "undefined" && new Audio("MikuF.mp3")
-  );
-  const [MusicG3] = useState(
-    typeof Audio !== "undefined" && new Audio("MikuG.mp3")
-  );
-  const [MusicC2] = useState(
-    typeof Audio !== "undefined" && new Audio("MikuHc.mp3")
-  );
+  const [MusicB3] = useState(new Audio("MikuB.mp3"));
+  const [MusicC3] = useState(new Audio("MikuC.mp3"));
+  const [MusicD3] = useState(new Audio("MikuD.mp3"));
+  const [MusicE3] = useState(new Audio("MikuE.mp3"));
+  const [MusicF3] = useState(new Audio("MikuF.mp3"));
+  const [MusicG3] = useState(new Audio("MikuG.mp3"));
+  const [MusicC2] = useState(new Audio("MikuHc.mp3"));
   const MaxQuestionNumber = 8;
   const randomNum = (max: number) => {
     let QArray = [];
