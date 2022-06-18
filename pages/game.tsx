@@ -107,11 +107,11 @@ const Game = () => {
     setPianoE3(new Audio("PianoE3.mp3"));
     setPianoF3(new Audio("PianoF3.mp3"));
     setPianoG3(new Audio("PianoG3.mp3"));
-    setPianoASharp3(new Audio("PianoA#3.mp3"));
-    setPianoCSharp3(new Audio("PianoC#3.mp3"));
-    setPianoDSharp3(new Audio("PianoD#3.mp3"));
-    setPianoFSharp3(new Audio("PianoF#3.mp3"));
-    setPianoGSharp3(new Audio("PianoG#3.mp3"));
+    setPianoASharp3(new Audio("PianoASharp3.mp3"));
+    setPianoCSharp3(new Audio("PianoCSharp3.mp3"));
+    setPianoDSharp3(new Audio("PianoDSharp3.mp3"));
+    setPianoFSharp3(new Audio("PianoFSharp3.mp3"));
+    setPianoGSharp3(new Audio("PianoGSharp3.mp3"));
   }, []);
 
   const [pianoASharp3, setPianoASharp3] = useState<HTMLAudioElement>(null);
