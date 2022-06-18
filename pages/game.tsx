@@ -122,14 +122,6 @@ const Game = () => {
   const [pianoF3, setPianoF3] = useState<HTMLAudioElement>(null);
   const [pianoGSharp3, setPianoGSharp3] = useState<HTMLAudioElement>(null);
   const [pianoG3, setPianoG3] = useState<HTMLAudioElement>(null);
-  const [MusicA3, setMusicA3] = useState<HTMLAudioElement>(null);
-  const [MusicB3] = useState(new Audio("MikuB.mp3"));
-  const [MusicC3] = useState(new Audio("MikuC.mp3"));
-  const [MusicD3] = useState(new Audio("MikuD.mp3"));
-  const [MusicE3] = useState(new Audio("MikuE.mp3"));
-  const [MusicF3] = useState(new Audio("MikuF.mp3"));
-  const [MusicG3] = useState(new Audio("MikuG.mp3"));
-  const [MusicC2] = useState(new Audio("MikuHc.mp3"));
   const MaxQuestionNumber = 8;
   const randomNum = (max: number) => {
     let QArray = [];
@@ -183,14 +175,14 @@ const Game = () => {
   };
 
   const Sounds = [
-    { id: 1, file: pianoC3, ans: "c3" },
-    { id: 2, file: pianoD3, ans: "d3" },
-    { id: 3, file: pianoE3, ans: "e3" },
-    { id: 4, file: pianoF3, ans: "f3" },
-    { id: 5, file: pianoG3, ans: "g3" },
-    { id: 6, file: pianoA3, ans: "a3" },
-    { id: 7, file: pianoB3, ans: "b3" },
-    { id: 8, file: pianoC4, ans: "c2" },
+    { id: 1, file: pianoC3, ans: "c3", isSharp: false },
+    { id: 2, file: pianoD3, ans: "d3", isSharp: false },
+    { id: 3, file: pianoE3, ans: "e3", isSharp: false },
+    { id: 4, file: pianoF3, ans: "f3", isSharp: false },
+    { id: 5, file: pianoG3, ans: "g3", isSharp: false },
+    { id: 6, file: pianoA3, ans: "a3", isSharp: false },
+    { id: 7, file: pianoB3, ans: "b3", isSharp: false },
+    { id: 8, file: pianoC4, ans: "c4", isSharp: false },
   ];
   const Choices = [
     { id: 1, label: "c", value: "c3" },
@@ -200,7 +192,7 @@ const Game = () => {
     { id: 5, label: "g", value: "g3" },
     { id: 6, label: "a", value: "a3" },
     { id: 7, label: "b", value: "b3" },
-    { id: 8, label: "c", value: "c2" },
+    { id: 8, label: "c", value: "c4" },
   ];
   const b = true;
   const a = "a";
