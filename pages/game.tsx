@@ -117,7 +117,7 @@ const Game = () => {
   const [pianoASharp3, setPianoASharp3] = useState<HTMLAudioElement>(null);
   const [pianoA3, setPianoA3] = useState<HTMLAudioElement>(null);
   const [pianoB3, setPianoB3] = useState<HTMLAudioElement>(null);
-  const [pianoCsharp3, setPianoCSharp3] = useState<HTMLAudioElement>(null);
+  const [pianoCSharp3, setPianoCSharp3] = useState<HTMLAudioElement>(null);
   const [pianoC3, setPianoC3] = useState<HTMLAudioElement>(null);
   const [pianoC4, setPianoC4] = useState<HTMLAudioElement>(null);
   const [pianoDSharp3, setPianoDSharp3] = useState<HTMLAudioElement>(null);
@@ -190,14 +190,14 @@ const Game = () => {
     { id: 8, file: pianoC4, ans: "c4", isSharp: false },
   ];
   const Choices = [
-    { id: 1, label: "c", value: "c3" },
-    { id: 2, label: "d", value: "d3" },
-    { id: 3, label: "e", value: "e3" },
-    { id: 4, label: "f", value: "f3" },
-    { id: 5, label: "g", value: "g3" },
-    { id: 6, label: "a", value: "a3" },
-    { id: 7, label: "b", value: "b3" },
-    { id: 8, label: "c", value: "c4" },
+    { id: 1, label: "c", value: "c3", isSharp: false },
+    { id: 2, label: "d", value: "d3", isSharp: false },
+    { id: 3, label: "e", value: "e3", isSharp: false },
+    { id: 4, label: "f", value: "f3", isSharp: false },
+    { id: 5, label: "g", value: "g3", isSharp: false },
+    { id: 6, label: "a", value: "a3", isSharp: false },
+    { id: 7, label: "b", value: "b3", isSharp: false },
+    { id: 8, label: "c", value: "c4", isSharp: false },
   ];
   const b = true;
   const a = "a";
