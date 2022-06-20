@@ -30,13 +30,13 @@ const doughnut = css`
   width: 60vw;
   height: 60vw;
 `;
+const a = css``;
 
 const Result = () => {
   const [dataSelectAnswer, setSelectAnswer] = useState();
   const [MaxQuestionNumber, setMaxQuestionNumber] = useState();
   const [correctAnswerNum, setCorrectAnswerNum] = useState();
   const [correctAnswerValue, setCorrectAnswerValue] = useState<string[]>(null);
-  const A = correctAnswerValue;
   ChartJS.register(ArcElement, Tooltip, Legend);
   const correctAnswerPercent =
     (Number(correctAnswerNum) / Number(MaxQuestionNumber)) * 100;
@@ -86,15 +86,13 @@ const Result = () => {
     <div css={all}>
       <div css={glass}>
         <div css={doughnut}>
-          <Doughnut
-            data={data}
-            options={options}
-            onClick={() => {
-              console.log(A[0]);
-            }}
-          />
+          <Doughnut data={data} options={options} />
         </div>
-        {correctAnswerValue}
+        {/* <ul>
+          {correctAnswerValue.map((item, index) => (
+            <div>{correctAnswerValue[index]}</div>
+          ))}
+        </ul> */}
       </div>
     </div>
   );

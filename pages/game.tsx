@@ -190,17 +190,21 @@ const Game = () => {
     { id: 8, file: pianoC4, ans: "c4", isSharp: false },
   ];
   const Choices = [
-    { id: 1, label: "c", value: "c3", isSharp: false },
-    { id: 2, label: "d", value: "d3", isSharp: false },
-    { id: 3, label: "e", value: "e3", isSharp: false },
-    { id: 4, label: "f", value: "f3", isSharp: false },
-    { id: 5, label: "g", value: "g3", isSharp: false },
-    { id: 6, label: "a", value: "a3", isSharp: false },
-    { id: 7, label: "b", value: "b3", isSharp: false },
-    { id: 8, label: "c", value: "c4", isSharp: false },
+    { id: 1, label: "C", value: "c4", isSharp: false },
+    { id: 2, label: "B", value: "b3", isSharp: false },
+    { id: 3, label: "A", value: "a3", isSharp: false },
+    { id: 4, label: "G", value: "g3", isSharp: false },
+    { id: 5, label: "F", value: "f3", isSharp: false },
+    { id: 6, label: "E", value: "e3", isSharp: false },
+    { id: 7, label: "D", value: "d3", isSharp: false },
+    { id: 8, label: "C", value: "c3", isSharp: false },
   ];
-  const b = true;
   const a = "a";
+  const b = Choices.filter((item) => {
+    if (item.isSharp === false) {
+      return item;
+    }
+  });
   return (
     <div css={all}>
       <div css={glass}>
@@ -239,7 +243,11 @@ const Game = () => {
         </div>
         <div css={buttons}>
           <ul>
-            {Choices.map((item, index) => (
+            {Choices.filter((item) => {
+              if (item.isSharp === false) {
+                return item;
+              }
+            }).map((item, index) => (
               <div css={answerButton} key={item.id}>
                 <Button
                   label={item.label}
@@ -255,6 +263,38 @@ const Game = () => {
                 ></Button>
               </div>
             ))}
+            {/* {b.map((item, index) => (
+              <div css={answerButton} key={item.id}>
+                <Button
+                  label={item.label}
+                  handleAnswer={handleAnwerButton}
+                  handleAnswerArg={item.value}
+                  Answer={
+                    Sounds[QuestionArray[questionNum]].ans === item.value
+                      ? true
+                      : false
+                  }
+                  questionNum={questionNum}
+                  musicFile={Sounds[index].file}
+                ></Button>
+              </div>
+            ))} */}
+            {/* {Choices.map((item, index) => (
+              <div css={answerButton} key={item.id}>
+                <Button
+                  label={item.label}
+                  handleAnswer={handleAnwerButton}
+                  handleAnswerArg={item.value}
+                  Answer={
+                    Sounds[QuestionArray[questionNum]].ans === item.value
+                      ? true
+                      : false
+                  }
+                  questionNum={questionNum}
+                  musicFile={Sounds[index].file}
+                ></Button>
+              </div>
+            ))} */}
           </ul>
         </div>
       </div>
