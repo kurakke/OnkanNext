@@ -30,6 +30,17 @@ const doughnut = css`
   width: 60vw;
   height: 60vw;
 `;
+const startButton = css`
+  background-color: white;
+  width: 180px;
+  height: 60px;
+  border-radius: 15px;
+  box-shadow: 0px 7px 0px 0px rgba(0, 0, 0, 0.6);
+  margin: 40px auto;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+`;
 const a = css``;
 
 const Result = () => {
@@ -93,6 +104,7 @@ const Result = () => {
             <div>{correctAnswerValue[index]}</div>
           ))}
         </ul> */}
+        <div css={startButton}>Next!</div>
       </div>
     </div>
   );
