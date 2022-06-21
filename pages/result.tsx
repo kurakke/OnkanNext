@@ -44,29 +44,16 @@ const startButton = css`
 const a = css``;
 
 const Result = () => {
-  const [dataSelectAnswer, setSelectAnswer] = useState();
+  const [SelectAnswer, setSelectAnswer] = useState();
   const [MaxQuestionNumber, setMaxQuestionNumber] = useState();
   const [correctAnswerNum, setCorrectAnswerNum] = useState();
   const [correctAnswerValue, setCorrectAnswerValue] = useState<string[]>(null);
   ChartJS.register(ArcElement, Tooltip, Legend);
   const correctAnswerPercent =
     (Number(correctAnswerNum) / Number(MaxQuestionNumber)) * 100;
-
   const getLocalStorage = async (key: string): Promise<string> => {
     const a = await localStorage.getItem(key);
     return a;
-  };
-
-  const hoge = (b, c) => {
-    console.log("a");
-    const [ab, setAb] = useState([]);
-    for (let i = 0; i < b.length; i++) {
-      if(a[i] === b[i]) {
-        setAb([...ab,true]);
-      } else {
-        setAb([...ab, false]);
-      }
-    }
   };
 
   useEffect(() => {
@@ -114,7 +101,7 @@ const Result = () => {
         <div>
           <ul>
             {correctAnswerValue &&
-              correctAnswerValue.map((item, index) => <li>{item}</li>)}
+              correctAnswerValue.map((item, index) => <></>)}
           </ul>
         </div>
         <div css={startButton}>Next!</div>
