@@ -107,6 +107,7 @@ const Game = () => {
     setPianoE3(new Audio("PianoE3.mp3"));
     setPianoF3(new Audio("PianoF3.mp3"));
     setPianoG3(new Audio("PianoG3.mp3"));
+    setPianoC4(new Audio("PianoC4.mp3"));
     setPianoASharp3(new Audio("PianoASharp3.mp3"));
     setPianoCSharp3(new Audio("PianoCSharp3.mp3"));
     setPianoDSharp3(new Audio("PianoDSharp3.mp3"));
@@ -180,14 +181,14 @@ const Game = () => {
   };
 
   const Sounds = [
-    { id: 1, file: pianoC3, ans: "c3", isSharp: false },
-    { id: 2, file: pianoD3, ans: "d3", isSharp: false },
-    { id: 3, file: pianoE3, ans: "e3", isSharp: false },
-    { id: 4, file: pianoF3, ans: "f3", isSharp: false },
-    { id: 5, file: pianoG3, ans: "g3", isSharp: false },
-    { id: 6, file: pianoA3, ans: "a3", isSharp: false },
-    { id: 7, file: pianoB3, ans: "b3", isSharp: false },
-    { id: 8, file: pianoC4, ans: "c4", isSharp: false },
+    { id: 1, file: pianoC4, ans: "c4", isSharp: false },
+    { id: 2, file: pianoB3, ans: "b3", isSharp: false },
+    { id: 3, file: pianoA3, ans: "a3", isSharp: false },
+    { id: 4, file: pianoG3, ans: "g3", isSharp: false },
+    { id: 5, file: pianoF3, ans: "f3", isSharp: false },
+    { id: 6, file: pianoE3, ans: "e3", isSharp: false },
+    { id: 7, file: pianoD3, ans: "d3", isSharp: false },
+    { id: 8, file: pianoC3, ans: "c3", isSharp: false },
     { id: 9, file: pianoCSharp3, ans: "cs3", isSharp: true },
     { id: 10, file: pianoDSharp3, ans: "ds3", isSharp: true },
     { id: 11, file: pianoFSharp3, ans: "fs3", isSharp: true },
