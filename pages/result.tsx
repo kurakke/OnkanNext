@@ -57,6 +57,18 @@ const Result = () => {
     return a;
   };
 
+  const hoge = (b, c) => {
+    console.log("a");
+    const [ab, setAb] = useState([]);
+    for (let i = 0; i < b.length; i++) {
+      if(a[i] === b[i]) {
+        setAb([...ab,true]);
+      } else {
+        setAb([...ab, false]);
+      }
+    }
+  };
+
   useEffect(() => {
     const getLocalStorageData = async () => {
       const getDataSelectAnswer = await getLocalStorage("selectAnswer");
@@ -99,11 +111,12 @@ const Result = () => {
         <div css={doughnut}>
           <Doughnut data={data} options={options} />
         </div>
-        {/* <ul>
-          {correctAnswerValue.map((item, index) => (
-            <div>{correctAnswerValue[index]}</div>
-          ))}
-        </ul> */}
+        <div>
+          <ul>
+            {correctAnswerValue &&
+              correctAnswerValue.map((item, index) => <li>{item}</li>)}
+          </ul>
+        </div>
         <div css={startButton}>Next!</div>
       </div>
     </div>
