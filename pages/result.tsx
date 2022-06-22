@@ -49,12 +49,36 @@ const Result = () => {
   const [correctAnswerNum, setCorrectAnswerNum] = useState<Number>(null);
   const [correctAnswerValue, setCorrectAnswerValue] = useState<string[]>(null);
   ChartJS.register(ArcElement, Tooltip, Legend);
+  const [A, setA] = useState<boolean[]>(null);
   const correctAnswerPercent =
     (Number(correctAnswerNum) / Number(MaxQuestionNumber)) * 100;
   const getLocalStorage = async (key: string): Promise<string> => {
     const a = await localStorage.getItem(key);
     return a;
   };
+
+  const judge = (
+    answers: string[] | null,
+    corrects: string[] | null
+  ): boolean[] => {
+    console.log(answers);
+    console.log(corrects);
+
+    if (answers != null) {
+      const makedArray = answers.map((answer, i) => {
+        if (answer === corrects[i]) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+      console.log("if");
+      return makedArray;
+    }
+    console.log("else ");
+    return [];
+  };
+
 
   useEffect(() => {
     const getLocalStorageData = async () => {
@@ -72,8 +96,9 @@ const Result = () => {
       setCorrectAnswerValue(JSON.parse(getDataCorrectAnswerValue));
     };
     getLocalStorageData();
+    setA(judge(selectAnswer, correctAnswerValue));
   }, []);
-
+  console.log(A);
   const data = {
     datasets: [
       {
@@ -104,7 +129,8 @@ const Result = () => {
               correctAnswerValue.map((item, index) => (
                 <div key={index}>
                   <p>
-                    {index + 1}問目:o ({selectAnswer[index]}→{item})
+                    {index + 1}問目:{a[index] ? "o" : "x"} (
+                    {selectAnswer[index]}→{item})
                   </p>
                 </div>
               ))}
