@@ -44,9 +44,9 @@ const startButton = css`
 const a = css``;
 
 const Result = () => {
-  const [selectAnswer, setSelectAnswer] = useState(null);
-  const [MaxQuestionNumber, setMaxQuestionNumber] = useState(null);
-  const [correctAnswerNum, setCorrectAnswerNum] = useState(null);
+  const [selectAnswer, setSelectAnswer] = useState<string[]>(null);
+  const [MaxQuestionNumber, setMaxQuestionNumber] = useState<Number>(null);
+  const [correctAnswerNum, setCorrectAnswerNum] = useState<Number>(null);
   const [correctAnswerValue, setCorrectAnswerValue] = useState<string[]>(null);
   ChartJS.register(ArcElement, Tooltip, Legend);
   const correctAnswerPercent =
