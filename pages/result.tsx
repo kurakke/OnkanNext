@@ -55,9 +55,6 @@ const Result = () => {
     const a = await localStorage.getItem(key);
     return a;
   };
-  // const judgeAnswer = (select, correct) => {
-  //   for(let i = 0; i < )
-  // }
 
   useEffect(() => {
     const getLocalStorageData = async () => {
@@ -107,8 +104,7 @@ const Result = () => {
               correctAnswerValue.map((item, index) => (
                 <div key={index}>
                   <p>
-                    {index + 1}問目:o ({selectAnswer[index]}→{item}){" "}
-                    {correctAnswerNum}
+                    {index + 1}問目:o ({selectAnswer[index]}→{item})
                   </p>
                 </div>
               ))}
