@@ -44,9 +44,9 @@ const startButton = css`
 const a = css``;
 
 const Result = () => {
-  const [SelectAnswer, setSelectAnswer] = useState();
-  const [MaxQuestionNumber, setMaxQuestionNumber] = useState();
-  const [correctAnswerNum, setCorrectAnswerNum] = useState();
+  const [selectAnswer, setSelectAnswer] = useState(null);
+  const [MaxQuestionNumber, setMaxQuestionNumber] = useState(null);
+  const [correctAnswerNum, setCorrectAnswerNum] = useState(null);
   const [correctAnswerValue, setCorrectAnswerValue] = useState<string[]>(null);
   ChartJS.register(ArcElement, Tooltip, Legend);
   const correctAnswerPercent =
@@ -55,6 +55,9 @@ const Result = () => {
     const a = await localStorage.getItem(key);
     return a;
   };
+  // const judgeAnswer = (select, correct) => {
+  //   for(let i = 0; i < )
+  // }
 
   useEffect(() => {
     const getLocalStorageData = async () => {
@@ -101,7 +104,14 @@ const Result = () => {
         <div>
           <ul>
             {correctAnswerValue &&
-              correctAnswerValue.map((item, index) => <></>)}
+              correctAnswerValue.map((item, index) => (
+                <div key={index}>
+                  <p>
+                    {index + 1}問目:o ({selectAnswer[index]}→{item}){" "}
+                    {correctAnswerNum}
+                  </p>
+                </div>
+              ))}
           </ul>
         </div>
         <div css={startButton}>Next!</div>
