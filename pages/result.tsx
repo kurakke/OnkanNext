@@ -8,6 +8,8 @@ import {
   DoughnutControllerChartOptions,
 } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
+import Link from "next/link";
+
 const all = css`
   margin: 0px;
   padding: 0px;
@@ -42,6 +44,9 @@ const startButton = css`
   font-weight: 600;
 `;
 const a = css``;
+const result = css`
+  color: white;
+`;
 
 const Result = () => {
   const [selectAnswer, setSelectAnswer] = useState<string[]>(null);
@@ -78,7 +83,6 @@ const Result = () => {
     console.log("else ");
     return [];
   };
-
 
   useEffect(() => {
     const getLocalStorageData = async () => {
@@ -127,7 +131,7 @@ const Result = () => {
           <ul>
             {correctAnswerValue &&
               correctAnswerValue.map((item, index) => (
-                <div key={index}>
+                <div key={index} css={result}>
                   <p>
                     {index + 1}問目:{a[index] ? "o" : "x"} (
                     {selectAnswer[index]}→{item})
@@ -136,7 +140,9 @@ const Result = () => {
               ))}
           </ul>
         </div>
-        <div css={startButton}>Next!</div>
+        {/* <button css={startButton}>
+          <Link href={"/game"}></Link>
+        </button> */}
       </div>
     </div>
   );
