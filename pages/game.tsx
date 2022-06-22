@@ -322,9 +322,6 @@ const Game = () => {
         } else {
           return (
             <div>
-              {/* <button css={startButton}>
-
-              </button> */}
             </div>
           );
         }
