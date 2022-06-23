@@ -129,6 +129,7 @@ const Game = () => {
   const [pianoGSharp3, setPianoGSharp3] = useState<HTMLAudioElement>(null);
   const [pianoG3, setPianoG3] = useState<HTMLAudioElement>(null);
   const MaxQuestionNumber = 8;
+  const [boolJudgedAnswer, setBoolJudgedAnswer] = useState<boolean[]>();
   const randomNum = (max: number) => {
     let QArray = [];
     for (let i = 0; i < MaxQuestionNumber; i++) {
@@ -162,6 +163,11 @@ const Game = () => {
   const handleAnwerButton = (answer: string) => {
     AnswerCheck(answer);
     if (clicked) {
+      if (Sounds[QuestionArray[questionNum]].ans === answer) {
+        setBoolJudgedAnswer([...boolJudgedAnswer, true]);
+      } else {
+        setBoolJudgedAnswer([...boolJudgedAnswer, false]);
+      }
       firstOnClick(answer);
       setClicked(false);
     }
@@ -315,6 +321,7 @@ const Game = () => {
                 css={startButton}
                 onClick={() => {
                   MakeSendValue();
+                  console.log(boolJudgedAnswer);
                 }}
               >
                 <Link href={"/result"}>結果を見る</Link>
