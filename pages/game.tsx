@@ -140,7 +140,7 @@ const Game = () => {
   };
   const [selectAnswer, setSelectAnswer] = useState([]);
 
-  const QuestionArray = useMemo(() => randomNum(8), []);
+  const QuestionArray = useMemo(() => randomNum(13), []);
   const [questionNum, setQuestionNum] = useState(0);
 
   const [showButton, setShowButton] = useState(false);
@@ -185,7 +185,7 @@ const Game = () => {
     );
     localStorage.setItem("correctAnswerNum", JSON.stringify(correctAnswerNum));
     localStorage.setItem("correctAnswerValue", JSON.stringify(answers));
-    localStorage.setItem("boolJudgedAnswer", JSON.stringify(boolJudgedAnswer))
+    localStorage.setItem("boolJudgedAnswer", JSON.stringify(boolJudgedAnswer));
   };
 
   const Sounds = [
