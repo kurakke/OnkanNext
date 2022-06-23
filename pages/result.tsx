@@ -44,8 +44,11 @@ const startButton = css`
   font-weight: 600;
 `;
 const a = css``;
-const result = css`
+const whiteResult = css`
   color: white;
+`;
+const greenResult = css`
+  color: #43daa3;
 `;
 
 const Result = () => {
@@ -131,7 +134,7 @@ const Result = () => {
           <ul>
             {correctAnswerValue &&
               correctAnswerValue.map((item, index) => (
-                <div key={index} css={result}>
+                <div key={index} css={greenResult}>
                   <p>
                     {index + 1}問目:{a[index] ? "o" : "x"} (
                     {selectAnswer[index]}→{item})
