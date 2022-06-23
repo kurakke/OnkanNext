@@ -129,7 +129,7 @@ const Game = () => {
   const [pianoGSharp3, setPianoGSharp3] = useState<HTMLAudioElement>(null);
   const [pianoG3, setPianoG3] = useState<HTMLAudioElement>(null);
   const MaxQuestionNumber = 8;
-  const [boolJudgedAnswer, setBoolJudgedAnswer] = useState<boolean[]>();
+  const [boolJudgedAnswer, setBoolJudgedAnswer] = useState([]);
   const randomNum = (max: number) => {
     let QArray = [];
     for (let i = 0; i < MaxQuestionNumber; i++) {
@@ -159,15 +159,15 @@ const Game = () => {
     if (Sounds[QuestionArray[questionNum]].ans === selectedAnswer) {
       setCorrectAnswerNum((prev) => prev + 1);
     }
+    if (Sounds[QuestionArray[questionNum]].ans === selectedAnswer) {
+      setBoolJudgedAnswer([...boolJudgedAnswer, true]);
+    } else {
+      setBoolJudgedAnswer([...boolJudgedAnswer, false]);
+    }
   };
   const handleAnwerButton = (answer: string) => {
     AnswerCheck(answer);
     if (clicked) {
-      if (Sounds[QuestionArray[questionNum]].ans === answer) {
-        setBoolJudgedAnswer([...boolJudgedAnswer, true]);
-      } else {
-        setBoolJudgedAnswer([...boolJudgedAnswer, false]);
-      }
       firstOnClick(answer);
       setClicked(false);
     }
