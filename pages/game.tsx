@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import Button from "../components/button";
 import Link from "next/link";
 import { type } from "os";
+import { stringify } from "querystring";
 const all = css`
   margin: 0px;
   padding: 0px;
@@ -184,6 +185,7 @@ const Game = () => {
     );
     localStorage.setItem("correctAnswerNum", JSON.stringify(correctAnswerNum));
     localStorage.setItem("correctAnswerValue", JSON.stringify(answers));
+    localStorage.setItem("boolJudgedAnswer", JSON.stringify(boolJudgedAnswer))
   };
 
   const Sounds = [

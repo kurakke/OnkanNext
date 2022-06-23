@@ -60,32 +60,33 @@ const Result = () => {
   const [A, setA] = useState<boolean[]>(null);
   const correctAnswerPercent =
     (Number(correctAnswerNum) / Number(MaxQuestionNumber)) * 100;
+  const [boolJudgedAnswer, setBoolJudgedAnswer] = useState<boolean[]>(null);
   const getLocalStorage = async (key: string): Promise<string> => {
     const a = await localStorage.getItem(key);
     return a;
   };
 
-  const judge = (
-    answers: string[] | null,
-    corrects: string[] | null
-  ): boolean[] => {
-    console.log(answers);
-    console.log(corrects);
+  // const judge = (
+  //   answers: string[] | null,
+  //   corrects: string[] | null
+  // ): boolean[] => {
+  //   console.log(answers);
+  //   console.log(corrects);
 
-    if (answers != null) {
-      const makedArray = answers.map((answer, i) => {
-        if (answer === corrects[i]) {
-          return true;
-        } else {
-          return false;
-        }
-      });
-      console.log("if");
-      return makedArray;
-    }
-    console.log("else ");
-    return [];
-  };
+  //   if (answers != null) {
+  //     const makedArray = answers.map((answer, i) => {
+  //       if (answer === corrects[i]) {
+  //         return true;
+  //       } else {
+  //         return false;
+  //       }
+  //     });
+  //     console.log("if");
+  //     return makedArray;
+  //   }
+  //   console.log("else ");
+  //   return [];
+  // };
 
   useEffect(() => {
     const getLocalStorageData = async () => {
@@ -97,15 +98,17 @@ const Result = () => {
       const getDataCorrectAnswerValue = await getLocalStorage(
         "correctAnswerValue"
       );
+      const getBoolJudgedAnswer = await getLocalStorage("boolJudgedAnswer");
       setSelectAnswer(JSON.parse(getDataSelectAnswer));
       setMaxQuestionNumber(JSON.parse(getDataMaxQuestionNumber));
       setCorrectAnswerNum(JSON.parse(getDataCorrectAnswerNum));
       setCorrectAnswerValue(JSON.parse(getDataCorrectAnswerValue));
+      setBoolJudgedAnswer(boolJudgedAnswer);
     };
     getLocalStorageData();
-    setA(judge(selectAnswer, correctAnswerValue));
+    // setA(judge(selectAnswer, correctAnswerValue));
   }, []);
-  console.log(A);
+
   const data = {
     datasets: [
       {
@@ -135,9 +138,13 @@ const Result = () => {
             {correctAnswerValue &&
               correctAnswerValue.map((item, index) => (
                 <div key={index} css={greenResult}>
-                  <p>
-                    {index + 1}問目:{a[index] ? "o" : "x"} (
-                    {selectAnswer[index]}→{item})
+                  <p
+                    onClick={() => {
+                      console.log(boolJudgedAnswer);
+                    }}
+                  >
+                    {index + 1}問目:
+                    {boolJudgedAnswer} ({selectAnswer[index]}→{item})
                   </p>
                 </div>
               ))}
