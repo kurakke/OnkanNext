@@ -60,7 +60,7 @@ const Result = () => {
   const [A, setA] = useState<boolean[]>(null);
   const correctAnswerPercent =
     (Number(correctAnswerNum) / Number(MaxQuestionNumber)) * 100;
-  const [boolJudgedAnswer, setBoolJudgedAnswer] = useState<boolean[]>(null);
+  const [boolJudgedAnswer, setBoolJudgedAnswer] = useState<boolean[]>([]);
   const getLocalStorage = async (key: string): Promise<string> => {
     const a = await localStorage.getItem(key);
     return a;
@@ -103,7 +103,7 @@ const Result = () => {
       setMaxQuestionNumber(JSON.parse(getDataMaxQuestionNumber));
       setCorrectAnswerNum(JSON.parse(getDataCorrectAnswerNum));
       setCorrectAnswerValue(JSON.parse(getDataCorrectAnswerValue));
-      setBoolJudgedAnswer(boolJudgedAnswer);
+      setBoolJudgedAnswer(JSON.parse(getBoolJudgedAnswer));
     };
     getLocalStorageData();
     // setA(judge(selectAnswer, correctAnswerValue));
@@ -144,7 +144,8 @@ const Result = () => {
                     }}
                   >
                     {index + 1}問目:
-                    {boolJudgedAnswer} ({selectAnswer[index]}→{item})
+                    {boolJudgedAnswer[index] === true ? "o" : "x"}(
+                    {selectAnswer[index]}→{item})
                   </p>
                 </div>
               ))}
