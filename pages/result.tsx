@@ -139,6 +139,11 @@ const Result = () => {
               correctAnswerValue.map((item, index) => (
                 <div key={index} css={greenResult}>
                   <p
+                    css={
+                      boolJudgedAnswer[index] === true
+                        ? greenResult
+                        : whiteResult
+                    }
                     onClick={() => {
                       console.log(boolJudgedAnswer);
                     }}
