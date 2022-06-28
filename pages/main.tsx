@@ -16,8 +16,8 @@ const all = css`
   text-align: center;
 `;
 const glass = css`
-  width: 70vw;
-  height: 60vh;
+  width: 70%;
+  height: 60%;
   background-color: rgba(255, 255, 255, 0.2);
   margin: 0 auto;
   top: 80px;
