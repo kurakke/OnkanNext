@@ -6,8 +6,8 @@ const all = css`
   margin: 0px;
   padding: 0px;
   background-image: linear-gradient(to bottom, #5c1ea6 0%, #c8435e 100%);
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   flex-flow: column;
 `;
@@ -76,14 +76,14 @@ const answerButtons = css`
   display: flex;
 `;
 const answerNormalButtons = css`
-  margin: 50px 0;
+  margin: 30px 0px;
 `;
 const answerSharpButtons = css`
-  margin: 105px 0px;
+  margin: 85px 0px;
 `;
 const pianoButtons = css``;
 const piano = css`
-  margin: 40px 0px;
+  margin: 20px 0px;
 `;
 const whiteKey = css`
   width: 90px;

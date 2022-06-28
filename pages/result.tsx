@@ -14,14 +14,14 @@ const all = css`
   margin: 0px;
   padding: 0px;
   background-image: linear-gradient(to bottom, #5c1ea6 0%, #c8435e 100%);
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 `;
 const glass = css`
   width: 80%;
   height: 95%;
   background-color: rgba(255, 255, 255, 0.2);
-  margin: 0 auto;
+  margin: 0px auto;
   top: 80px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   filter: drop-shadow(3px 3px 3px 0 rgba(0, 0, 0, 0.8));
@@ -29,8 +29,8 @@ const glass = css`
 `;
 const doughnut = css`
   margin: 0 auto;
-  width: 60%;
-  height: 60%;
+  width: 60vw;
+  height: 60vw;
 `;
 const startButton = css`
   background-color: white;
@@ -69,28 +69,6 @@ const Result = () => {
     return a;
   };
 
-  // const judge = (
-  //   answers: string[] | null,
-  //   corrects: string[] | null
-  // ): boolean[] => {
-  //   console.log(answers);
-  //   console.log(corrects);
-
-  //   if (answers != null) {
-  //     const makedArray = answers.map((answer, i) => {
-  //       if (answer === corrects[i]) {
-  //         return true;
-  //       } else {
-  //         return false;
-  //       }
-  //     });
-  //     console.log("if");
-  //     return makedArray;
-  //   }
-  //   console.log("else ");
-  //   return [];
-  // };
-
   useEffect(() => {
     const getLocalStorageData = async () => {
       const getDataSelectAnswer = await getLocalStorage("selectAnswer");
@@ -109,7 +87,6 @@ const Result = () => {
       setBoolJudgedAnswer(JSON.parse(getBoolJudgedAnswer));
     };
     getLocalStorageData();
-    // setA(judge(selectAnswer, correctAnswerValue));
   }, []);
 
   const data = {
