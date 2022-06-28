@@ -9,15 +9,15 @@ const all = css`
   margin: 0px;
   padding: 0px;
   background-image: linear-gradient(to bottom, #5c1ea6 0%, #c8435e 100%);
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-flow: column;
   text-align: center;
 `;
 const glass = css`
-  width: 70vw;
-  height: 60vh;
+  width: 70%;
+  height: 60;
   background-color: rgba(255, 255, 255, 0.2);
   margin: 0 auto;
   top: 80px;

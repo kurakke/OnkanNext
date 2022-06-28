@@ -2,22 +2,20 @@ import React, { useEffect, useState, useMemo } from "react";
 import { css } from "@emotion/react";
 import Button from "../components/button";
 import Link from "next/link";
-import { type } from "os";
-import { stringify } from "querystring";
 const all = css`
   margin: 0px;
   padding: 0px;
   background-image: linear-gradient(to bottom, #5c1ea6 0%, #c8435e 100%);
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-flow: column;
 `;
 const glass = css`
-  width: 80vw;
-  height: 28vh;
+  width: 300px;
+  height: 30%;
   background-color: rgba(255, 255, 255, 0.2);
-  margin: 0 auto;
+  margin: 20px auto;
   top: 80px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   filter: drop-shadow(3px 3px 3px 0 rgba(0, 0, 0, 0.8));
@@ -32,7 +30,18 @@ const startButton = css`
   height: 60px;
   border-radius: 15px;
   box-shadow: 0px 7px 0px 0px rgba(0, 0, 0, 0.6);
-  margin: 40px auto;
+  margin: 25px auto;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+`;
+const nextButton = css`
+  background-color: white;
+  width: 180px;
+  height: 60px;
+  border-radius: 15px;
+  box-shadow: 0px 7px 0px 0px rgba(0, 0, 0, 0.6);
+  margin: 0px auto;
   text-align: center;
   font-size: 20px;
   font-weight: 600;
@@ -55,27 +64,45 @@ const start = css`
 `;
 const answerButton = css`
   margin: 5px auto;
+  height: 30px;
 `;
 const answerPlace = css`
   display: flex;
   width: 100%;
+  height: 55%;
 `;
-const buttons = css`
+const answerButtons = css`
   margin: 10px auto;
+  display: flex;
+`;
+const answerNormalButtons = css`
+  margin: 50px 0;
+`;
+const answerSharpButtons = css`
+  margin: 105px 0px;
 `;
 const pianoButtons = css``;
 const piano = css`
-  margin: 20px 0px;
+  margin: 40px 0px;
 `;
 const whiteKey = css`
-  width: 25vw;
-  height: 30px;
+  width: 90px;
+  height: 35px;
   background-color: white;
   border-bottom: 1px solid #000;
   border-radius: 0px 2px 2px 0px;
 `;
+const unknownButton = css`
+  width: 80px;
+  height: 28px;
+  margin: 5px auto;
+  border: 1px solid rgba(255, 255, 255, 1);
+  border-radius: 25px;
+  background-color: rgba(2, 0, 0, 1);
+  color: rgba(2, 0, 0);
+`;
 const blackKey = css`
-  width: 17vw;
+  width: 65px;
   height: 26px;
   background-color: black;
   margin: -13px 0px;
@@ -84,13 +111,13 @@ const blackKey = css`
   position: relative;
 `;
 const pianoSideTop = css`
-  width: 30vw;
+  width: 120px;
   height: 35px;
   background-color: #000000;
   border-radius: 0px 20px 0px 0px;
 `;
 const pianoSideBottom = css`
-  width: 30vw;
+  width: 120px;
   height: 35px;
   background-color: #000000;
   border-radius: 0px 0px 20px 0px;
@@ -131,6 +158,9 @@ const Game = () => {
   const [pianoG3, setPianoG3] = useState<HTMLAudioElement>(null);
   const MaxQuestionNumber = 8;
   const [boolJudgedAnswer, setBoolJudgedAnswer] = useState([]);
+  // const [boolJudgedAnswer, setBoolJudgedAnswer] = useState<boolean[]>(null);
+
+  const [selectAnswer, setSelectAnswer] = useState([]);
   const randomNum = (max: number) => {
     let QArray = [];
     for (let i = 0; i < MaxQuestionNumber; i++) {
@@ -138,7 +168,6 @@ const Game = () => {
     }
     return QArray;
   };
-  const [selectAnswer, setSelectAnswer] = useState([]);
 
   const QuestionArray = useMemo(() => randomNum(13), []);
   const [questionNum, setQuestionNum] = useState(0);
@@ -260,45 +289,48 @@ const Game = () => {
           <div css={whiteKey}></div>
           <div css={pianoSideBottom}></div>
         </div>
-        <div css={buttons}>
-          <ul>
-            {Choices.filter((item) => !item.isSharp).map((item, index) => (
-              <div css={answerButton} key={item.id}>
-                <Button
-                  label={item.label}
-                  handleAnswer={handleAnwerButton}
-                  handleAnswerArg={item.value}
-                  Answer={
-                    Sounds[QuestionArray[questionNum]].ans === item.value
-                      ? true
-                      : false
-                  }
-                  questionNum={questionNum}
-                  musicFile={Sounds[index].file}
-                ></Button>
-              </div>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <ul>
-            {Choices.filter((item) => item.isSharp).map((item, index) => (
-              <div css={answerButton} key={item.id}>
-                <Button
-                  label={item.label}
-                  handleAnswer={handleAnwerButton}
-                  handleAnswerArg={item.value}
-                  Answer={
-                    Sounds[QuestionArray[questionNum]].ans === item.value
-                      ? true
-                      : false
-                  }
-                  questionNum={questionNum}
-                  musicFile={Sounds[index + 8].file}
-                ></Button>
-              </div>
-            ))}
-          </ul>
+        <div css={answerButtons}>
+          <div css={answerNormalButtons}>
+            <ul>
+              {Choices.filter((item) => !item.isSharp).map((item, index) => (
+                <div css={answerButton} key={item.id}>
+                  <Button
+                    label={item.label}
+                    handleAnswer={handleAnwerButton}
+                    handleAnswerArg={item.value}
+                    Answer={
+                      Sounds[QuestionArray[questionNum]].ans === item.value
+                        ? true
+                        : false
+                    }
+                    questionNum={questionNum}
+                    musicFile={Sounds[index].file}
+                  ></Button>
+                </div>
+              ))}
+            </ul>
+          </div>
+          <div css={answerSharpButtons}>
+            <ul>
+              {Choices.filter((item) => item.isSharp).map((item, index) => (
+                <div css={answerButton} key={item.id}>
+                  <Button
+                    label={item.label}
+                    handleAnswer={handleAnwerButton}
+                    handleAnswerArg={item.value}
+                    Answer={
+                      Sounds[QuestionArray[questionNum]].ans === item.value
+                        ? true
+                        : false
+                    }
+                    questionNum={questionNum}
+                    musicFile={Sounds[index + 8].file}
+                  ></Button>
+                  {item.id === 11 && <button css={unknownButton}></button>}
+                </div>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -320,7 +352,7 @@ const Game = () => {
           } else {
             return (
               <button
-                css={startButton}
+                css={nextButton}
                 onClick={() => {
                   MakeSendValue();
                   console.log(boolJudgedAnswer);

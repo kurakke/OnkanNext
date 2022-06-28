@@ -108,16 +108,16 @@ const Button = ({
           handleAnswer(handleAnswerArg);
           setButtonCss(Answer ? AbleButton : disableButton);
           musicFile.play();
-          if (Answer) {
-            toast("right!");
-          } else {
-            toast("MoreTry!");
-          }
+          // if (Answer) {
+          //   toast("right!");
+          // } else {
+          //   toast("MoreTry!");
+          // }
         }}
       >
         {label}
       </button>
-      <Toaster position="bottom-center" reverseOrder={false} />
+      {/* <Toaster position="bottom-center" reverseOrder={false} /> */}
     </div>
   );
 };

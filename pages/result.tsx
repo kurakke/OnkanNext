@@ -14,12 +14,12 @@ const all = css`
   margin: 0px;
   padding: 0px;
   background-image: linear-gradient(to bottom, #5c1ea6 0%, #c8435e 100%);
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 `;
 const glass = css`
-  width: 80vw;
-  height: 90vh;
+  width: 80%;
+  height: 95%;
   background-color: rgba(255, 255, 255, 0.2);
   margin: 0 auto;
   top: 80px;
@@ -29,8 +29,8 @@ const glass = css`
 `;
 const doughnut = css`
   margin: 0 auto;
-  width: 60vw;
-  height: 60vw;
+  width: 60%;
+  height: 60%;
 `;
 const startButton = css`
   background-color: white;
@@ -38,7 +38,7 @@ const startButton = css`
   height: 60px;
   border-radius: 15px;
   box-shadow: 0px 7px 0px 0px rgba(0, 0, 0, 0.6);
-  margin: 40px auto;
+  margin: 0px auto;
   text-align: center;
   font-size: 20px;
   font-weight: 600;
@@ -49,6 +49,9 @@ const whiteResult = css`
 `;
 const greenResult = css`
   color: #43daa3;
+`;
+const results = css`
+  margin: 0 auto;
 `;
 
 const Result = () => {
@@ -134,10 +137,10 @@ const Result = () => {
           <Doughnut data={data} options={options} />
         </div>
         <div>
-          <ul>
+          <ul css={results}>
             {correctAnswerValue &&
               correctAnswerValue.map((item, index) => (
-                <div key={index} css={greenResult}>
+                <div key={index}>
                   <p
                     css={
                       boolJudgedAnswer[index] === true
@@ -149,16 +152,16 @@ const Result = () => {
                     }}
                   >
                     {index + 1}問目:
-                    {boolJudgedAnswer[index] === true ? "o" : "x"}(
+                    {boolJudgedAnswer[index] === true ? "o" : "x"} (
                     {selectAnswer[index]}→{item})
                   </p>
                 </div>
               ))}
           </ul>
+          <button css={startButton}>
+            <Link href={"/game"}>もう一回</Link>
+          </button>
         </div>
-        {/* <button css={startButton}>
-          <Link href={"/game"}></Link>
-        </button> */}
       </div>
     </div>
   );
