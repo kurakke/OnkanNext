@@ -7,7 +7,7 @@ const all = css`
   padding: 0px;
   background-image: linear-gradient(to bottom, #5c1ea6 0%, #c8435e 100%);
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-flow: column;
 `;
@@ -35,6 +35,7 @@ const startButton = css`
   font-size: 20px;
   font-weight: 600;
 `;
+
 const nextButton = css`
   background-color: white;
   width: 180px;
@@ -100,6 +101,7 @@ const unknownButton = css`
   border-radius: 25px;
   background-color: rgba(2, 0, 0, 1);
   color: rgba(2, 0, 0);
+  // visibility: hidden;
 `;
 const blackKey = css`
   width: 65px;
@@ -244,6 +246,7 @@ const Game = () => {
     { id: 9, label: "A#", value: "as3", isSharp: true },
     { id: 10, label: "G#", value: "gs3", isSharp: true },
     { id: 11, label: "F#", value: "fs3", isSharp: true },
+    { id: 14, label: "E#", value: "es3", idSharp: true },
     { id: 12, label: "D#", value: "ds3", isSharp: true },
     { id: 13, label: "C#", value: "cs3", isSharp: true },
   ];
@@ -271,6 +274,26 @@ const Game = () => {
           </button>
         </div>
       </div>
+      {/* 
+      <div>
+        <div>
+          <div>上装飾</div>
+        </div>
+        <div>
+          {Choices.map((item) => {
+            return <>{item.isSharp ? 
+            <div>
+              k黒鍵の場合
+
+            </div> : 
+            <div>
+              白鍵の場合  
+            </div>}</>;
+          })}
+        </div>
+        <div>下装飾</div>
+      </div> */}
+
       <div css={answerPlace}>
         <div css={piano}>
           <div css={pianoSideTop}></div>
@@ -326,7 +349,7 @@ const Game = () => {
                     questionNum={questionNum}
                     musicFile={Sounds[index + 8].file}
                   ></Button>
-                  {item.id === 11 && <button css={unknownButton}></button>}
+                  {/* {item.id === 11 && <button css={unknownButton}></button>} */}
                 </div>
               ))}
             </ul>

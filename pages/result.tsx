@@ -32,26 +32,28 @@ const doughnut = css`
   width: 60vw;
   height: 60vw;
 `;
-const startButton = css`
+const nextButton = css`
   background-color: white;
   width: 180px;
   height: 60px;
   border-radius: 15px;
   box-shadow: 0px 7px 0px 0px rgba(0, 0, 0, 0.6);
-  margin: 0px auto;
+  margin: 3px auto;
   text-align: center;
   font-size: 20px;
   font-weight: 600;
 `;
 const a = css``;
 const whiteResult = css`
+  margin: 8px auto;
   color: white;
 `;
 const greenResult = css`
+  margin: 8px auto;
   color: #43daa3;
 `;
 const results = css`
-  margin: 0 auto;
+  margin: 30px auto;
 `;
 
 const Result = () => {
@@ -135,7 +137,7 @@ const Result = () => {
                 </div>
               ))}
           </ul>
-          <button css={startButton}>
+          <button css={nextButton}>
             <Link href={"/game"}>もう一回</Link>
           </button>
         </div>
