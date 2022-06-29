@@ -11,6 +11,16 @@ const button = css`
   background-color: rgba(255, 255, 255, 0.2);
   color: #ffffff;
 `;
+const unknownButton = css`
+  visibility: hidden;
+  width: 80px;
+  height: 28px;
+  margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+`;
 
 const disable = keyframes`
   0% {
@@ -86,6 +96,7 @@ type Props = {
   Answer: boolean;
   questionNum: number;
   musicFile: HTMLAudioElement;
+  isExist: boolean;
 };
 
 const Button = ({
@@ -95,6 +106,7 @@ const Button = ({
   Answer,
   questionNum,
   musicFile,
+  isExist,
 }: Props) => {
   const [ButtonCss, setButtonCss] = useState(button);
   useEffect(() => {
@@ -102,22 +114,24 @@ const Button = ({
   }, [questionNum]);
   return (
     <div>
-      <button
-        css={ButtonCss}
-        onClick={() => {
-          handleAnswer(handleAnswerArg);
-          setButtonCss(Answer ? AbleButton : disableButton);
-          musicFile.play();
-          // if (Answer) {
-          //   toast("right!");
-          // } else {
-          //   toast("MoreTry!");
-          // }
-        }}
-      >
-        {label}
-      </button>
-      {/* <Toaster position="bottom-center" reverseOrder={false} /> */}
+      {(() => {
+        if (isExist) {
+          return (
+            <button
+              css={ButtonCss}
+              onClick={() => {
+                handleAnswer(handleAnswerArg);
+                setButtonCss(Answer ? AbleButton : disableButton);
+                musicFile.play();
+              }}
+            >
+              {label}
+            </button>
+          );
+        } else {
+          <button css={unknownButton}></button>;
+        }
+      })()}
     </div>
   );
 };
