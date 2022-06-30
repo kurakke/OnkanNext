@@ -93,16 +93,7 @@ const whiteKey = css`
   border-bottom: 1px solid #000;
   border-radius: 0px 2px 2px 0px;
 `;
-const unknownButton = css`
-  width: 80px;
-  height: 28px;
-  margin: 5px auto;
-  border: 1px solid rgba(255, 255, 255, 1);
-  border-radius: 25px;
-  background-color: rgba(2, 0, 0, 1);
-  color: rgba(2, 0, 0);
-  // visibility: hidden;
-`;
+
 const blackKey = css`
   width: 65px;
   height: 26px;
@@ -370,19 +361,13 @@ const Game = () => {
       <div css={answerPlace}>
         <div css={piano}>
           <div css={pianoSideTop}></div>
-          <div css={whiteKey}></div>
-          <div css={whiteKey}></div>
-          <div css={blackKey}></div>
-          <div css={whiteKey}></div>
-          <div css={blackKey}></div>
-          <div css={whiteKey}></div>
-          <div css={blackKey}></div>
-          <div css={whiteKey}></div>
-          <div css={whiteKey}></div>
-          <div css={blackKey}></div>
-          <div css={whiteKey}></div>
-          <div css={blackKey}></div>
-          <div css={whiteKey}></div>
+          {Sounds.map((item) => (
+            <div>
+              {!item.isSharp && <div css={whiteKey}></div>}
+              {item.isSharp && item.isExist && <div css={blackKey}></div>}
+              {item.isSharp && !item.isExist && <div></div>}
+            </div>
+          ))}
           <div css={pianoSideBottom}></div>
         </div>
         <div css={answerButtons}>
@@ -424,7 +409,6 @@ const Game = () => {
                     musicFile={Sounds[index + 8].file}
                     isExist={item.isExist}
                   ></Button>
-                  {/* {item.id === 11 && <button css={unknownButton}></button>} */}
                 </div>
               ))}
             </ul>
