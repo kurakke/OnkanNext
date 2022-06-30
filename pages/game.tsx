@@ -80,7 +80,7 @@ const answerNormalButtons = css`
   margin: 30px 0px;
 `;
 const answerSharpButtons = css`
-  margin: 85px 0px;
+  margin: 53px 0px;
 `;
 const pianoButtons = css``;
 const piano = css`
@@ -114,6 +114,10 @@ const pianoSideBottom = css`
   height: 35px;
   background-color: #000000;
   border-radius: 0px 0px 20px 0px;
+`;
+
+const ulButton = css`
+  padding-inline-start: 5px;
 `;
 
 const Game = () => {
@@ -372,7 +376,7 @@ const Game = () => {
         </div>
         <div css={answerButtons}>
           <div css={answerNormalButtons}>
-            <ul>
+            <ul css={ulButton}>
               {Sounds.filter((item) => !item.isSharp).map((item, index) => (
                 <div css={answerButton} key={item.id}>
                   <Button
@@ -385,15 +389,16 @@ const Game = () => {
                         : false
                     }
                     questionNum={questionNum}
-                    musicFile={Sounds[index].file}
+                    musicFile={item.file}
                     isExist={item.isExist}
+                    id={item.id}
                   ></Button>
                 </div>
               ))}
             </ul>
           </div>
           <div css={answerSharpButtons}>
-            <ul>
+            <ul css={ulButton}>
               {Sounds.filter((item) => item.isSharp).map((item, index) => (
                 <div css={answerButton} key={item.id}>
                   <Button
@@ -406,8 +411,9 @@ const Game = () => {
                         : false
                     }
                     questionNum={questionNum}
-                    musicFile={Sounds[index + 8].file}
+                    musicFile={item.file}
                     isExist={item.isExist}
+                    id={item.id}
                   ></Button>
                 </div>
               ))}

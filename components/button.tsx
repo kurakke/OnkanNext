@@ -97,6 +97,7 @@ type Props = {
   questionNum: number;
   musicFile: HTMLAudioElement;
   isExist: boolean;
+  id:number;
 };
 
 const Button = ({
@@ -107,6 +108,7 @@ const Button = ({
   questionNum,
   musicFile,
   isExist,
+  id,
 }: Props) => {
   const [ButtonCss, setButtonCss] = useState(button);
   useEffect(() => {
@@ -123,6 +125,8 @@ const Button = ({
                 handleAnswer(handleAnswerArg);
                 setButtonCss(Answer ? AbleButton : disableButton);
                 musicFile.play();
+                console.log(id);
+                
               }}
             >
               {label}
