@@ -10,7 +10,7 @@ const all = css`
   padding: 0px;
   background-image: linear-gradient(to bottom, #5c1ea6 0%, #c8435e 100%);
   width: 100vw;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-flow: column;
   text-align: center;
@@ -22,7 +22,6 @@ const glass = css`
   margin: 0 auto;
   top: 80px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  filter: drop-shadow(3px 3px 3px 0 rgba(0, 0, 0, 0.8));
   border-radius: 25px;
 `;
 const startButton = css`
@@ -40,6 +39,7 @@ const start = css`
 `;
 const slider = css`
   text-align: center;
+  margin: 50px auto;
 `;
 const image = css`
   margin: 0 auto;

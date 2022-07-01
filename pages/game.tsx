@@ -170,12 +170,12 @@ const Game = () => {
   const [questionNum, setQuestionNum] = useState(0);
 
   const [showButton, setShowButton] = useState(false);
-  const AnswerCheck = (text: string) => {
-    if (Sounds[QuestionArray[questionNum]].value === text) {
+  const AnswerCheck = (answer: string) => {
+    if (Sounds[QuestionArray[questionNum]].value === answer) {
       setShowButton(true);
     }
   };
-  const [correctAnswerNum, setCorrectAnswerNum] = useState(0);
+  const [correctAnswerNum, setCorrectAnswerNum] = useState<number>();
   const [clicked, setClicked] = useState(true);
   const clear = () => {
     setClicked(true);
