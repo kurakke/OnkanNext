@@ -366,7 +366,7 @@ const Game = () => {
         <div css={piano}>
           <div css={pianoSideTop}></div>
           {Sounds.map((item) => (
-            <div>
+            <div key={item.id}>
               {!item.isSharp && <div css={whiteKey}></div>}
               {item.isSharp && item.isExist && <div css={blackKey}></div>}
               {item.isSharp && !item.isExist && <div></div>}

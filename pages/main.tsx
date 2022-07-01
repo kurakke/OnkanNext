@@ -10,7 +10,7 @@ const all = css`
   padding: 0px;
   background-image: linear-gradient(to bottom, #5c1ea6 0%, #c8435e 100%);
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-flow: column;
   text-align: center;

@@ -15,7 +15,7 @@ const all = css`
   padding: 0px;
   background-image: linear-gradient(to bottom, #5c1ea6 0%, #c8435e 100%);
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 `;
 const glass = css`
   width: 80%;
@@ -54,6 +54,8 @@ const greenResult = css`
 `;
 const results = css`
   margin: 30px auto;
+  padding-inline-start: 0px;
+  text-align: center;
 `;
 
 const Result = () => {

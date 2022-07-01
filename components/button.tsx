@@ -97,7 +97,7 @@ type Props = {
   questionNum: number;
   musicFile: HTMLAudioElement;
   isExist: boolean;
-  id:number;
+  id: number;
 };
 
 const Button = ({
@@ -126,7 +126,6 @@ const Button = ({
                 setButtonCss(Answer ? AbleButton : disableButton);
                 musicFile.play();
                 console.log(id);
-                
               }}
             >
               {label}
