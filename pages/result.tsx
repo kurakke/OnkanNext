@@ -140,7 +140,7 @@ const Result = () => {
               ))}
           </ul>
           <button css={nextButton}>
-            <Link href={"/game"}>もう一回</Link>
+            <Link href={"/game"}>次のゲーム</Link>
           </button>
         </div>
       </div>
