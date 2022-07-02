@@ -19,7 +19,7 @@ const all = css`
 `;
 const glass = css`
   width: 80%;
-  height: 95%;
+  height: 95vh;
   background-color: rgba(255, 255, 255, 0.2);
   margin: 0px auto;
   top: 80px;
@@ -97,7 +97,8 @@ const Result = () => {
     datasets: [
       {
         data: [correctAnswerPercent, 100 - correctAnswerPercent],
-        backgroundColor: ["rgba(67, 218, 163, 1)", "rgba(0, 0, 0, 0)"],
+        // backgroundColor: ["rgba(67, 218, 163, 1)", "rgba(0, 0, 0, 0)"],
+
         borderWidth: 0,
       },
     ],
