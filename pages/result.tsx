@@ -97,8 +97,7 @@ const Result = () => {
     datasets: [
       {
         data: [correctAnswerPercent, 100 - correctAnswerPercent],
-        // backgroundColor: ["rgba(67, 218, 163, 1)", "rgba(0, 0, 0, 0)"],
-
+        backgroundColor: ["rgba(67, 218, 163, 1)", "rgba(0, 0, 0, 0)"],
         borderWidth: 0,
       },
     ],
