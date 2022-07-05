@@ -68,12 +68,18 @@ const answerButton = css`
   height: 30px;
 `;
 const answerPlace = css`
+  position: relative;
   display: flex;
+  justify-content: center;
   width: 100%;
   height: 55%;
+  @media (max-width: 475px) {
+    justify-content: flex-end;
+    padding-right: 16px;
+  } ;
 `;
 const answerButtons = css`
-  margin: 10px auto;
+  margin: 10px 0;
   display: flex;
 `;
 const answerNormalButtons = css`
@@ -82,7 +88,17 @@ const answerNormalButtons = css`
 const answerSharpButtons = css`
   margin: 53px 0px;
 `;
-const pianoButtons = css``;
+const grandPiano = css`
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+`;
+const pianoBoard = css`
+  width: 30%;
+  background-color: black;
+`;
 const piano = css`
   margin: 20px 0px;
 `;
@@ -363,16 +379,19 @@ const Game = () => {
       </div>
 
       <div css={answerPlace}>
-        <div css={piano}>
-          <div css={pianoSideTop}></div>
-          {Sounds.map((item) => (
-            <div key={item.id}>
-              {!item.isSharp && <div css={whiteKey}></div>}
-              {item.isSharp && item.isExist && <div css={blackKey}></div>}
-              {item.isSharp && !item.isExist && <div></div>}
-            </div>
-          ))}
-          <div css={pianoSideBottom}></div>
+        <div css={grandPiano}>
+          <div css={pianoBoard}></div>
+          <div css={piano}>
+            <div css={pianoSideTop}></div>
+            {Sounds.map((item) => (
+              <div key={item.id}>
+                {!item.isSharp && <div css={whiteKey}></div>}
+                {item.isSharp && item.isExist && <div css={blackKey}></div>}
+                {item.isSharp && !item.isExist && <div></div>}
+              </div>
+            ))}
+            <div css={pianoSideBottom}></div>
+          </div>
         </div>
         <div css={answerButtons}>
           <div css={answerNormalButtons}>
