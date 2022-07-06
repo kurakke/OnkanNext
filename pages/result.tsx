@@ -62,12 +62,10 @@ const greenResult = css`
 `;
 const results = css`
   padding-inline-start: 0px;
-  // margin: 30px auto;
   width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
-  // padding-inline-start: 0px;
   text-align: center;
   > :not(:last-child) {
     margin-bottom: 12px;
@@ -80,11 +78,9 @@ const Result = () => {
   const [correctAnswerNum, setCorrectAnswerNum] = useState<Number>(null);
   const [correctAnswerValue, setCorrectAnswerValue] = useState<string[]>(null);
   ChartJS.register(ArcElement, Tooltip, Legend);
-  const [A, setA] = useState<boolean[]>(null);
   const correctAnswerPercent =
     (Number(correctAnswerNum) / Number(MaxQuestionNumber)) * 100;
   const [boolJudgedAnswer, setBoolJudgedAnswer] = useState<boolean[]>([]);
-  const [exhoge, setExhoge] = useState();
   const getLocalStorage = async (key: string): Promise<string> => {
     const a = await localStorage.getItem(key);
     return a;
@@ -145,13 +141,6 @@ const Result = () => {
                         ? greenResult
                         : whiteResult
                     }
-                    onClick={() => {
-                      console.log(boolJudgedAnswer);
-                      console.log(
-                        "correctAnswerNum" + Number(correctAnswerNum)
-                      );
-                      console.log(Number(MaxQuestionNumber));
-                    }}
                   >
                     {index + 1}問目:
                     {boolJudgedAnswer[index] ? "o" : "x"} ({selectAnswer[index]}

@@ -170,8 +170,7 @@ const Game = () => {
   const [pianoGSharp3, setPianoGSharp3] = useState<HTMLAudioElement>(null);
   const [pianoG3, setPianoG3] = useState<HTMLAudioElement>(null);
   const MaxQuestionNumber = 8;
-  const [boolJudgedAnswer, setBoolJudgedAnswer] = useState([]);
-  // const [boolJudgedAnswer, setBoolJudgedAnswer] = useState<boolean[]>(null);
+  const [boolJudgedAnswer, setBoolJudgedAnswer] = useState<boolean[]>([]);
 
   const [selectAnswer, setSelectAnswer] = useState([]);
   const randomNum = (max: number) => {
@@ -188,7 +187,6 @@ const Game = () => {
   const [showButton, setShowButton] = useState(false);
   const AnswerCheck = (answer: number) => {
     if (Sounds[QuestionArray[questionNum]].value === Sounds[answer].value) {
-      console.log(hoge);
       setShowButton(true);
     }
   };
@@ -220,11 +218,9 @@ const Game = () => {
       setClicked(false);
     }
   };
-  const [hoge, setHoge] = useState("yahharo-");
 
   const MakeSendValue = () => {
     const answers = QuestionArray.map((question) => Sounds[question].label);
-    localStorage.setItem("hoge", hoge);
     localStorage.setItem("selectAnswer", JSON.stringify(selectAnswer));
     localStorage.setItem(
       "MaxQuestionNumber",
@@ -467,8 +463,6 @@ const Game = () => {
                 css={nextButton}
                 onClick={() => {
                   MakeSendValue();
-                  console.log(boolJudgedAnswer);
-                  console.log("correctAnswerNum" + correctAnswerNum);
                 }}
               >
                 <Link href={"/result"}>結果を見る</Link>
