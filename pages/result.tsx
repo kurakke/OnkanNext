@@ -16,12 +16,17 @@ const all = css`
   background-image: linear-gradient(to bottom, #5c1ea6 0%, #c8435e 100%);
   width: 100vw;
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
 `;
 const glass = css`
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
   width: 80%;
   height: 95vh;
   background-color: rgba(255, 255, 255, 0.2);
-  margin: 0px auto;
+  // margin: 0px auto;
   top: 80px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   filter: drop-shadow(3px 3px 3px 0 rgba(0, 0, 0, 0.8));
