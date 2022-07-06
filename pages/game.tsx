@@ -192,7 +192,7 @@ const Game = () => {
       setShowButton(true);
     }
   };
-  const [correctAnswerNum, setCorrectAnswerNum] = useState<number>();
+  const [correctAnswerNum, setCorrectAnswerNum] = useState<number>(0);
   const [clicked, setClicked] = useState(true);
   const clear = () => {
     setClicked(true);
@@ -203,7 +203,7 @@ const Game = () => {
     if (
       Sounds[QuestionArray[questionNum]].value === Sounds[selectIndex].value
     ) {
-      setCorrectAnswerNum(correctAnswerNum + 1);
+      setCorrectAnswerNum((prev) => prev + 1);
     }
     if (
       Sounds[QuestionArray[questionNum]].value === Sounds[selectIndex].value
