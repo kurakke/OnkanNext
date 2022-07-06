@@ -223,7 +223,7 @@ const Game = () => {
   const [hoge, setHoge] = useState("yahharo-");
 
   const MakeSendValue = () => {
-    const answers = QuestionArray.map((question) => Sounds[question].value);
+    const answers = QuestionArray.map((question) => Sounds[question].label);
     localStorage.setItem("hoge", hoge);
     localStorage.setItem("selectAnswer", JSON.stringify(selectAnswer));
     localStorage.setItem(
