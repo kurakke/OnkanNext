@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
-
+import SampleNextArrow from "../components/nextArrow";
 const all = css`
   margin: 0px;
   padding: 0px;
@@ -22,8 +22,8 @@ const glass = css`
   margin: 0 auto;
   top: 80px;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  filter: drop-shadow(3px 3px 3px 0 rgba(0, 0, 0, 0.8));
   border-radius: 25px;
+  padding: 0 30px;
 `;
 const startButton = css`
   background-color: white;
@@ -40,33 +40,34 @@ const start = css`
 `;
 const slider = css`
   text-align: center;
+  margin: 50px auto;
+  width: 100%;
 `;
 const image = css`
   margin: 0 auto;
+  max-width: 100%;
 `;
 
 const title = css``;
-
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrow: true,
+  autoplay: false,
+  nextArrow: <SampleNextArrow></SampleNextArrow>,
+};
+const items = [
+  { id: 1, title: "name1", img: "./favicon.ico" },
+  { id: 2, title: "name2", img: "./favicon.ico" },
+  { id: 3, title: "name3", img: "./favicon.ico" },
+  { id: 4, title: "name4", img: "./favicon.ico" },
+  { id: 5, title: "name5", img: "./favicon.ico" },
+  { id: 6, title: "name6", img: "./favicon.ico" },
+];
 const Main = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrow: true,
-    autoplay: false,
-  };
-
-  const items = [
-    { id: 1, title: "name1", img: "./favicon.ico" },
-    { id: 2, title: "name2", img: "./favicon.ico" },
-    { id: 3, title: "name3", img: "./favicon.ico" },
-    { id: 4, title: "name4", img: "./favicon.ico" },
-    { id: 5, title: "name5", img: "./favicon.ico" },
-    { id: 6, title: "name6", img: "./favicon.ico" },
-  ];
-
   return (
     <div css={all}>
       <div>

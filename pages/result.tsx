@@ -12,25 +12,30 @@ import Link from "next/link";
 
 const all = css`
   margin: 0px;
-  padding: 0px;
+  padding: 32px 0;
   background-image: linear-gradient(to bottom, #5c1ea6 0%, #c8435e 100%);
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 const glass = css`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 0;
+  max-width: 500px;
   width: 80%;
-  height: 95%;
   background-color: rgba(255, 255, 255, 0.2);
-  margin: 0px auto;
-  top: 80px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   filter: drop-shadow(3px 3px 3px 0 rgba(0, 0, 0, 0.8));
   border-radius: 25px;
 `;
 const doughnut = css`
-  margin: 0 auto;
-  width: 60vw;
-  height: 60vw;
+  width: 60%;
+  max-width: 300px;
 `;
 const nextButton = css`
   background-color: white;
@@ -39,21 +44,34 @@ const nextButton = css`
   border-radius: 15px;
   box-shadow: 0px 7px 0px 0px rgba(0, 0, 0, 0.6);
   margin: 3px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   font-size: 20px;
   font-weight: 600;
 `;
 const a = css``;
 const whiteResult = css`
-  margin: 8px auto;
+  margin: 0;
   color: white;
 `;
 const greenResult = css`
-  margin: 8px auto;
+  margin: 0;
   color: #43daa3;
 `;
 const results = css`
-  margin: 30px auto;
+  padding-inline-start: 0px;
+  // margin: 30px auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  // padding-inline-start: 0px;
+  text-align: center;
+  > :not(:last-child) {
+    margin-bottom: 12px;
+  }
 `;
 
 const Result = () => {
@@ -66,6 +84,7 @@ const Result = () => {
   const correctAnswerPercent =
     (Number(correctAnswerNum) / Number(MaxQuestionNumber)) * 100;
   const [boolJudgedAnswer, setBoolJudgedAnswer] = useState<boolean[]>([]);
+  const [exhoge, setExhoge] = useState();
   const getLocalStorage = async (key: string): Promise<string> => {
     const a = await localStorage.getItem(key);
     return a;
@@ -102,7 +121,7 @@ const Result = () => {
   };
   const options: DoughnutControllerChartOptions = {
     circumference: 360,
-    cutout: 99.9,
+    cutout: "90%",
     animation: { animateRotate: true, animateScale: false },
     offset: 0,
     radius: "100%",
@@ -128,17 +147,21 @@ const Result = () => {
                     }
                     onClick={() => {
                       console.log(boolJudgedAnswer);
+                      console.log(
+                        "correctAnswerNum" + Number(correctAnswerNum)
+                      );
+                      console.log(Number(MaxQuestionNumber));
                     }}
                   >
                     {index + 1}問目:
-                    {boolJudgedAnswer[index] === true ? "o" : "x"} (
-                    {selectAnswer[index]}→{item})
+                    {boolJudgedAnswer[index] ? "o" : "x"} ({selectAnswer[index]}
+                    →{item})
                   </p>
                 </div>
               ))}
           </ul>
           <button css={nextButton}>
-            <Link href={"/game"}>もう一回</Link>
+            <Link href={"/game"}>次のゲーム</Link>
           </button>
         </div>
       </div>

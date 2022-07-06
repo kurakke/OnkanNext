@@ -68,21 +68,37 @@ const answerButton = css`
   height: 30px;
 `;
 const answerPlace = css`
+  position: relative;
   display: flex;
+  justify-content: center;
   width: 100%;
   height: 55%;
+  @media (max-width: 475px) {
+    justify-content: flex-end;
+    padding-right: 16px;
+  } ;
 `;
 const answerButtons = css`
-  margin: 10px auto;
+  margin: 10px 0;
   display: flex;
 `;
 const answerNormalButtons = css`
   margin: 30px 0px;
 `;
 const answerSharpButtons = css`
-  margin: 85px 0px;
+  margin: 53px 0px;
 `;
-const pianoButtons = css``;
+const grandPiano = css`
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+`;
+const pianoBoard = css`
+  width: 30%;
+  background-color: black;
+`;
 const piano = css`
   margin: 20px 0px;
 `;
@@ -93,16 +109,7 @@ const whiteKey = css`
   border-bottom: 1px solid #000;
   border-radius: 0px 2px 2px 0px;
 `;
-const unknownButton = css`
-  width: 80px;
-  height: 28px;
-  margin: 5px auto;
-  border: 1px solid rgba(255, 255, 255, 1);
-  border-radius: 25px;
-  background-color: rgba(2, 0, 0, 1);
-  color: rgba(2, 0, 0);
-  // visibility: hidden;
-`;
+
 const blackKey = css`
   width: 65px;
   height: 26px;
@@ -123,6 +130,10 @@ const pianoSideBottom = css`
   height: 35px;
   background-color: #000000;
   border-radius: 0px 0px 20px 0px;
+`;
+
+const ulButton = css`
+  padding-inline-start: 5px;
 `;
 
 const Game = () => {
@@ -175,29 +186,34 @@ const Game = () => {
   const [questionNum, setQuestionNum] = useState(0);
 
   const [showButton, setShowButton] = useState(false);
-  const AnswerCheck = (text: string) => {
-    if (Sounds[QuestionArray[questionNum]].ans === text) {
+  const AnswerCheck = (answer: number) => {
+    if (Sounds[QuestionArray[questionNum]].value === Sounds[answer].value) {
+      console.log(hoge);
       setShowButton(true);
     }
   };
-  const [correctAnswerNum, setCorrectAnswerNum] = useState(0);
+  const [correctAnswerNum, setCorrectAnswerNum] = useState<number>(0);
   const [clicked, setClicked] = useState(true);
   const clear = () => {
     setClicked(true);
   };
 
-  const firstOnClick = (selectedAnswer: string) => {
-    setSelectAnswer([...selectAnswer, selectedAnswer]);
-    if (Sounds[QuestionArray[questionNum]].ans === selectedAnswer) {
+  const firstOnClick = (selectIndex: number) => {
+    setSelectAnswer([...selectAnswer, Sounds[selectIndex].label]);
+    if (
+      Sounds[QuestionArray[questionNum]].value === Sounds[selectIndex].value
+    ) {
       setCorrectAnswerNum((prev) => prev + 1);
     }
-    if (Sounds[QuestionArray[questionNum]].ans === selectedAnswer) {
+    if (
+      Sounds[QuestionArray[questionNum]].value === Sounds[selectIndex].value
+    ) {
       setBoolJudgedAnswer([...boolJudgedAnswer, true]);
     } else {
       setBoolJudgedAnswer([...boolJudgedAnswer, false]);
     }
   };
-  const handleAnwerButton = (answer: string) => {
+  const handleAnwerButton = (answer: number) => {
     AnswerCheck(answer);
     if (clicked) {
       firstOnClick(answer);
@@ -207,7 +223,7 @@ const Game = () => {
   const [hoge, setHoge] = useState("yahharo-");
 
   const MakeSendValue = () => {
-    const answers = QuestionArray.map((question) => Sounds[question].ans);
+    const answers = QuestionArray.map((question) => Sounds[question].label);
     localStorage.setItem("hoge", hoge);
     localStorage.setItem("selectAnswer", JSON.stringify(selectAnswer));
     localStorage.setItem(
@@ -220,38 +236,130 @@ const Game = () => {
   };
 
   const Sounds = [
-    { id: 1, file: pianoC4, ans: "c4", isSharp: false },
-    { id: 2, file: pianoB3, ans: "b3", isSharp: false },
-    { id: 3, file: pianoA3, ans: "a3", isSharp: false },
-    { id: 4, file: pianoG3, ans: "g3", isSharp: false },
-    { id: 5, file: pianoF3, ans: "f3", isSharp: false },
-    { id: 6, file: pianoE3, ans: "e3", isSharp: false },
-    { id: 7, file: pianoD3, ans: "d3", isSharp: false },
-    { id: 8, file: pianoC3, ans: "c3", isSharp: false },
-    { id: 9, file: pianoASharp3, ans: "as3", isSharp: true },
-    { id: 10, file: pianoGSharp3, ans: "gs3", isSharp: true },
-    { id: 11, file: pianoFSharp3, ans: "fs3", isSharp: true },
-    { id: 12, file: pianoDSharp3, ans: "ds3", isSharp: true },
-    { id: 13, file: pianoCSharp3, ans: "cs3", isSharp: true },
+    {
+      id: 0,
+      label: "C",
+      file: pianoC4,
+      value: "c4",
+      isSharp: false,
+      isExist: true,
+    },
+    {
+      id: 1,
+      label: "B#",
+      file: null,
+      value: "bs3",
+      isSharp: true,
+      isExist: false,
+    },
+    {
+      id: 2,
+      label: "B",
+      file: pianoB3,
+      value: "b3",
+      isSharp: false,
+      isExist: true,
+    },
+    {
+      id: 3,
+      label: "A#",
+      file: pianoASharp3,
+      value: "as3",
+      isSharp: true,
+      isExist: true,
+    },
+    {
+      id: 4,
+      label: "A",
+      file: pianoA3,
+      value: "a3",
+      isSharp: false,
+      isExist: true,
+    },
+    {
+      id: 5,
+      label: "G#",
+      file: pianoGSharp3,
+      value: "gs3",
+      isSharp: true,
+      isExist: true,
+    },
+    {
+      id: 6,
+      label: "G",
+      file: pianoG3,
+      value: "g3",
+      isSharp: false,
+      isExist: true,
+    },
+    {
+      id: 7,
+      label: "F#",
+      file: pianoFSharp3,
+      value: "fs3",
+      isSharp: true,
+      isExist: true,
+    },
+    {
+      id: 8,
+      label: "F",
+      file: pianoF3,
+      value: "f3",
+      isSharp: false,
+      isExist: true,
+    },
+    {
+      id: 9,
+      label: "E#",
+      file: null,
+      value: "es3",
+      isSharp: true,
+      isExist: false,
+    },
+    {
+      id: 10,
+      label: "E",
+      file: pianoE3,
+      value: "e3",
+      isSharp: false,
+      isExist: true,
+    },
+    {
+      id: 11,
+      label: "D#",
+      file: pianoDSharp3,
+      value: "ds3",
+      isSharp: true,
+      isExist: true,
+    },
+    {
+      id: 12,
+      label: "D",
+      file: pianoD3,
+      value: "d3",
+      isSharp: false,
+      isExist: true,
+    },
+    {
+      id: 13,
+      label: "C#",
+      file: pianoCSharp3,
+      value: "cs3",
+      isSharp: true,
+      isExist: true,
+    },
+    {
+      id: 14,
+      label: "C",
+      file: pianoC3,
+      value: "c3",
+      isSharp: false,
+      isExist: true,
+    },
   ];
-  const Choices = [
-    { id: 1, label: "C", value: "c4", isSharp: false },
-    { id: 2, label: "B", value: "b3", isSharp: false },
-    { id: 3, label: "A", value: "a3", isSharp: false },
-    { id: 4, label: "G", value: "g3", isSharp: false },
-    { id: 5, label: "F", value: "f3", isSharp: false },
-    { id: 6, label: "E", value: "e3", isSharp: false },
-    { id: 7, label: "D", value: "d3", isSharp: false },
-    { id: 8, label: "C", value: "c3", isSharp: false },
-    { id: 9, label: "A#", value: "as3", isSharp: true },
-    { id: 10, label: "G#", value: "gs3", isSharp: true },
-    { id: 11, label: "F#", value: "fs3", isSharp: true },
-    { id: 14, label: "E#", value: "es3", idSharp: true },
-    { id: 12, label: "D#", value: "ds3", isSharp: true },
-    { id: 13, label: "C#", value: "cs3", isSharp: true },
-  ];
+
   const a = "a";
-  const b = Choices.filter((item) => {
+  const b = Sounds.filter((item) => {
     if (item.isSharp === false) {
       return item;
     }
@@ -274,82 +382,63 @@ const Game = () => {
           </button>
         </div>
       </div>
-      {/* 
-      <div>
-        <div>
-          <div>上装飾</div>
-        </div>
-        <div>
-          {Choices.map((item) => {
-            return <>{item.isSharp ? 
-            <div>
-              k黒鍵の場合
-
-            </div> : 
-            <div>
-              白鍵の場合  
-            </div>}</>;
-          })}
-        </div>
-        <div>下装飾</div>
-      </div> */}
 
       <div css={answerPlace}>
-        <div css={piano}>
-          <div css={pianoSideTop}></div>
-          <div css={whiteKey}></div>
-          <div css={whiteKey}></div>
-          <div css={blackKey}></div>
-          <div css={whiteKey}></div>
-          <div css={blackKey}></div>
-          <div css={whiteKey}></div>
-          <div css={blackKey}></div>
-          <div css={whiteKey}></div>
-          <div css={whiteKey}></div>
-          <div css={blackKey}></div>
-          <div css={whiteKey}></div>
-          <div css={blackKey}></div>
-          <div css={whiteKey}></div>
-          <div css={pianoSideBottom}></div>
+        <div css={grandPiano}>
+          <div css={pianoBoard}></div>
+          <div css={piano}>
+            <div css={pianoSideTop}></div>
+            {Sounds.map((item) => (
+              <div key={item.id}>
+                {!item.isSharp && <div css={whiteKey}></div>}
+                {item.isSharp && item.isExist && <div css={blackKey}></div>}
+                {item.isSharp && !item.isExist && <div></div>}
+              </div>
+            ))}
+            <div css={pianoSideBottom}></div>
+          </div>
         </div>
         <div css={answerButtons}>
           <div css={answerNormalButtons}>
-            <ul>
-              {Choices.filter((item) => !item.isSharp).map((item, index) => (
+            <ul css={ulButton}>
+              {Sounds.filter((item) => !item.isSharp).map((item, index) => (
                 <div css={answerButton} key={item.id}>
                   <Button
                     label={item.label}
                     handleAnswer={handleAnwerButton}
-                    handleAnswerArg={item.value}
+                    handleAnswerArg={item.id}
                     Answer={
-                      Sounds[QuestionArray[questionNum]].ans === item.value
+                      Sounds[QuestionArray[questionNum]].value === item.value
                         ? true
                         : false
                     }
                     questionNum={questionNum}
-                    musicFile={Sounds[index].file}
+                    musicFile={item.file}
+                    isExist={item.isExist}
+                    id={item.id}
                   ></Button>
                 </div>
               ))}
             </ul>
           </div>
           <div css={answerSharpButtons}>
-            <ul>
-              {Choices.filter((item) => item.isSharp).map((item, index) => (
+            <ul css={ulButton}>
+              {Sounds.filter((item) => item.isSharp).map((item, index) => (
                 <div css={answerButton} key={item.id}>
                   <Button
                     label={item.label}
                     handleAnswer={handleAnwerButton}
-                    handleAnswerArg={item.value}
+                    handleAnswerArg={item.id}
                     Answer={
-                      Sounds[QuestionArray[questionNum]].ans === item.value
+                      Sounds[QuestionArray[questionNum]].value === item.value
                         ? true
                         : false
                     }
                     questionNum={questionNum}
-                    musicFile={Sounds[index + 8].file}
+                    musicFile={item.file}
+                    isExist={item.isExist}
+                    id={item.id}
                   ></Button>
-                  {/* {item.id === 11 && <button css={unknownButton}></button>} */}
                 </div>
               ))}
             </ul>
@@ -379,6 +468,7 @@ const Game = () => {
                 onClick={() => {
                   MakeSendValue();
                   console.log(boolJudgedAnswer);
+                  console.log("correctAnswerNum" + correctAnswerNum);
                 }}
               >
                 <Link href={"/result"}>結果を見る</Link>
