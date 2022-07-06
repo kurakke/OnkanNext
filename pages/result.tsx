@@ -136,6 +136,10 @@ const Result = () => {
                     }
                     onClick={() => {
                       console.log(boolJudgedAnswer);
+                      console.log(
+                        "correctAnswerNum" + Number(correctAnswerNum)
+                      );
+                      console.log(Number(MaxQuestionNumber));
                     }}
                   >
                     {index + 1}問目:

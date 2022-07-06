@@ -203,7 +203,7 @@ const Game = () => {
     if (
       Sounds[QuestionArray[questionNum]].value === Sounds[selectIndex].value
     ) {
-      setCorrectAnswerNum((prev) => prev + 1);
+      setCorrectAnswerNum(correctAnswerNum + 1);
     }
     if (
       Sounds[QuestionArray[questionNum]].value === Sounds[selectIndex].value
@@ -468,6 +468,7 @@ const Game = () => {
                 onClick={() => {
                   MakeSendValue();
                   console.log(boolJudgedAnswer);
+                  console.log("correctAnswerNum" + correctAnswerNum);
                 }}
               >
                 <Link href={"/result"}>結果を見る</Link>
