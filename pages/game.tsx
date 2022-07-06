@@ -186,8 +186,9 @@ const Game = () => {
   const [questionNum, setQuestionNum] = useState(0);
 
   const [showButton, setShowButton] = useState(false);
-  const AnswerCheck = (answer: string) => {
-    if (Sounds[QuestionArray[questionNum]].value === answer) {
+  const AnswerCheck = (answer: number) => {
+    if (Sounds[QuestionArray[questionNum]].value === Sounds[answer].value) {
+      console.log(hoge);
       setShowButton(true);
     }
   };
@@ -197,18 +198,22 @@ const Game = () => {
     setClicked(true);
   };
 
-  const firstOnClick = (selectedAnswer: string) => {
-    setSelectAnswer([...selectAnswer, selectedAnswer]);
-    if (Sounds[QuestionArray[questionNum]].value === selectedAnswer) {
+  const firstOnClick = (selectIndex: number) => {
+    setSelectAnswer([...selectAnswer, Sounds[selectIndex].label]);
+    if (
+      Sounds[QuestionArray[questionNum]].value === Sounds[selectIndex].value
+    ) {
       setCorrectAnswerNum((prev) => prev + 1);
     }
-    if (Sounds[QuestionArray[questionNum]].value === selectedAnswer) {
+    if (
+      Sounds[QuestionArray[questionNum]].value === Sounds[selectIndex].value
+    ) {
       setBoolJudgedAnswer([...boolJudgedAnswer, true]);
     } else {
       setBoolJudgedAnswer([...boolJudgedAnswer, false]);
     }
   };
-  const handleAnwerButton = (answer: string) => {
+  const handleAnwerButton = (answer: number) => {
     AnswerCheck(answer);
     if (clicked) {
       firstOnClick(answer);
@@ -232,7 +237,7 @@ const Game = () => {
 
   const Sounds = [
     {
-      id: 1,
+      id: 0,
       label: "C",
       file: pianoC4,
       value: "c4",
@@ -240,7 +245,7 @@ const Game = () => {
       isExist: true,
     },
     {
-      id: 2,
+      id: 1,
       label: "B#",
       file: null,
       value: "bs3",
@@ -248,7 +253,7 @@ const Game = () => {
       isExist: false,
     },
     {
-      id: 3,
+      id: 2,
       label: "B",
       file: pianoB3,
       value: "b3",
@@ -256,7 +261,7 @@ const Game = () => {
       isExist: true,
     },
     {
-      id: 4,
+      id: 3,
       label: "A#",
       file: pianoASharp3,
       value: "as3",
@@ -264,7 +269,7 @@ const Game = () => {
       isExist: true,
     },
     {
-      id: 5,
+      id: 4,
       label: "A",
       file: pianoA3,
       value: "a3",
@@ -272,7 +277,7 @@ const Game = () => {
       isExist: true,
     },
     {
-      id: 6,
+      id: 5,
       label: "G#",
       file: pianoGSharp3,
       value: "gs3",
@@ -280,7 +285,7 @@ const Game = () => {
       isExist: true,
     },
     {
-      id: 7,
+      id: 6,
       label: "G",
       file: pianoG3,
       value: "g3",
@@ -288,7 +293,7 @@ const Game = () => {
       isExist: true,
     },
     {
-      id: 8,
+      id: 7,
       label: "F#",
       file: pianoFSharp3,
       value: "fs3",
@@ -296,7 +301,7 @@ const Game = () => {
       isExist: true,
     },
     {
-      id: 9,
+      id: 8,
       label: "F",
       file: pianoF3,
       value: "f3",
@@ -304,7 +309,7 @@ const Game = () => {
       isExist: true,
     },
     {
-      id: 10,
+      id: 9,
       label: "E#",
       file: null,
       value: "es3",
@@ -312,7 +317,7 @@ const Game = () => {
       isExist: false,
     },
     {
-      id: 11,
+      id: 10,
       label: "E",
       file: pianoE3,
       value: "e3",
@@ -320,7 +325,7 @@ const Game = () => {
       isExist: true,
     },
     {
-      id: 12,
+      id: 11,
       label: "D#",
       file: pianoDSharp3,
       value: "ds3",
@@ -328,7 +333,7 @@ const Game = () => {
       isExist: true,
     },
     {
-      id: 13,
+      id: 12,
       label: "D",
       file: pianoD3,
       value: "d3",
@@ -336,7 +341,7 @@ const Game = () => {
       isExist: true,
     },
     {
-      id: 14,
+      id: 13,
       label: "C#",
       file: pianoCSharp3,
       value: "cs3",
@@ -344,7 +349,7 @@ const Game = () => {
       isExist: true,
     },
     {
-      id: 15,
+      id: 14,
       label: "C",
       file: pianoC3,
       value: "c3",
@@ -401,7 +406,7 @@ const Game = () => {
                   <Button
                     label={item.label}
                     handleAnswer={handleAnwerButton}
-                    handleAnswerArg={item.value}
+                    handleAnswerArg={item.id}
                     Answer={
                       Sounds[QuestionArray[questionNum]].value === item.value
                         ? true
@@ -423,7 +428,7 @@ const Game = () => {
                   <Button
                     label={item.label}
                     handleAnswer={handleAnwerButton}
-                    handleAnswerArg={item.value}
+                    handleAnswerArg={item.id}
                     Answer={
                       Sounds[QuestionArray[questionNum]].value === item.value
                         ? true

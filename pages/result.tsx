@@ -68,6 +68,7 @@ const Result = () => {
   const correctAnswerPercent =
     (Number(correctAnswerNum) / Number(MaxQuestionNumber)) * 100;
   const [boolJudgedAnswer, setBoolJudgedAnswer] = useState<boolean[]>([]);
+  const [exhoge, setExhoge] = useState();
   const getLocalStorage = async (key: string): Promise<string> => {
     const a = await localStorage.getItem(key);
     return a;
@@ -104,7 +105,7 @@ const Result = () => {
   };
   const options: DoughnutControllerChartOptions = {
     circumference: 360,
-    cutout: 99.9,
+    cutout: "90%",
     animation: { animateRotate: true, animateScale: false },
     offset: 0,
     radius: "100%",
@@ -133,8 +134,8 @@ const Result = () => {
                     }}
                   >
                     {index + 1}問目:
-                    {boolJudgedAnswer[index] === true ? "o" : "x"} (
-                    {selectAnswer[index]}→{item})
+                    {boolJudgedAnswer[index] ? "o" : "x"} ({selectAnswer[index]}
+                    →{item})
                   </p>
                 </div>
               ))}

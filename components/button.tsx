@@ -91,8 +91,8 @@ const AbleButton = css`
 
 type Props = {
   label: string;
-  handleAnswer: React.Dispatch<React.SetStateAction<string>>;
-  handleAnswerArg: string;
+  handleAnswer: (number) => void;
+  handleAnswerArg: number;
   Answer: boolean;
   questionNum: number;
   musicFile: HTMLAudioElement;
