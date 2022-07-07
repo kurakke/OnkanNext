@@ -86,7 +86,13 @@ const disableButton = css`
 `;
 
 const AbleButton = css`
-  ${button}
+  width: 80px;
+  height: 28px;
+  margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #ffffff;
 `;
 
 type Props = {
@@ -96,7 +102,6 @@ type Props = {
   Answer: boolean;
   questionNum: number;
   musicFile: HTMLAudioElement;
-  isExist: boolean;
   id: number;
 };
 
@@ -107,7 +112,6 @@ const Button = ({
   Answer,
   questionNum,
   musicFile,
-  isExist,
   id,
 }: Props) => {
   const [ButtonCss, setButtonCss] = useState(button);
@@ -116,25 +120,17 @@ const Button = ({
   }, [questionNum]);
   return (
     <div>
-      {(() => {
-        if (isExist) {
-          return (
-            <button
-              css={ButtonCss}
-              onClick={() => {
-                handleAnswer(handleAnswerArg);
-                setButtonCss(Answer ? AbleButton : disableButton);
-                musicFile.play();
-                console.log(id);
-              }}
-            >
-              {label}
-            </button>
-          );
-        } else {
-          <button css={unknownButton}></button>;
-        }
-      })()}
+      <button
+        css={ButtonCss}
+        onClick={() => {
+          handleAnswer(handleAnswerArg);
+          setButtonCss(Answer ? AbleButton : disableButton);
+          musicFile.play();
+          console.log(id);
+        }}
+      >
+        {label}
+      </button>
     </div>
   );
 };

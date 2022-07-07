@@ -135,6 +135,11 @@ const pianoSideBottom = css`
 const ulButton = css`
   padding-inline-start: 5px;
 `;
+const unknownButton = css`
+  visibility: hidden;
+  width: 80px;
+  height: 28px;
+`;
 
 const Game = () => {
   const [aaaa, setA] = useState<HTMLAudioElement>(null);
@@ -181,7 +186,7 @@ const Game = () => {
     return QArray;
   };
 
-  const QuestionArray = useMemo(() => randomNum(13), []);
+  const QuestionArray = useMemo(() => randomNum(12), []);
   const [questionNum, setQuestionNum] = useState(0);
 
   const [showButton, setShowButton] = useState(false);
@@ -238,122 +243,111 @@ const Game = () => {
       file: pianoC4,
       value: "c4",
       isSharp: false,
-      isExist: true,
     },
+
     {
       id: 1,
-      label: "B#",
-      file: null,
-      value: "bs3",
-      isSharp: true,
-      isExist: false,
-    },
-    {
-      id: 2,
       label: "B",
       file: pianoB3,
       value: "b3",
       isSharp: false,
-      isExist: true,
     },
     {
-      id: 3,
+      id: 2,
       label: "A#",
       file: pianoASharp3,
       value: "as3",
       isSharp: true,
-      isExist: true,
     },
     {
-      id: 4,
+      id: 3,
       label: "A",
       file: pianoA3,
       value: "a3",
       isSharp: false,
-      isExist: true,
     },
     {
-      id: 5,
+      id: 4,
       label: "G#",
       file: pianoGSharp3,
       value: "gs3",
       isSharp: true,
-      isExist: true,
     },
     {
-      id: 6,
+      id: 5,
       label: "G",
       file: pianoG3,
       value: "g3",
       isSharp: false,
-      isExist: true,
     },
     {
-      id: 7,
+      id: 6,
       label: "F#",
       file: pianoFSharp3,
       value: "fs3",
       isSharp: true,
-      isExist: true,
     },
     {
-      id: 8,
+      id: 7,
       label: "F",
       file: pianoF3,
       value: "f3",
       isSharp: false,
-      isExist: true,
     },
+
     {
-      id: 9,
-      label: "E#",
-      file: null,
-      value: "es3",
-      isSharp: true,
-      isExist: false,
-    },
-    {
-      id: 10,
+      id: 8,
       label: "E",
       file: pianoE3,
       value: "e3",
       isSharp: false,
-      isExist: true,
     },
     {
-      id: 11,
+      id: 9,
       label: "D#",
       file: pianoDSharp3,
       value: "ds3",
       isSharp: true,
-      isExist: true,
     },
     {
-      id: 12,
+      id: 10,
       label: "D",
       file: pianoD3,
       value: "d3",
       isSharp: false,
-      isExist: true,
     },
     {
-      id: 13,
+      id: 11,
       label: "C#",
       file: pianoCSharp3,
       value: "cs3",
       isSharp: true,
-      isExist: true,
     },
     {
-      id: 14,
+      id: 12,
       label: "C",
       file: pianoC3,
       value: "c3",
       isSharp: false,
-      isExist: true,
     },
   ];
-
+  const Key = [
+    Sounds[0],
+    null,
+    Sounds[1],
+    Sounds[2],
+    Sounds[3],
+    Sounds[4],
+    Sounds[5],
+    Sounds[6],
+    Sounds[7],
+    null,
+    Sounds[8],
+    Sounds[9],
+    Sounds[10],
+    Sounds[11],
+    Sounds[12],
+  ];
   const a = "a";
   const b = Sounds.filter((item) => {
     if (item.isSharp === false) {
@@ -384,59 +378,66 @@ const Game = () => {
           <div css={pianoBoard}></div>
           <div css={piano}>
             <div css={pianoSideTop}></div>
-            {Sounds.map((item) => (
-              <div key={item.id}>
-                {!item.isSharp && <div css={whiteKey}></div>}
-                {item.isSharp && item.isExist && <div css={blackKey}></div>}
-                {item.isSharp && !item.isExist && <div></div>}
-              </div>
-            ))}
+            {Key.map((item) =>
+              item ? (
+                <div key={item.id}>
+                  {!item.isSharp && <div css={whiteKey}></div>}
+                  {item.isSharp && <div css={blackKey}></div>}
+                </div>
+              ) : (
+                <div />
+              )
+            )}
             <div css={pianoSideBottom}></div>
           </div>
         </div>
         <div css={answerButtons}>
           <div css={answerNormalButtons}>
             <ul css={ulButton}>
-              {Sounds.filter((item) => !item.isSharp).map((item, index) => (
-                <div css={answerButton} key={item.id}>
-                  <Button
-                    label={item.label}
-                    handleAnswer={handleAnwerButton}
-                    handleAnswerArg={item.id}
-                    Answer={
-                      Sounds[QuestionArray[questionNum]].value === item.value
-                        ? true
-                        : false
-                    }
-                    questionNum={questionNum}
-                    musicFile={item.file}
-                    isExist={item.isExist}
-                    id={item.id}
-                  ></Button>
-                </div>
-              ))}
+              {Key.filter((item) => item && !item.isSharp).map(
+                (item, index) => (
+                  <div css={answerButton} key={item.id}>
+                    <Button
+                      label={item.label}
+                      handleAnswer={handleAnwerButton}
+                      handleAnswerArg={item.id}
+                      Answer={
+                        Sounds[QuestionArray[questionNum]].value === item.value
+                          ? true
+                          : false
+                      }
+                      questionNum={questionNum}
+                      musicFile={item.file}
+                      id={item.id}
+                    ></Button>
+                  </div>
+                )
+              )}
             </ul>
           </div>
           <div css={answerSharpButtons}>
             <ul css={ulButton}>
-              {Sounds.filter((item) => item.isSharp).map((item, index) => (
-                <div css={answerButton} key={item.id}>
-                  <Button
-                    label={item.label}
-                    handleAnswer={handleAnwerButton}
-                    handleAnswerArg={item.id}
-                    Answer={
-                      Sounds[QuestionArray[questionNum]].value === item.value
-                        ? true
-                        : false
-                    }
-                    questionNum={questionNum}
-                    musicFile={item.file}
-                    isExist={item.isExist}
-                    id={item.id}
-                  ></Button>
-                </div>
-              ))}
+              {Key.filter((item) => !item || item.isSharp).map((item, index) =>
+                item ? (
+                  <div css={answerButton} key={item.id}>
+                    <Button
+                      label={item.label}
+                      handleAnswer={handleAnwerButton}
+                      handleAnswerArg={item.id}
+                      Answer={
+                        Sounds[QuestionArray[questionNum]].value === item.value
+                          ? true
+                          : false
+                      }
+                      questionNum={questionNum}
+                      musicFile={item.file}
+                      id={item.id}
+                    ></Button>
+                  </div>
+                ) : (
+                  <div css={unknownButton} />
+                )
+              )}
             </ul>
           </div>
         </div>
