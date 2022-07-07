@@ -86,7 +86,13 @@ const disableButton = css`
 `;
 
 const AbleButton = css`
-  ${button}
+  width: 80px;
+  height: 28px;
+  margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #ffffff;
 `;
 
 type Props = {
