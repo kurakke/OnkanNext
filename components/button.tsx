@@ -102,7 +102,6 @@ type Props = {
   Answer: boolean;
   questionNum: number;
   musicFile: HTMLAudioElement;
-  isExist: boolean;
   id: number;
 };
 
@@ -113,7 +112,6 @@ const Button = ({
   Answer,
   questionNum,
   musicFile,
-  isExist,
   id,
 }: Props) => {
   const [ButtonCss, setButtonCss] = useState(button);
@@ -122,25 +120,17 @@ const Button = ({
   }, [questionNum]);
   return (
     <div>
-      {(() => {
-        if (isExist) {
-          return (
-            <button
-              css={ButtonCss}
-              onClick={() => {
-                handleAnswer(handleAnswerArg);
-                setButtonCss(Answer ? AbleButton : disableButton);
-                musicFile.play();
-                console.log(id);
-              }}
-            >
-              {label}
-            </button>
-          );
-        } else {
-          <button css={unknownButton}></button>;
-        }
-      })()}
+      <button
+        css={ButtonCss}
+        onClick={() => {
+          handleAnswer(handleAnswerArg);
+          setButtonCss(Answer ? AbleButton : disableButton);
+          musicFile.play();
+          console.log(id);
+        }}
+      >
+        {label}
+      </button>
     </div>
   );
 };
