@@ -2,133 +2,28 @@ import React, { useEffect, useState, useMemo } from "react";
 import { css } from "@emotion/react";
 import Button from "../components/button";
 import Link from "next/link";
-const all = css`
-  margin: 0px;
-  padding: 0px;
-  background-image: linear-gradient(to bottom, #5c1ea6 0%, #c8435e 100%);
-  width: 100vw;
-  min-height: 100vh;
-  display: flex;
-  flex-flow: column;
-`;
-const glass = css`
-  width: 300px;
-  height: 30%;
-  background-color: rgba(255, 255, 255, 0.2);
-  margin: 20px auto;
-  top: 80px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  filter: drop-shadow(3px 3px 3px 0 rgba(0, 0, 0, 0.8));
-  border-radius: 25px;
-`;
-const slider = css`
-  text-align: center;
-`;
-const startButton = css`
-  background-color: white;
-  width: 180px;
-  height: 60px;
-  border-radius: 15px;
-  box-shadow: 0px 7px 0px 0px rgba(0, 0, 0, 0.6);
-  margin: 25px auto;
-  text-align: center;
-  font-size: 20px;
-  font-weight: 600;
-`;
-
-const nextButton = css`
-  background-color: white;
-  width: 180px;
-  height: 60px;
-  border-radius: 15px;
-  box-shadow: 0px 7px 0px 0px rgba(0, 0, 0, 0.6);
-  margin: 0px auto;
-  text-align: center;
-  font-size: 20px;
-  font-weight: 600;
-`;
-const start = css`
-  text-align: center;
-  font-size: 20px;
-  font-weight: 600;
-`;
-const answerButton = css`
-  margin: 5px auto;
-  height: 30px;
-`;
-const answerPlace = css`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  height: 55%;
-  @media (max-width: 475px) {
-    justify-content: flex-end;
-    padding-right: 16px;
-  } ;
-`;
-const answerButtons = css`
-  margin: 10px 0;
-  display: flex;
-`;
-const answerNormalButtons = css`
-  margin: 30px 0px;
-`;
-const answerSharpButtons = css`
-  margin: 53px 0px;
-`;
-const grandPiano = css`
-  display: flex;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 30%;
-`;
-const pianoBoard = css`
-  width: 30%;
-  background-color: black;
-`;
-const piano = css`
-  margin: 20px 0px;
-`;
-const whiteKey = css`
-  width: 90px;
-  height: 35px;
-  background-color: white;
-  border-bottom: 1px solid #000;
-  border-radius: 0px 2px 2px 0px;
-`;
-
-const blackKey = css`
-  width: 65px;
-  height: 26px;
-  background-color: black;
-  margin: -13px 0px;
-  border-radius: 0px 2px 2px 0px;
-  z-index: 2;
-  position: relative;
-`;
-const pianoSideTop = css`
-  width: 120px;
-  height: 35px;
-  background-color: #000000;
-  border-radius: 0px 20px 0px 0px;
-`;
-const pianoSideBottom = css`
-  width: 120px;
-  height: 35px;
-  background-color: #000000;
-  border-radius: 0px 0px 20px 0px;
-`;
-
-const ulButton = css`
-  padding-inline-start: 5px;
-`;
-const unknownButton = css`
-  visibility: hidden;
-  width: 80px;
-  height: 28px;
-`;
+import {
+  all,
+  glass,
+  slider,
+  startButton,
+  nextButton,
+  start,
+  answerButton,
+  answerPlace,
+  answerButtons,
+  answerNormalButtons,
+  answerSharpButtons,
+  grandPiano,
+  pianoBoard,
+  piano,
+  whiteKey,
+  blackKey,
+  pianoSideTop,
+  pianoSideBottom,
+  ulButton,
+  unknownButton,
+} from "../styles/gamestyle";
 
 const Game = () => {
   const [aaaa, setA] = useState<HTMLAudioElement>(null);
