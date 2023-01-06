@@ -47,17 +47,6 @@ const nextButton = css`
   font-size: 20px;
   font-weight: 600;
 `;
-const darkStartButton = css`
-  background-color: rgba()
-  width: 180px;
-  height: 60px;
-  border-radius: 15px;
-  box-shadow: 0px 7px 0px 0px rgba(0, 0, 0, 0.6);
-  margin: 40px auto;
-  text-align: center;
-  font-size: 20px;
-  font-weight: 600;
-`;
 const start = css`
   text-align: center;
   font-size: 20px;
