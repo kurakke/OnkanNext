@@ -61,6 +61,10 @@ const dance = css`
   z-index: 10;
 `;
 
+const text = css`
+    color: #ffffff;
+`;
+
 const title = css``;
 const settings = {
   dots: true,
@@ -88,7 +92,7 @@ const Main = () => {
       </div>
       <div css={glass}>
           <Image src="/dance.png" layout="fixed" css={image} width={500} height={400}/>
-          <h1>Onkanは相対音感を鍛えるサイトです</h1>
+          <h2 css={text}>Onkanでは絶対音感を手に入れるため 聞こえてくる音を当てるトレーニングをします</h2>
       </div>
       <button css={startButton}>
         <Link href={"/game"}>
