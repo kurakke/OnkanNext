@@ -28,6 +28,7 @@ const glass = css`
   padding: 0 30px;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 `;
 const startButton = css`
   background-color: white;
@@ -86,7 +87,8 @@ const Main = () => {
         <h1 css={title}>onkan</h1>
       </div>
       <div css={glass}>
-          <Image src="/dance.png" layout="fixed" css={image} width={600} height={500}/>
+          <Image src="/dance.png" layout="fixed" css={image} width={500} height={400}/>
+          <h1>Onkanは相対音感を鍛えるサイトです</h1>
       </div>
       <button css={startButton}>
         <Link href={"/game"}>
