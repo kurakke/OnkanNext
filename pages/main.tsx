@@ -1,10 +1,11 @@
-import React from "react";
 import { css } from "@emotion/react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+//import Slider from "react-slick";
 import Link from "next/link";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 import SampleNextArrow from "../components/nextArrow";
+import Image from "next/image";
+import content from "*.png";
 const all = css`
   margin: 0px;
   padding: 0px;
@@ -18,12 +19,16 @@ const all = css`
 const glass = css`
   width: 70%;
   height: 60%;
+  display: flex;
   background-color: rgba(255, 255, 255, 0.2);
   margin: 0 auto;
   top: 80px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 25px;
   padding: 0 30px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 const startButton = css`
   background-color: white;
@@ -44,8 +49,20 @@ const slider = css`
   width: 100%;
 `;
 const image = css`
+  //margin: 0 auto;
+  //max-width: 100%;
+  //max-height: 100%;
+ 
+`;
+const dance = css`
   margin: 0 auto;
-  max-width: 100%;
+  width: 70%;
+  height: 100%;
+  z-index: 10;
+`;
+
+const text = css`
+    color: #ffffff;
 `;
 
 const title = css``;
@@ -74,16 +91,8 @@ const Main = () => {
         <h1 css={title}>onkan</h1>
       </div>
       <div css={glass}>
-        <Slider {...settings}>
-          {items.map((item) => {
-            return (
-              <div css={slider} key={item.id}>
-                <img src={item.img} css={image} />
-                <h3>{item.title}</h3>
-              </div>
-            );
-          })}
-        </Slider>
+          <Image src="/dance.png" layout="fixed" css={image} width={500} height={400}/>
+          <h2 css={text}>Onkanでは絶対音感を手に入れるため 聞こえてくる音を当てるトレーニングをします</h2>
       </div>
       <button css={startButton}>
         <Link href={"/game"}>
